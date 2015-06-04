@@ -7,7 +7,6 @@
 
 			$current_user = User::find_by_id( $session->user_id );
 			$page = "";
-
 			
 			if ( isset( $_GET[ 'user_id' ] ) ) {
 				$page = "albums";

@@ -50,7 +50,7 @@
 			$environment = "live";
 		}
 
-		if ( is_numeric ( strpos( $url, "thesocialnetwork_blah" ) ) ) {
+		if ( is_numeric ( strpos( $url, "thesocialnetwork_dvd" ) ) || is_numeric ( strpos( $url, "TSN2_cdcd" ) ) ) {
 			$site_code = 'tsn';
 		} else {
 			$site_code = "jc";
