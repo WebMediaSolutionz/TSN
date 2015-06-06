@@ -37,25 +37,31 @@
 		return mail( $to, $subject, $message, $headers);
 	}
 
-	function set_environment ( $current_url ) {
-		global $site_code;
+	function set_environment () {
+		global $site_code, $environment;
 
-		$url = $_SERVER[ 'PHP_SELF' ];
+		$domain = $_SERVER[ 'HTTP_HOST' ];				
 
-		if ( $current_url === "localhost" ) {
+		if ( is_numeric ( strpos( $domain, "localhost" ) ) ) {
 			$environment = "dev";
-		} elseif ( is_numeric ( strpos( $current_url, "staging" ) ) ) {
+		} elseif ( is_numeric ( strpos( $domain, "staging" ) ) ) {
 			$environment = "staging";
 		} else {
 			$environment = "live";
 		}
 
-		if ( is_numeric ( strpos( $url, "thesocialnetwork_dvd" ) ) || is_numeric ( strpos( $url, "TSN2_cdcd" ) ) ) {
-			$site_code = 'tsn';
-		} else {
-			$site_code = "jc";
-		}
+		$url = $_SERVER[ 'PHP_SELF' ];
 
-		return $environment;
+		if ( is_numeric ( strpos( $url, "thesocialnetwork" ) ) || is_numeric ( strpos( $url, "TSN2" ) ) ) {
+			$site_code = 'tsn';
+		} else if ( is_numeric ( strpos( $url, "MA" ) ) ) {
+			$site_code = "ma";
+		} else if ( is_numeric ( strpos( $url, "janechoka" ) ) ) {
+			$site_code = "jc";
+		} else if ( is_numeric ( strpos( $url, "meimaza" ) ) ) {
+			$site_code = "mm";
+		} else if ( is_numeric ( strpos( $url, "karinevandal" ) ) ) {
+			$site_code = "kv";
+		}
 	}
 ?>

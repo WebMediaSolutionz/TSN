@@ -1,10 +1,12 @@
 <?php
 
-	$current_url = $_SERVER[ 'HTTP_HOST' ];
 	$site_code = null;
-	$environment = set_environment( $current_url );
-	$current_lang = ( isset( $_GET[ 'lang' ] ) ) ? $_GET[ 'lang' ] : 'en';
+	$environment = null;
 	$current_page = null;
+
+	set_environment();
+
+	$current_lang = ( isset( $_GET[ 'lang' ] ) ) ? $_GET[ 'lang' ] : 'en';	
 
 	require_once( "site_specific_config/{$site_code}/config.php" );
 
