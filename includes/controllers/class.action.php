@@ -34,10 +34,10 @@
 			static::$template = str_replace( '.php', '.tpl.php', static::$template );
 			
 			if ( !file_exists( "views/" . static::$theme . "/" . static::$template ) ) {
-			    if ( !file_exists( "views/facebook/" . static::$template ) ) {
+			    if ( !file_exists( "views/" . DEFAULT_THEME . "/" . static::$template ) ) {
 			        exit( "error: missing template file" );
 			    } else {
-			        static::$theme = "facebook";
+			        static::$theme = DEFAULT_THEME;
 			    }
 			}
 

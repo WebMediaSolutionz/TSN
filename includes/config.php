@@ -18,5 +18,7 @@
 	defined( 'USER_PERSONAL_SPACE_VIDEOS' ) ? null : define( 'USER_PERSONAL_SPACE_VIDEOS', USER_PERSONAL_SPACE . '/videos' );
 	defined( 'USER_PERSONAL_SPACE_TRACKS' ) ? null : define( 'USER_PERSONAL_SPACE_TRACKS', USER_PERSONAL_SPACE . '/tracks' );
 
+	defined( 'DEFAULT_THEME' ) ? null : define( 'DEFAULT_THEME', 'facebook' );	
+
 	defined( 'IMG_MAX_UPLOAD_SIZE' ) ? null : define( 'IMG_MAX_UPLOAD_SIZE', 1000000 );	
 ?>
