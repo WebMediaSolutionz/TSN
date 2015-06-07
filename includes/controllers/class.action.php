@@ -32,6 +32,14 @@
 			static::$template = explode( '/', $_SERVER[ 'SCRIPT_FILENAME' ] );
 			static::$template = static::$template[ count( static::$template ) - 1 ];
 			static::$template = str_replace( '.php', '.tpl.php', static::$template );
+			
+			if ( !file_exists( "views/" . static::$theme . "/" . static::$template ) ) {
+			    if ( !file_exists( "views/facebook/" . static::$template ) ) {
+			        exit( "error: missing template file" );
+			    } else {
+			        static::$theme = "facebook";
+			    }
+			}
 
 			$classname = get_called_class();
 
