@@ -160,9 +160,7 @@
 		protected function prep_account () {
 			global $session;
 
-			if ( !mkdir( str_replace( '*id*', $this->id, USER_PERSONAL_SPACE ) ) ) {
-				exit( "error: couldn't create directory" );
-			}
+			$this->make_sure_ups_exists();
 
 			$session->settings = new Settings;
 
@@ -171,6 +169,20 @@
 			$session->settings->create();
 
 			$this->create_friend_list();
+		}
+
+		public function make_sure_ups_exists () {
+			$users_ups = str_replace( '*id*', $this->id, USER_PERSONAL_SPACE );
+
+			if ( !file_exists( $users_ups ) ) {
+				if ( !mkdir( $users_ups ) ) {
+					exit( "error: couldn't create directory" );
+				} else {
+					mkdir( $users_ups . "/pictures" );
+					mkdir( $users_ups . "/videos" );
+					mkdir( $users_ups . "/tracks" );
+				}
+			}
 		}
 
 		public function delete_account ( $delete_level = 1 ) {

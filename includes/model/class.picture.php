@@ -60,6 +60,9 @@
 			$upload_dir = str_replace( '*id*', $session->user_id, USER_PERSONAL_SPACE_PICTURES );
 			$target_file_fullpath = "{$upload_dir}/{$target_file}";
 
+			$current_user = User::find_by_id( $session->user_id );
+			$current_user->make_sure_ups_exists();
+
 			if ( move_uploaded_file( $tmp_file, $target_file_fullpath ) ) {
 				$this->thumbnail = self::crop( $target_file_fullpath, $this->thumb_size, $this->thumb_size );
 				$this->save();
