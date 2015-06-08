@@ -63,6 +63,9 @@
 			$target_file = "profile.jpg";
 			$upload_dir = str_replace( '*id*', $session->user_id, USER_PERSONAL_SPACE );
 
+			$current_user = User::find_by_id( $session->user_id );
+			$current_user->make_sure_ups_exists();
+
 			return move_uploaded_file( $tmp_file, "{$upload_dir}/{$target_file}" );
 		}
 
