@@ -6,8 +6,8 @@
 			'id'			=> 		'auto-increment',
 			'user_id' 		=> 		'int',
 			'name' 			=> 		'string',
-			'creation_date' => 		'auto-increment',
-			'modified_date' => 		'auto-increment'
+			'creation_date' => 		'datetime',
+			'modified_date' => 		'datetime'
 			);
 		public $id;
 		public $user_id;

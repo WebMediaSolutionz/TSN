@@ -10,7 +10,7 @@
 			'thumbnail' 	=> 		'string',
 			'filetype' 		=> 		'string',
 			'position' 		=> 		'int', 
-			'upload_date' 	=> 		'auto-increment', 
+			'upload_date' 	=> 		'datetime', 
 			'caption' 		=> 		'string'
 			);
 		public $id;

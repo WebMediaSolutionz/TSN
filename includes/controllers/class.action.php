@@ -138,6 +138,7 @@
 			$post->post_id = $shared_post_id;
 			$post->shared_post = $shared_post;
 			$post->value = $_POST[ 'value' ];
+			$post->post_date = Utils::mysql_datetime();
 
 			switch ( $shared_post->post_type ) {
 				case 3 :
@@ -163,6 +164,7 @@
 
 			$comment->value = $_POST[ 'value' ];
 			$comment->user_id = $session->user_id;
+			$comment->date = Utils::mysql_datetime();
 
 			if ( isset( $_POST[ 'post_id' ] ) ) {
 				$comment->post_id = $_POST[ 'post_id' ];

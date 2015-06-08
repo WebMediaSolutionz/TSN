@@ -30,6 +30,7 @@
 				$post->wall_id = $post->user_id = $_POST[ 'wall_id' ];
 				$post->value = $_POST[ 'value' ];
 				$post->post_type = 3;
+				$post->post_date = Utils::mysql_datetime();
 
 				$post->save();
 			}

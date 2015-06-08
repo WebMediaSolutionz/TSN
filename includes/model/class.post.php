@@ -9,7 +9,7 @@
 			'post_id' 		=> 		'int',
 			'picture_id' 	=> 		'int',
 			'value' 		=> 		'string', 
-			'post_date' 	=> 		'auto-increment', 
+			'post_date' 	=> 		'datetime', 
 			'post_type' 	=> 		'int'
 			);
 		public $id;
@@ -28,6 +28,7 @@
 			$this->wall_id = $friend1_id;
 			$this->user_id = $friend2_id;
 			$this->post_type = 4;
+			$this->post_date = Utils::mysql_datetime();
 
 			$this->save();
 		}

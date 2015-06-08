@@ -22,7 +22,7 @@
 				$current_user = User::find_by_id( $session->user_id );
 
 				$message->message = $_POST[ 'message' ];
-				// $message->date = Utils::display_date( time() );
+				$message->date = Utils::mysql_datetime();
 				$message->read = 0;
 				$message->conversation_id = $_POST[ 'convo_id' ];
 				$message->user_id = $current_user->id;

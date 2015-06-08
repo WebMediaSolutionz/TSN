@@ -135,6 +135,7 @@
 				$post->user_id = $_POST[ 'author' ];
 				$post->value = $_POST[ 'value' ];
 				$post->post_type = 3;
+				$post->post_date = Utils::mysql_datetime();
 
 				$post->save();
 			}

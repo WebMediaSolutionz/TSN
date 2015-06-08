@@ -56,6 +56,10 @@
 			return date( $lang['date_display'], strtotime( $date ) );
 		}
 
+		public static function mysql_datetime ( $date = null ) {
+			return is_null( $date ) ? date( "Y-m-d H:i:s" ) : date( "Y-m-d H:i:s", strtotime( $date ) );
+		}
+
 		public static function upload_img ( $img ) {
 			global $session;
 

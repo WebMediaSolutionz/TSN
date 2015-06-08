@@ -19,6 +19,8 @@
 
 					$album->user_id = $session->user_id;
 					$album->name = $_POST[ 'album_name' ];
+					$album->creation_date = Utils::mysql_datetime();
+					$album->modified_date = Utils::mysql_datetime();
 
 					$album->save();	
 
@@ -32,6 +34,7 @@
 				$picture->album_id = $album_id;
 				$picture->user_id = $session->user_id;
 				$picture->filename = Picture::name_picture( User::find_by_id( $session->user_id ) );
+				$picture->upload_date = Utils::mysql_datetime();
 
 				$picture->save();
 				$picture->upload( $_FILES[ 'pictures' ] );

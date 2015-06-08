@@ -11,7 +11,7 @@
 			'album_id' 		=> 		'int',
 			'video_id' 		=> 		'int',
 			'track_id' 		=> 		'int',
-			'date' 			=> 		'auto-increment'
+			'date' 			=> 		'datetime'
 			);
 		public $id;
 		public $value;

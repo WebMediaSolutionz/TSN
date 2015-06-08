@@ -5,7 +5,7 @@
 		public static $db_fields = array(
 			'id'					=> 			'auto-increment',
 			'message' 				=> 			'string',
-			'date'					=> 			'auto-increment',
+			'date'					=> 			'datetime',
 			'read'					=> 			'auto-increment',
 			'conversation_id'		=> 			'int',
 			'user_id'				=> 			'int'
