@@ -127,6 +127,7 @@
 
 			foreach ( static::$db_fields as $field => $type ) {
 				switch ( $type ) {
+					case 'datetime'	:
 					case 'string' 	:		$att_values_quotes[ $field ] = "'{$attributes[ $field ]}'";
 											break;
 

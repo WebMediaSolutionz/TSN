@@ -19,7 +19,7 @@
 	
 			if ( $this->connection->connect_errno ) {
 				echo "connection failed<br /><br />";
-				exit();
+				exit;
 			}
 		}
 

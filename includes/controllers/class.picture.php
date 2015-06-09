@@ -1,4 +1,4 @@
- <?php
+<?php
 	class PictureCtrl extends ActionCtrl {
 		public static function load () {
 			global $session, $lang, $page_title, $redirect_destination;

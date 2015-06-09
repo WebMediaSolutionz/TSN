@@ -40,9 +40,6 @@
 					}
 				}
 
-				// var_dump( $albums );
-				// exit;
-
 				$profile_user = $picture_owner = User::find_by_id( $album->user_id );
 
 				$profile_img = "UPS/{$picture_owner->id}/profile.jpg";
