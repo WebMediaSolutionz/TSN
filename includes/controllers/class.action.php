@@ -93,18 +93,27 @@
 			$like = new Likes;
 
 			$like->user_id = $session->user_id;
+			$like->date = Utils::mysql_datetime();
+
+			$item = null;
 
 			if ( isset( $_GET[ 'post_id' ] ) ) {
 				$like->post_id = $_GET[ 'post_id' ];
+				$item = Post::find_by_id( $like->post_id );
 			} else if ( isset( $_GET[ 'comment_id' ] ) ) {
 				$like->comment_id = $_GET[ 'comment_id' ];
+				$item = Comments::find_by_id( $like->comment_id );
 			} else if ( isset( $_GET[ 'picture_id' ] ) ) {
 				$like->picture_id = $_GET[ 'picture_id' ];
+				$item = Picture::find_by_id( $like->picture_id );
 			} else if ( isset( $_GET[ 'album_id' ] ) ) {
 				$like->album_id = $_GET[ 'album_id' ];
+				$item = Album::find_by_id( $like->album_id );
 			}
 
 			$like->save();
+
+			static::notify( 'liked', $like->user_id, $item );
 		}
 
 		public static function unlike () {
@@ -166,15 +175,22 @@
 			$comment->user_id = $session->user_id;
 			$comment->date = Utils::mysql_datetime();
 
+			$item = null;
+
 			if ( isset( $_POST[ 'post_id' ] ) ) {
 				$comment->post_id = $_POST[ 'post_id' ];
+				$item = Post::find_by_id( $comment->post_id );
 			} else if ( isset( $_POST[ 'picture_id' ] ) ) {
 				$comment->picture_id = $_POST[ 'picture_id' ];
+				$item = Picture::find_by_id( $comment->picture_id );
 			} else if ( isset( $_POST[ 'album_id' ] ) ) {
 				$comment->album_id = $_POST[ 'album_id' ];
+				$item = Album::find_by_id( $comment->album_id );
 			}
 
 			$comment->save();
+
+			static::notify( 'commented', $comment->user_id, $item );
 		}
 
 		public static function delete_comment () {
@@ -183,6 +199,44 @@
 			$comment = Comments::find_by_id( $_GET[ 'comment_id' ] );
 
 			$comment->delete();
+		}
+
+		public static function notify ( $type, $action_initiator_user_id, $item ) {
+			global $session;
+
+			$users = $item->get_stakeholders();
+
+			foreach ( $users as $user ) {
+				$notification = new Notification;
+
+				$notification->type = $type;
+				$notification->user_id = $user->id;
+				$notification->action_initiator_user_id = $action_initiator_user_id;
+				$notification->item_owner_user_id = $item->user_id;
+				$notification->date = Utils::mysql_datetime();
+
+				switch ( get_class( $item ) ) {
+					case 'Picture'	: 		$notification->picture_id = $item->id;
+											break;
+
+					case 'Post'		: 		$notification->post_id = $item->id;
+											break;
+
+					case 'Album'	: 		$notification->album_id = $item->id;
+											break;
+
+					case 'Video'	: 		$notification->video_id = $item->id;
+											break;
+
+					case 'Track'	: 		$notification->track_id = $item->id;
+											break;
+
+					case 'Comments'	: 		$notification->comment_id = $item->id;
+											break;
+				}
+
+				$notification->save();
+			}
 		}
 
 		public static function load () {}

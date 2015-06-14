@@ -8,6 +8,8 @@
 			$current_page = "notifications";
 			$current_user = User::find_by_id( $session->user_id );
 
+			$notifications = Notification::get_notifications_for( $current_user->id );
+
 			include_once( "views/" . static::$theme . "/" . static::$template );
 		}
 	}
