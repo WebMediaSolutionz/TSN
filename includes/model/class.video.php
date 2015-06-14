@@ -1,6 +1,6 @@
 <?php
 
-	class Video extends DatabaseObject {
+	class Video extends Item {
 		protected static $table_name = "video";
 		public static $db_fields = array(
 			'id'			=> 		'auto-increment',

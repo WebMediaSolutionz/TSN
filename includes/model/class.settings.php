@@ -3,16 +3,18 @@
 	class Settings extends DatabaseObject {
 		protected static $table_name = "settings";
 		public static $db_fields = array(
-			'user_id'			=> 		'int',
-			'theme' 			=> 		'auto-increment', 
-			'language' 			=> 		'string'
+			'user_id'				=> 		'int',
+			'theme' 				=> 		'auto-increment', 
+			'language' 				=> 		'string',
+			'email_notifications'	=>		'bool'
 			);
 		public $user_id;
 		public $theme;
 		public $language;
+		public $email_notifications;
 
 		public static function get_settings_for ( $user_id ) {
-			$sql = "SELECT s.`user_id`, t.`name` AS `theme`, s.`language` FROM `" . static::$table_name . "` AS s LEFT JOIN `themes` AS t ON s.`theme_id` = t.`id` WHERE s.`user_id` = {$user_id}";
+			$sql = "SELECT s.`user_id`, t.`name` AS `theme`, s.`language`, s.`email_notifications` FROM `" . static::$table_name . "` AS s LEFT JOIN `themes` AS t ON s.`theme_id` = t.`id` WHERE s.`user_id` = {$user_id}";
 			$settings_arr = static::find_by_sql( $sql );
 
 			return array_shift( $settings_arr );
@@ -34,6 +36,7 @@
 					case 'string' 	:		$att_values_quotes[ $field ] = "'{$attributes[ $field ]}'";
 											break;
 
+					case 'bool'		:
 					case 'int'		:		$att_values_quotes[ $field ] = (int) $attributes[ $field ];
 											break;
 				}
@@ -66,6 +69,7 @@
 					case 'string' 	:		$att_values_quotes[ $field ] = "'{$attributes[ $field ]}'";
 											break;
 
+					case 'bool'		:
 					case 'int'		:		$att_values_quotes[ $field ] = (int) $attributes[ $field ];
 											break;
 				}

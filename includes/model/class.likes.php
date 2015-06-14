@@ -10,7 +10,8 @@
 			'picture_id' 	=> 		'int',
 			'album_id' 		=> 		'int',
 			'video_id' 		=> 		'int',
-			'track_id' 		=> 		'int'
+			'track_id' 		=> 		'int',
+			'date' 			=> 		'datetime'
 			);
 		public $id;
 		public $user_id;
@@ -20,6 +21,7 @@
 		public $album_id;
 		public $video_id;
 		public $track_id;
+		public $date;
 
 		public static function unlike ( $user_id, $item ) {
 			global $DB;
@@ -64,6 +66,31 @@
 				$object_array[] = static::instantiate( $row );
 			}
 			return ( count( $object_array ) === 1 );
+		}
+
+		public static function likers ( $item, $except_for_this_user_id ) {
+			global $DB, $session;
+
+			$item_type = strtolower( get_class( $item ) );
+
+			switch ( $item_type ) {
+				case 'comments'		:		$item_type = 'comment';
+											break;
+			}
+
+			$sql = "SELECT user_id FROM " . static::$table_name . " ";
+			$sql .= "WHERE {$item_type}_id = {$item->id} ";
+			$sql .= "AND user_id != {$except_for_this_user_id}";
+
+			$result_set = $DB->query( $sql );
+
+			$users = array();
+
+			while ( $row = $DB->fetch_array( $result_set ) ) {
+				$object = static::instantiate( $row );
+				$users[] = User::find_by_id( $object->user_id );
+			}
+			return $users;
 		}
 	}
 

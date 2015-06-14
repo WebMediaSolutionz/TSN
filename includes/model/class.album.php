@@ -1,6 +1,6 @@
 <?php
 
-	class Album extends DatabaseObject {
+	class Album extends Item {
 		protected static $table_name = "album";
 		public static $db_fields = array(
 			'id'			=> 		'auto-increment',

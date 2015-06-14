@@ -1,6 +1,6 @@
 <?php
 
-	class Track extends DatabaseObject {
+	class Track extends Item {
 		protected static $table_name = "track";
 		public static $db_fields = array(
 			'id'			=> 		'auto-increment',
