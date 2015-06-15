@@ -68,7 +68,7 @@
 			return ( count( $object_array ) === 1 );
 		}
 
-		public static function likers ( $item, $except_for_this_user_id ) {
+		public static function likers ( $item, $except_for_this_user_id = null ) {
 			global $DB, $session;
 
 			$item_type = strtolower( get_class( $item ) );
@@ -80,7 +80,10 @@
 
 			$sql = "SELECT user_id FROM " . static::$table_name . " ";
 			$sql .= "WHERE {$item_type}_id = {$item->id} ";
-			$sql .= "AND user_id != {$except_for_this_user_id}";
+
+			if ( $except_for_this_user_id != null ) {
+				$sql .= "AND user_id != {$except_for_this_user_id}";
+			}
 
 			$result_set = $DB->query( $sql );
 

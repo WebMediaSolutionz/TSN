@@ -34,7 +34,7 @@
 <div class="clear"></div>
 <!-- ***** -->
 <div class="post_operations actions">
-	<span><a href="<?php echo $album->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&album_id=<?php echo $album->id; ?>"><?php echo $album->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a> <!-- &middot; <a href="share.php?picture_id=<?php echo $picture->id; ?>"><?php echo $lang[ 'share' ]; ?></a> --></span>
+	<span><a href="<?php echo $album->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&album_id=<?php echo $album->id; ?>"><?php echo $album->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a><?php echo count( $album->get_likers() ) === 1 ? ' &middot; 1 like' : ( count( $album->get_likers() ) !== 0 ? count( $album->get_likers() ) . ' &middot; likes': '' );?></span>
 </div>
 
 <div class="comments">

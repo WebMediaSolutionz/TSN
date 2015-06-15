@@ -1,6 +1,18 @@
 <?php
 
 	class Item extends DatabaseObject {
+		public function get_likers () {
+			global $session;
+
+			return $likers = Likes::likers( $this );
+		}
+
+		public function get_commenters () {
+			global $session;
+
+			return $commenters = Comments::commenters( $this );
+		}
+
 		public function get_stakeholders () {
 			global $session;
 
