@@ -4,13 +4,13 @@
 		public function get_likers () {
 			global $session;
 
-			return $likers = Likes::likers( $this );
+			return Likes::likers( $this );
 		}
 
 		public function get_commenters () {
 			global $session;
 
-			return $commenters = Comments::commenters( $this );
+			return Comments::commenters( $this );
 		}
 
 		public function get_stakeholders () {
