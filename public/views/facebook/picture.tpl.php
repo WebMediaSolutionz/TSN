@@ -48,7 +48,7 @@
 	</div>
 
 	<div class="post_operations actions">
-		<span><a href="<?php echo $picture->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&picture_id=<?php echo $picture->id; ?>"><?php echo $picture->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a> <!-- &middot; <a href="share.php?picture_id=<?php echo $picture->id; ?>"><?php echo $lang[ 'share' ]; ?></a> --><?php echo count( $picture->get_likers() ) === 1 ? ' &middot; 1 like' : ( count( $picture->get_likers() ) !== 0 ? count( $picture->get_likers() ) . ' &middot; likes': '' );?></span> &middot; <span class="automated_post">Uploaded <?php echo Utils::how_long_ago( $picture->upload_date ); ?></span>
+		<span><a href="<?php echo $picture->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&picture_id=<?php echo $picture->id; ?>"><?php echo $picture->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a> <!-- &middot; <a href="share.php?picture_id=<?php echo $picture->id; ?>"><?php echo $lang[ 'share' ]; ?></a> --><?php echo count( $picture->get_likers() ) === 1 ? ' &middot; 1 like' : ( count( $picture->get_likers() ) !== 0 ? ' &middot; ' . count( $picture->get_likers() ) . ' likes': '' );?><?php echo count( $picture->get_commenters() ) === 1 ? ' &middot; 1 comment' : ( count( $picture->get_commenters() ) !== 0 ? ' &middot; ' . count( $picture->get_commenters() ) . ' comments': '' );?></span> &middot; <span class="automated_post">Uploaded <?php echo Utils::how_long_ago( $picture->upload_date ); ?></span>
 	</div>
 
 	<div class="comments">
