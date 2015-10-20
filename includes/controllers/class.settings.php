@@ -17,6 +17,8 @@
 
 				$session->settings->update();
 
+				require( '../includes/lang/' . $session->settings->language . '.php' );
+
 				$message = array(
 					"status"				=>			"confirmation",
 					"prompt_code"			=>			"profile update success"

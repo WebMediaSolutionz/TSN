@@ -9,7 +9,9 @@
 			$current_user_img = "UPS/{$current_user->id}/profile.jpg";
 			$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "images/{$theme}/default_profile_pic.jpg";
 
-			if ( isset( $_GET[ 'post_id' ] ) ) {
+			if ( isset( $_GET[ 'post_id' ] ) || isset( $_GET[ 'item_id' ] ) ) {
+				$_GET[ 'post_id' ] = ( isset( $_GET[ 'item_id' ]  ) ) ? $_GET[ 'item_id' ] : $_GET[ 'post_id' ];
+
 				$post = Post::find_by_id( $_GET[ 'post_id' ] );
 
 				$post->you_like = Likes::you_like( $current_user->id, $post );

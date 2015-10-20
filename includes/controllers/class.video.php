@@ -7,7 +7,9 @@
 
 			$current_user = User::find_by_id( $session->user_id );
 
-			if ( isset( $_GET[ 'video_id' ] ) ) {
+			if ( isset( $_GET[ 'video_id' ] ) || isset( $_GET[ 'item_id' ] ) ) {
+				$_GET[ 'video_id' ] = ( isset( $_GET[ 'item_id' ]  ) ) ? $_GET[ 'item_id' ] : $_GET[ 'video_id' ];
+				
 				$video = Video::find_by_id( $_GET[ 'video_id' ] );
 
 				$video->you_like = Likes::you_like( $current_user->id, $video );

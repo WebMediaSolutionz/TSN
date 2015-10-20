@@ -7,6 +7,7 @@
 
 			$current_user = User::find_by_id( $session->user_id );
 			$profile_user = $user = null;
+			$current_page = 'profile';
 				
 			if ( isset( $_GET[ 'profile_id' ] ) && ( $_GET[ 'profile_id' ] == $current_user->id ) || !isset( $_GET[ 'profile_id' ] ) ) {
 				$profile_user = $current_user;
@@ -15,7 +16,7 @@
 				$redirect_destination .= "profile_id={$profile_user->id}";
 			} else {
 				$profile_user = User::find_by_id( $_GET[ 'profile_id' ] );
-				$template = $current_page = 'profile';
+				$template = 'profile';
 			}
 
 			$posts = $profile_user->get_wall_posts();

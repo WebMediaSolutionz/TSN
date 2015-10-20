@@ -81,7 +81,7 @@
 																		),
 
 			"date_display"							=>					"F jS, Y",
-			"powered_by"							=>					"powered by <a target='_blank' href='*company_website*'>*company*</a>",
+			"powered_by"							=>					"is powered by <a target='_blank' href='*company_website*'>*company*</a>",
 
 			"cancel"								=>					"Cancel",
 			"save"									=>					"Save",

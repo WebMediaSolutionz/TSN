@@ -12,5 +12,18 @@
 
 			include_once( "views/" . static::$theme . "/" . static::$template );
 		}
+
+		public static function mark_all_notifications_as () {
+			global $session;
+
+			if ( isset( $_GET[ 'status' ] ) ) {
+				$notifications = Notification::get_unread_notifications_for( $session->user_id );
+
+				foreach ( $notifications as $notification ) {
+					$notification->read = ( $_GET[ 'status' ] == 'read' );
+					$notification->save();
+				}
+			}
+		}
 	}
 ?>

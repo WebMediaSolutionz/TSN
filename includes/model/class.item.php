@@ -23,7 +23,7 @@
 
 			foreach ( $commenters as $commenter ) {
 				foreach ( $stakeholders as $stakeholder ) {
-					if ( $commenter->user_id === $stakeholder->user_id ) {
+					if ( $commenter->id === $stakeholder->id ) {
 						$found = true;
 					}
 				}

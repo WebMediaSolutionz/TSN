@@ -10,8 +10,10 @@
 		public static $theme;
 		public static $template;
 
+		public static $num_unread_notifications;
+
 		public static function init () {
-			global $session;
+			global $session, $lang;
 			
 			static::$current_page = Utils::current_page( $_SERVER[ 'REQUEST_URI' ] );
 			static::$action_like_link = Utils::create_action_link( static::$current_page, 'like' );
@@ -54,6 +56,10 @@
 
 				Utils::strip_query_string( $_SERVER[ 'REQUEST_URI' ] );
 				$session->settings = static::get_settings_for( $session->user_id );
+			}
+
+			if ( $session->is_logged_in() ) {
+				static::$num_unread_notifications = count( Notification::get_unread_notifications_for( $session->user_id ) );
 			}
 
 			static::load();
@@ -236,6 +242,26 @@
 				}
 
 				$notification->save();
+			}
+		}
+
+		public static function unnotify () {
+			if ( isset( $_GET[ 'notification_id' ] ) ) {
+				$notification = Notification::find_by_id( $_GET[ 'notification_id' ] );
+
+				$notification->delete();
+			}
+		}
+
+		public static function mark_notification_as () {
+			if ( isset( $_GET[ 'notification_id' ] ) ) {
+				$notification = Notification::find_by_id( $_GET[ 'notification_id' ] );
+
+				if ( isset( $_GET[ 'status' ] ) ) {
+					$notification->read = ( $_GET[ 'status' ] === 'read' );
+
+					$notification->save();
+				}
 			}
 		}
 

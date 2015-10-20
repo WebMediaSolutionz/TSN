@@ -20,7 +20,9 @@
 
 				static::$template = "albums.tpl.php";
 
-			} else if ( isset( $_GET[ 'album_id' ] ) ) {
+			} else if ( isset( $_GET[ 'album_id' ] ) || isset( $_GET[ 'item_id' ] ) ) {
+				$_GET[ 'album_id' ] = ( isset( $_GET[ 'item_id' ]  ) ) ? $_GET[ 'item_id' ] : $_GET[ 'album_id' ];
+				
 				$page = "album";
 				$album = Album::find_by_id( $_GET[ 'album_id' ] );
 				$album->load_pictures();

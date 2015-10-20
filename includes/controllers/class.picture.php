@@ -7,7 +7,9 @@
 
 			$current_user = User::find_by_id( $session->user_id );
 
-			if ( isset( $_GET[ 'picture_id' ] ) ) {
+			if ( isset( $_GET[ 'picture_id' ] ) || isset( $_GET[ 'item_id' ] ) ) {
+				$_GET[ 'picture_id' ] = ( isset( $_GET[ 'item_id' ]  ) ) ? $_GET[ 'item_id' ] : $_GET[ 'picture_id' ];
+
 				$picture = Picture::find_by_id( $_GET[ 'picture_id' ] );
 
 				$next_pic = $picture->get_next_picture();
