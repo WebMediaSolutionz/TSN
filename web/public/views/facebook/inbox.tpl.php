@@ -1,5 +1,5 @@
 <?php 
-	include_once( 'header.tpl.php' );
+	include_once( 'partials/header.tpl.php' );
 ?>
 	<h2><?php echo $lang[ 'inbox' ]; ?></h2>
 	<form action="inbox.php" method="post">
@@ -26,5 +26,5 @@
 		?>
 	</form>
 <?php 
-	include_once( 'footer.tpl.php' );
+	include_once( 'partials/footer.tpl.php' );
 ?>

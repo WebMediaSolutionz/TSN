@@ -1,5 +1,5 @@
 <?php 
-	include_once( 'header.tpl.php' );
+	include_once( 'partials/header.tpl.php' );
 ?>
 
 <h2>Notifications</h2>
@@ -11,5 +11,5 @@
 ?>
 
 <?php 
-	include_once( 'footer.tpl.php' );
+	include_once( 'partials/footer.tpl.php' );
 ?>

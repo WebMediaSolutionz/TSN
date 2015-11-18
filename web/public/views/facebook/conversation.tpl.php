@@ -1,5 +1,5 @@
 <?php 
-	include_once( 'header.tpl.php' );
+	include_once( 'partials/header.tpl.php' );
 ?>
 
 <?php
@@ -16,5 +16,5 @@
 		<input id="post_to_wall" type="submit" name="submit" value="<?php echo $lang[ 'send_message' ]; ?>" />
 	</form>
 <?php 
-	include_once( 'footer.tpl.php' );
+	include_once( 'partials/footer.tpl.php' );
 ?>
