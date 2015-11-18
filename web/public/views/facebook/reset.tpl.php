@@ -1,5 +1,5 @@
 <?php 
-	include_once( 'header.tpl.php' );
+	include_once( 'partials/header.tpl.php' );
 ?>
 
 <div>
@@ -35,5 +35,5 @@
 </div>
 
 <?php 
-	include_once( 'footer.tpl.php' );
+	include_once( 'partials/footer.tpl.php' );
 ?>

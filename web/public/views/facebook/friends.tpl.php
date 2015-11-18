@@ -1,5 +1,5 @@
 <?php 
-	include_once( 'header.tpl.php' );
+	include_once( 'partials/header.tpl.php' );
 ?>
 	<h2><?php echo $lang[ 'find_friends' ]; ?></h2>
 <?php
@@ -66,5 +66,5 @@
 		$count++;
 	}
 
-	include_once( 'footer.tpl.php' );
+	include_once( 'partials/footer.tpl.php' );
 ?>
