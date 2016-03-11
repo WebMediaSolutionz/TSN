@@ -1,5 +1,5 @@
 <?php 
-	include_once( 'header.tpl.php' );
+	include_once( 'partials/header.tpl.php' );
 ?>
 	
 	<form action="<?php echo static::$action_share_link; ?>&post_id=<?php echo $post->id; ?>" method="post">
@@ -16,5 +16,5 @@
 	</form>
 
 <?php 
-	include_once( 'footer.tpl.php' );
+	include_once( 'partials/footer.tpl.php' );
 ?>
