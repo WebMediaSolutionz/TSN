@@ -1,5 +1,5 @@
 <?php
 	require_once('../includes/initialize.php');
 
-	IndexCtrl::init();
+	IndexCtrl::check_session();
 ?>
