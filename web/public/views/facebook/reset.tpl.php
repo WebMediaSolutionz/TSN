@@ -1,5 +1,5 @@
 <?php 
-	include_once( 'header.tpl.php' );
+	include_once( 'partials/header.tpl.php' );
 ?>
 
 <div>
@@ -13,16 +13,17 @@
             <span><?php echo $confirmation; ?></span>
         </div>
     <?php } ?>
-	<form action="identify.php" method="post">
+	<form action="reset.php" method="post">
     	<table>
-        	<tr>
+            <tr>
             	<td>
-        			<label><?php echo $lang[ 'lbl_email' ] ?>: </label>
+        			<label><?php echo $lang[ 'lbl_password' ] ?>: </label>
 				</td>
                 <td>
-        			<input type="text" name="username" maxlength="30" />
-        		</td>
-			</tr>
+        			<input type="password" name="password" maxlength="30" />
+                    <input type="hidden" name="user_id" value="<?php echo $user->id; ?>" />
+				</td>
+            </tr>
         </table>
         
         <br />
@@ -30,10 +31,9 @@
         <input type="submit" name="submit" value="submit" />
     </form>
     <br />
-    <a href="signup.php"><?php echo $lang[ 'create an account' ]; ?></a><br />
     <a href="login.php"><?php echo $lang[ 'login' ]; ?></a>
 </div>
 
 <?php 
-	include_once( 'footer.tpl.php' );
+	include_once( 'partials/footer.tpl.php' );
 ?>

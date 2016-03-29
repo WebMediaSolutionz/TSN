@@ -1,19 +1,12 @@
 <?php 
-	include_once( 'header.tpl.php' );
+	include_once( 'partials/header.tpl.php' );
 ?>
 
-<h2 class="capitalize"><span>album creation</span></h2>
+<h2 class="capitalize"><span>add pictures to album: <?php echo $album->name; ?></span></h2>
 
 <form action="album_creation.php?action=create" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="album_id" value="<?php echo $album->id; ?>" />
 	<table>
-		<tr>
-			<td>
-				<label class="capitalize">album name</label>
-			</td>
-			<td>
-				<input type="text" name="album_name" />
-			</td>
-		</tr>
 		<tr>
 			<td>
 				<label class="capitalize">pictures</label>
@@ -31,5 +24,5 @@
 </form>
 
 <?php 
-	include_once( 'footer.tpl.php' );
+	include_once( 'partials/footer.tpl.php' );
 ?>
