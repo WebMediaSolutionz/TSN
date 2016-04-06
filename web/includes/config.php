@@ -3,6 +3,7 @@
 	$site_code = null;
 	$environment = null;
 	$current_page = null;
+	$baseurl = null;
 
 	set_environment();
 
