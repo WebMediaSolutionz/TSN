@@ -11,5 +11,5 @@
 	defined( 'MAIL_USERNAME' ) 	? null : define( 'MAIL_USERNAME', 'info@webmediasolutionz.com' ); 
 	defined( 'MAIL_PASSWORD' ) 	? null : define( 'MAIL_PASSWORD', 'i&p{8S%VI&P}' ); 
 
-	defined( 'DOMAIN' ) 		? null : define( 'DOMAIN', 	$current_url  );
+	defined( 'DOMAIN' ) 		? null : define( 'DOMAIN', 	$baseurl  );
 ?>

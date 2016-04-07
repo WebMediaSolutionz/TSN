@@ -44,7 +44,7 @@
 
 		if ( is_numeric ( strpos( $domain, "localhost" ) ) ) {
 			$environment = "dev";
-		} elseif ( is_numeric ( strpos( $domain, "staging" ) ) ) {
+		} elseif ( is_numeric ( strpos( $domain, "staging" ) ) || is_numeric( strpos( $domain, "webmediasolutionz.com" ) ) ) {
 			$environment = "staging";
 		} else {
 			$environment = "live";
