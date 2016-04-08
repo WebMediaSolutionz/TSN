@@ -20,6 +20,8 @@
 				foreach ( $post->comments as $comment ) {
 					$comment->you_like = Likes::you_like( $current_user->id, $comment );
 				}
+			} else {
+				Utils::redirect_to( 'login.php' );
 			}
 
 			include_once( "views/" . static::$theme . "/" . static::$template );

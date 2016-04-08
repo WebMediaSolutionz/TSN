@@ -32,6 +32,8 @@
 
 				$profile_img = file_exists( $profile_img ) ? $profile_img : "images/{$theme}/default_profile_pic.jpg";
 				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "images/{$theme}/default_profile_pic.jpg";
+			} else {
+				Utils::redirect_to( 'login.php' );
 			}
 
 			include_once( "views/" . static::$theme . "/" . static::$template );

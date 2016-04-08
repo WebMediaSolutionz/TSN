@@ -62,6 +62,10 @@
 				static::$template = "albums.tpl.php";
 			}
 
+			if ( !isset( $_GET[ 'user_id' ] ) && !isset( $_GET[ 'album_id' ] ) && !isset( $_GET[ 'item_id' ] ) && !defined( 'PROFILE_USER' ) ) {
+				Utils::redirect_to( 'login.php' );
+			}
+
 			include_once( "views/" . static::$theme . "/" . static::$template );
 		}
 	}

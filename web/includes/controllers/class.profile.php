@@ -82,6 +82,8 @@
 		public static function init () {
 			global $session, $redirect_destination;
 
+			static::check_session();
+
 			$profile_user = $current_user = User::find_by_id( $session->user_id );
 
 			if ( isset( $_GET[ 'profile_id' ] ) && ( $_GET[ 'profile_id' ] == $current_user->id ) || !isset( $_GET[ 'profile_id' ] ) ) {

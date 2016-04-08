@@ -6,6 +6,7 @@
 			$theme = static::$theme;
 
 			$error_message = "";
+			$user = null;
 
 			if ( isset( $_GET[ 'verification_key' ] ) ) {
 				$user = User::verify_user( $_GET[ 'verification_key' ] );
@@ -15,6 +16,10 @@
 				Utils::redirect_to( 'login.php?status=reset' );
 			} else {
 				$error_message = "error";
+			}
+
+			if ( $user === null ) {
+				Utils::redirect_to( 'login.php' );
 			}
 
 			include_once( "views/" . static::$theme . "/" . static::$template );

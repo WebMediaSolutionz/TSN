@@ -9,6 +9,8 @@
 
 			if ( isset( $_GET[ 'convo_id' ] ) ) {
 				$conversation = Conversations::find_by_id( $_GET[ 'convo_id' ] );
+			} else {
+				Utils::redirect_to( 'login.php' );
 			}
 
 			include_once( "views/" . static::$theme . "/" . static::$template );

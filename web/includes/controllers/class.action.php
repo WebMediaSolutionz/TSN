@@ -62,6 +62,8 @@
 				static::$num_unread_notifications = count( Notification::get_unread_notifications_for( $session->user_id ) );
 			}
 
+			static::check_session();
+
 			static::load();
 		}
 
