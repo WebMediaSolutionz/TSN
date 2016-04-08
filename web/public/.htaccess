@@ -1,0 +1,10 @@
+# Disallow viewing of .htaccess files
+<Files .htaccess>
+order allow,deny
+deny from allow
+</Files>
+
+# Creating a custom File not found page
+
+ErrorDocument 404 /projects/internal/TSN2/web/public/filenotfound.php
+# ErrorDocument 404 /projects/internal/thesocialnetwork/public/filenotfound.php
