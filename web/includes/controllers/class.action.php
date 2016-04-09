@@ -45,7 +45,7 @@
 
 			$classname = get_called_class();
 
-			if ( $classname !== 'LoginCtrl' ) {
+			if ( $classname !== 'LoginCtrl' && $classname !== 'FileNotFoundCtrl' ) {
 				static::check_session();
 			}
 
@@ -61,8 +61,6 @@
 			if ( $session->is_logged_in() ) {
 				static::$num_unread_notifications = count( Notification::get_unread_notifications_for( $session->user_id ) );
 			}
-
-			static::check_session();
 
 			static::load();
 		}
