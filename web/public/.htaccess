@@ -4,7 +4,11 @@ order allow,deny
 deny from allow
 </Files>
 
-# Creating a custom File not found page
-
+# Redirecting to custom File not found page locally
 ErrorDocument 404 /projects/internal/TSN2/web/public/filenotfound.php
+
+# Redirecting to custom File not found page on staging
 # ErrorDocument 404 /projects/internal/thesocialnetwork/public/filenotfound.php
+
+# Disabling directory listings
+IndexIgnore *
