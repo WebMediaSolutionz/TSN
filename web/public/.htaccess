@@ -4,11 +4,48 @@ order allow,deny
 deny from allow
 </Files>
 
+# ------------------------------------------------------
+# general configuration
+# ------------------------------------------------------
+
+# Disabling directory listings
+IndexIgnore *
+
+# ------------------------------------------------------
+
+
+
+
+
+# ------------------------------------------------------
+# configuration for local developement
+# ------------------------------------------------------
+
 # Redirecting to custom File not found page locally
 ErrorDocument 404 /projects/internal/TSN2/web/public/filenotfound.php
+
+# ------------------------------------------------------
+
+
+
+
+
+# ------------------------------------------------------
+#configuration for staging environment
+# ------------------------------------------------------
 
 # Redirecting to custom File not found page on staging
 # ErrorDocument 404 /projects/internal/thesocialnetwork/public/filenotfound.php
 
-# Disabling directory listings
-IndexIgnore *
+# ------------------------------------------------------
+
+
+
+
+# ------------------------------------------------------
+#configuration for live environment
+# ------------------------------------------------------
+
+
+
+# ------------------------------------------------------
