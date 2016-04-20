@@ -2,13 +2,7 @@
 	include_once( 'partials/header.tpl.php' );
 ?>
 
-<h2 class="capitalize">
-	<span class="capitalize"><?php echo "{$profile_user->full_name()}'s albums"; ?></span>
-</h2>
-
-<div class="left subscript">
-	<a href="profile.php?profile_id=<?php echo $profile_user->id; ?>">go to <?php echo $profile_user->full_name(); ?>'s profile page</a>
-</div>
+<h1>PICTURES</h1>
 
 <?php if ( $current_user->id === $profile_user->id ) { ?>
 <a class="btn right" href="album_creation.php">create new album</a>
