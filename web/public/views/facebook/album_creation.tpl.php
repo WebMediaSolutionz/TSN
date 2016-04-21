@@ -19,7 +19,7 @@
 				<label class="capitalize">pictures</label>
 			</td>
 			<td>
-				<input type="file" name="pictures">
+				<input type="file" name="pictures" multiple="multiple">
 			</td>
 		</tr>
 		<tr>

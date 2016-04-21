@@ -2,6 +2,9 @@
 	$author = User::find_by_id( $post->user_id );
 	$author_img = "UPS/{$author->id}/profile.jpg";
 	$author_img = file_exists( $author_img ) ? $author_img : "images/{$theme}/default_profile_pic.jpg";
+
+	$recipient = User::find_by_id( $post->wall_id );
+	$same_person = $author->id === $recipient->id;
 ?>
 <div class="single_post post_type_<?php echo $post->post_type; ?>">
 	<?php include( "post_top_part.tpl.php" ); ?>

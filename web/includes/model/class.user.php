@@ -169,6 +169,10 @@
 			$session->settings->create();
 
 			$this->create_friend_list();
+
+			if ( defined( 'PROFILE_USER' ) ) {
+				$this->send_friend_request( PROFILE_USER );
+			}
 		}
 
 		public function make_sure_ups_exists () {
