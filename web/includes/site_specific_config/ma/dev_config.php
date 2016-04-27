@@ -2,7 +2,7 @@
 	defined( 'DB_DOMAIN' ) 		? null : define( 'DB_DOMAIN', 	'localhost' );
 	defined( 'DB_USERNAME' ) 	? null : define( 'DB_USERNAME', 'root' ); 
 	defined( 'DB_PASSWORD' ) 	? null : define( 'DB_PASSWORD', '' );
-	defined( 'DB_DATABASE' ) 	? null : define( 'DB_DATABASE', 'TSN2' ); 
+	defined( 'DB_DATABASE' ) 	? null : define( 'DB_DATABASE', 'MA' ); 
 	defined( 'SITE_EMAIL' ) 	? null : define( 'SITE_EMAIL', 'info@webmediasolutionz.com' ); 
 	defined( 'SUPPORT_EMAIL' ) 	? null : define( 'SUPPORT_EMAIL', 'support@webmediasolutionz.com' ); 
 
