@@ -15,9 +15,6 @@
 
 			case 2 : 	$section_title = $lang[ "your_leaders" ];
 						break;
-
-			case 3 : 	$section_title = $lang[ "other_users" ];
-						break;
 		}
 ?>
 	<h3 class="capitalize"><?php echo $section_title; ?></h3>

@@ -11,9 +11,8 @@
 			$friends = $current_user->get_friends();
 			$followers = $current_user->get_followers();
 			$leaders = $current_user->get_leaders();
-			$strangers = $current_user->get_strangers();
 
-			$users = array( $friends, $followers, $leaders, $strangers );
+			$users = array( $friends, $followers, $leaders );
 
 			include_once( "views/" . static::$theme . "/" . static::$template );
 		}

@@ -47,6 +47,11 @@
 			return static::find_by_sql( "SELECT * FROM " . static::$table_name . " WHERE user_id = {$user_id} ORDER BY date DESC" );
 		}
 
+		public static function get_unread_notifications_for ( $user_id ) {
+			global $DB;
+
+			return static::find_by_sql( "SELECT * FROM " . static::$table_name . " WHERE user_id = {$user_id} AND `read` = 1 ORDER BY date DESC" );
+		}
 	}
 
 ?>
