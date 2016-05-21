@@ -271,6 +271,16 @@
 			}
 		}
 
+		public static function send_invitation () {
+			if ( isset( $_GET[ 'email' ] ) && isset( $_GET[ 'user_id' ] ) ) {
+				$user = User::find_by_id( $_GET[ 'user_id' ] );
+				$subject = "invitation";
+				$message = "you have been invited by " . $user->full_name();
+
+				Utils::sendmail( $_GET[ 'email' ], $subject, $message );
+			}
+		}
+
 		public static function load () {}
 	}
 ?>

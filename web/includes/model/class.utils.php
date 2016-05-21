@@ -21,10 +21,22 @@
 			if ( !$support ) {
 				$mail->FromName = SITE_NAME;
 				$mail->From = MAIL_USERNAME;
-				$mail->AddAddress( $user->username, $user->full_name() );
+
+				if ( !is_string( $user ) ) {
+					$mail->AddAddress( $user->username, $user->full_name() );
+				} else {
+					$mail->AddAddress( $user, $user );
+				}
+				
 			} else {
-				$mail->FromName = $user->full_name();
-				$mail->From = $user->username;
+				if ( !is_string( $user ) ) {
+					$mail->FromName = $user->full_name();
+					$mail->From = $user->username;
+				} else {
+					$mail->FromName = $user;
+					$mail->From = $user;
+				}
+
 				$mail->AddAddress( SUPPORT_EMAIL, SITE_NAME );
 			}
 
