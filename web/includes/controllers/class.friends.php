@@ -14,6 +14,16 @@
 
 			$users = array( $friends, $followers, $leaders );
 
+			$searched = null;
+			$found = null;
+
+			if ( isset( $_POST[ 'submit' ] ) ) {
+				$searched = User::identify( $_POST[ 'username' ] );
+
+				$found = ( $searched !== null );
+				$email = $_POST[ 'username' ];
+			}
+
 			include_once( "views/" . static::$theme . "/" . static::$template );
 		}
 	}
