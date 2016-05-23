@@ -1,7 +1,7 @@
 <?php 
 	include_once( 'partials/header.tpl.php' );
 ?>
-<h1>test</h1>
+
 <div>
 	<?php if ( $error_message !== '' ) { ?>
 		<div class="error_message">

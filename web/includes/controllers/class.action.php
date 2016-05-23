@@ -27,7 +27,7 @@
 				static::$theme = $session->settings->theme;
 				require_once( '../includes/lang/' . $session->settings->language . '.php' );
 			} else {
-				static::$theme = "facebook";
+				static::$theme = defined( 'DEFAULT_THEME' ) ? DEFAULT_THEME : "facebook";
 				require_once( '../includes/lang/en.php' );
 			}
 
