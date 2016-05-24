@@ -1,0 +1,31 @@
+@import "variables";
+@import "mixins";
+
+.outer-container {
+	background-color: $bg_color;
+	border: thin solid $bg_color;
+}
+
+.inner-container {
+	width: 960px;
+	margin: 0 auto;
+	background-color: #000;
+	border: thin solid #000;
+	color: #FFF;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clearfix {
+	clear: both;
+}
+
+.center {
+	text-align: center;
+}

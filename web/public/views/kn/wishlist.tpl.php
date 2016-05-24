@@ -2,7 +2,7 @@
 	include_once( 'partials/header.tpl.php' );
 ?>
 
-<img src="images/kn/wishlist.png" />
+<h1>wishlist</h1>
 
 <?php 
 	include_once( 'partials/footer.tpl.php' );

@@ -1,9 +1,7 @@
-<?php 
-	include_once( 'partials/header.tpl.php' );
-?>
+<?php include( 'partials/header.tpl.php' ); ?>
 
-<img src="images/kn/about.png" />
+<div class="content">
+	<h1>about me</h1>
+</div>
 
-<?php 
-	include_once( 'partials/footer.tpl.php' );
-?>
+<?php include( 'partials/footer.tpl.php' ); ?>

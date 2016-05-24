@@ -1,3 +1,6 @@
 web/public/UPS/
 web/public/styles/kn/css/
 web/public/styles/kn/.sass-cache
+web/public/.sass-cache
+web/public/node_modules/
+web/public/npm-debug.log

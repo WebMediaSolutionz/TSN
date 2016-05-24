@@ -3,6 +3,7 @@
 ?>
 
 <div>
+    <h3><?php echo $page_title; ?></h3>
 	<?php if ( $error_message !== '' ) { ?>
 		<div class="error_message">
 			<span><?php echo $error_message; ?></span>
