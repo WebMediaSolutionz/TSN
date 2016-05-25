@@ -3,7 +3,6 @@
 ?>
 
 <div>
-    <h3><?php echo $page_title; ?></h3>
 	<?php if ( $error_message !== '' ) { ?>
 		<div class="error_message">
 			<span><?php echo $error_message; ?></span>
@@ -14,7 +13,7 @@
             <span><?php echo $confirmation; ?></span>
         </div>
     <?php } ?>
-	<form action="login.php" method="post">
+	<form action="identify.php" method="post">
     	<table>
         	<tr>
             	<td>
@@ -24,19 +23,6 @@
         			<input type="text" name="username" maxlength="30" />
         		</td>
 			</tr>
-            <tr>
-            	<td>
-        			<label><?php echo $lang[ 'lbl_password' ] ?>: </label>
-				</td>
-                <td>
-        			<input type="password" name="password" maxlength="30" />
-				</td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="identify.php"><?php echo $lang[ 'forgot password' ]; ?></a>
-                </td>
-			</tr>
         </table>
         
         <br />
@@ -44,7 +30,8 @@
         <input type="submit" name="submit" value="submit" />
     </form>
     <br />
-    <a href="signup.php"><?php echo $lang[ 'create an account' ]; ?></a>
+    <a href="signup.php"><?php echo $lang[ 'create an account' ]; ?></a><br />
+    <a href="login.php"><?php echo $lang[ 'login' ]; ?></a>
 </div>
 
 <?php 

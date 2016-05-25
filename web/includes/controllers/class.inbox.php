@@ -14,7 +14,7 @@
 				$conversation->get_featured_participant();
 			}
 
-			include_once( "views/" . static::$theme . "/" . static::$template );
+			include_once( static::load_template() );
 		}
 	}
 ?>

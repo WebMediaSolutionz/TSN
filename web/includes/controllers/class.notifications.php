@@ -10,7 +10,7 @@
 
 			$notifications = Notification::get_notifications_for( $current_user->id );
 
-			include_once( "views/" . static::$theme . "/" . static::$template );
+			include_once( static::load_template() );
 		}
 
 		public static function mark_all_notifications_as () {

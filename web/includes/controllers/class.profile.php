@@ -76,7 +76,7 @@
 
 			$page_title = ucwords( $profile_user->full_name() );
 
-			include_once( "views/" . static::$theme . "/" . static::$template );
+			include_once( static::load_template() );
 		}
 
 		public static function init () {

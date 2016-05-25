@@ -117,10 +117,15 @@
 			return $time_ago;
 		}
 
-		public static function current_page ( $page = null ) {
+		public static function current_page ( $style = null, $page = null ) {
 			$page = ( $page === null ) ? $_SERVER[ 'PHP_SELF' ] : $page;
 			$page_arr = explode( '/', $page );
 			$page = $page_arr[ count( $page_arr ) - 1 ];
+
+			if ( $style === 'short' ) {
+				$page = explode( '.php', $page );
+				$page = $page[ 0 ];
+			}
 
 			return $page;
 		}

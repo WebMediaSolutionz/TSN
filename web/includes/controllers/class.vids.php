@@ -18,7 +18,7 @@
 				$video_thumb = str_replace( '*id*', $profile_user->id, USER_PERSONAL_SPACE_VIDEOS );
 			}
 
-			include_once( "views/" . static::$theme . "/" . static::$template );
+			include_once( static::load_template() );
 		}
 	}
 ?>

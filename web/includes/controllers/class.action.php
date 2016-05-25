@@ -8,6 +8,7 @@
 		public static $action_delete_post_link;
 		public static $action_share_link;
 		public static $theme;
+		public static $authentication;
 		public static $template;
 
 		public static $num_unread_notifications;
@@ -95,8 +96,24 @@
 			global $session;
 
 			if ( !$session->is_logged_in() ) {
-				redirect_to( 'login.php' );
+				static::$authentication = "unauthenticated";
+
+				if ( AUTHENTICATION_REQUIRED ) {
+					redirect_to( 'login.php' );
+				} 
+			} else {
+				static::$authentication = "authenticated";
 			}
+		}
+
+		public static function load_template () {
+			$template_path = "views/" . static::$theme . "/" . static::$authentication . "/" . static::$template;
+
+			if ( !file_exists( $template_path ) ) {
+				$template_path = "views/" . static::$theme . "/" . static::$template;
+			}
+
+			return $template_path;
 		}
 
 		public static function like () {
