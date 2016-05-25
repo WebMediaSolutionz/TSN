@@ -28,49 +28,6 @@
                     </div>
                     
                     <div class="section3">
-                        <nav class="main">
-                            <ul class="no_styles left">
-                                <li class="left">
-                                    <a href="home.php"><span>home</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="bio.php"><span>about me</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="calendar.php"><span>calendar</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="vids.php"><span>videos</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="pics.php"><span>photos</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="liveshows.php"><span>live shows</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="#"><span>tip me</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="blog.php"><span>blog</span></a>
-                                </li>
-                            </ul>
-
-                            <ul class="no_styles right">
-                                <li class="left">
-                                    <a href="#"><span>favourites</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="#"><span>conversation</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="#"><span>settings</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="login.php?action=logout"><span>logout</span></a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </nav>
+                        <?php include( 'nav.tpl.php' ); ?>
                     </div> 
                 </header>

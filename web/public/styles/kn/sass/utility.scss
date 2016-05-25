@@ -7,11 +7,70 @@
 }
 
 .inner-container {
-	width: 960px;
+	width: $site_width;
 	margin: 0 auto;
-	background-color: #000;
-	border: thin solid #000;
-	color: #FFF;
+	background-color: $black;
+	border-left: thin solid $gray;
+	border-right: thin solid $gray;
+	border-top: thin solid $black;
+	border-bottom: thin solid $black;
+	color: $white;
+
+	header {
+		.section1 {
+			padding: 15px $site_margin;
+			color: $pink;
+
+			a {
+				&:link,
+				&:visited,
+				&:hover,
+				&:active {
+					color: $pink;
+				}
+			}
+		}
+
+		.section3 {
+			nav.main {
+				padding: 0 $site_margin - 10;
+			}
+		}
+	}
+
+	.content,
+	footer {
+		padding-left: $site_margin;
+		padding-right: $site_margin;
+		color: $light_gray;
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			color: $yellow;
+			text-transform: capitalize;
+		}
+
+		a {
+			&:link,
+			&:visited,
+			&:active {
+				color: $purple;
+			}
+
+			&:hover {
+				color: $yellow;
+			}
+		}
+	}
+
+	footer {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
 }
 
 .left {
@@ -28,4 +87,24 @@
 
 .center {
 	text-align: center;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+.italics {
+	font-style: italic;
+}
+
+.small {
+	font-size: 90%;
+}
+
+.smaller {
+	font-size: 80%;
 }

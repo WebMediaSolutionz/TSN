@@ -13,14 +13,14 @@
                 <header>
                     <div class="section1">
                         <div class="left">
-                            <div>
-                                <h3><?php echo $page_title; ?></h3>
-                                <span>the official site of <?php echo $page_title; ?></span>
-                            </div>
+                            <a href="home.php">
+                                <h1 class="uppercase"><?php echo $page_title; ?></h1>
+                                <span class="uppercase">official website of <?php echo $page_title; ?></span>
+                            </a>
                         </div>
                         <div class="right">
                             <?php if ( Utils::current_page( 'short' ) !== 'login' ) { ?>
-                                <a href="login.php">member login</a>
+                                <a class="capitalize" href="login.php">member login</a>
                             <?php } ?>
                         </div>
                         <div class="clearfix"></div>
@@ -30,40 +30,6 @@
                     </div>
                     
                     <div class="section3">
-                        <nav class="main">
-                            <ul class="no_styles left">
-                                <li class="left">
-                                    <a href="home.php"><span>home</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="bio.php"><span>about me</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="calendar.php"><span>calendar</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="vids.php"><span>videos</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="pics.php"><span>photos</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="liveshows.php"><span>live shows</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="#"><span>tip me</span></a>
-                                </li>
-                                <li class="left">
-                                    <a href="blog.php"><span>blog</span></a>
-                                </li>
-                            </ul>
-
-                            <ul class="no_styles right">
-                                <li class="left">
-                                    <a href="signup.php"><span>join me</span></a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </nav>
+                        <?php include( 'nav.tpl.php' );?>
                     </div> 
                 </header>
