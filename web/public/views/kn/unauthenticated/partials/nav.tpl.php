@@ -13,10 +13,10 @@
             <a class="<?php echo ( $current_page === 'vids' ) ? 'current' : ''; ?>" href="vids.php"><span>videos</span></a>
         </li>
         <li class="left">
-            <a class="<?php echo ( $current_page === 'pics' ) ? 'current' : ''; ?>" href="pics.php"><span>photos</span></a>
+            <a class="<?php echo ( $current_page === 'album.php' ) ? 'current' : ''; ?>" href="album.php?user_id=<?php echo PROFILE_USER; ?>"><span>photo sets</span></a>
         </li>
         <li class="left">
-            <a class="<?php echo ( $current_page === 'liveshows' ) ? 'current' : ''; ?>" href="liveshows.php"><span>live shows</span></a>
+            <a class="<?php echo ( $current_page === 'liveshows.php' ) ? 'current' : ''; ?>" href="liveshows.php"><span>live shows</span></a>
         </li>
         <li class="left">
             <a class="<?php echo ( $current_page === 'tips' ) ? 'current' : ''; ?>" href="#"><span>tip me</span></a>

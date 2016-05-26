@@ -23,7 +23,7 @@
 <!-- ********************************************************* -->
 
 <?php 
-	include_once( 'partials/header2.tpl.php' );
+	include_once( 'partials/header.tpl.php' );
 ?>
 
 <div>

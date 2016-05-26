@@ -38,23 +38,19 @@
 
 			$classname = get_called_class();
 
-			if ( $classname !== 'LoginCtrl' ) {
-				static::check_session();
-			}
-			
-			if ( !file_exists( "views/" . static::$theme . "/" . static::$template ) ) {
-			    if ( !file_exists( "views/" . DEFAULT_THEME . "/" . static::$template ) ) {
-			        exit( "error: missing template file" );
-			    } else {
-			        static::$theme = DEFAULT_THEME;
-			    }
-			}
-
-			$classname = get_called_class();
-
 			if ( $classname !== 'LoginCtrl' && $classname !== 'FileNotFoundCtrl' ) {
 				static::check_session();
 			}
+
+			static::check_authentication();
+			
+			// if ( !file_exists( "views/" . static::$theme . "/" . static::$template ) ) {
+			//     if ( !file_exists( "views/" . DEFAULT_THEME . "/" . static::$template ) ) {
+			//         exit( "error: missing template file" );
+			//     } else {
+			//         static::$theme = DEFAULT_THEME;
+			//     }
+			// }
 
 			if ( $session->is_logged_in() && isset( $_GET[ 'action' ] ) ) {
 				if ( method_exists( $classname, $_GET[ 'action' ] ) ) {
@@ -96,21 +92,47 @@
 			global $session;
 
 			if ( !$session->is_logged_in() ) {
-				static::$authentication = "unauthenticated";
-
 				if ( AUTHENTICATION_REQUIRED ) {
 					redirect_to( 'login.php' );
 				} 
+			}
+		}
+
+		private static function check_authentication () {
+			global $session;
+
+			if ( !$session->is_logged_in() ) {
+				static::$authentication = "unauthenticated";
 			} else {
 				static::$authentication = "authenticated";
 			}
 		}
 
 		public static function load_template () {
-			$template_path = "views/" . static::$theme . "/" . static::$authentication . "/" . static::$template;
+			$template_path = null;
+			$template_path1 = "views/" . static::$theme . "/" . static::$authentication . "/" . static::$template;
+			$template_path2 = "views/" . static::$theme . "/" . static::$template;
+			$template_path3 = "views/" . DEFAULT_THEME . "/" . static::$authentication . "/" . static::$template;
+			$template_path4 = "views/" . DEFAULT_THEME . "/" . static::$template;
 
-			if ( !file_exists( $template_path ) ) {
-				$template_path = "views/" . static::$theme . "/" . static::$template;
+			if ( !file_exists( $template_path1 ) ) {
+				if ( !file_exists( $template_path2 ) ) {
+					if ( !file_exists( $template_path3 ) ) {
+						if ( !file_exists( $template_path4 ) ) {
+							exit( "error: missing template file" );
+						} else {
+							$template_path = $template_path4;
+							static::$theme = DEFAULT_THEME;
+						}
+					} else {
+						$template_path = $template_path3;
+					}
+				} else {
+					$template_path = $template_path2;
+					static::$theme = DEFAULT_THEME;
+				}
+			} else {
+				$template_path = $template_path1;
 			}
 
 			return $template_path;

@@ -6,7 +6,7 @@
         
         <link rel="stylesheet" type="text/css" href="styles/<?php echo $theme; ?>/css/raw.css" />
         
-        <script type="text/javascript" src="scripts/javascript.js"></script>
+        <script type="text/javascript" src="scripts/<?php echo $theme; ?>/javascript.js"></script>
     </head>
     
     <body>

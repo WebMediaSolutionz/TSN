@@ -4,6 +4,7 @@
 			global $session, $page_title, $lang;
 
 			$theme = static::$theme;
+			$current_page = static::$current_page;
 
 			$error_message = "";
 

@@ -7,7 +7,9 @@
 
 			$current_page = "videos";
 
-			$current_user = User::find_by_id( $session->user_id );
+			if ( isset( $session->user_id ) ) {
+				$current_user = User::find_by_id( $session->user_id );
+			}
 			
 			if ( defined( 'PROFILE_USER' ) ) {
 				// $page = "videos";

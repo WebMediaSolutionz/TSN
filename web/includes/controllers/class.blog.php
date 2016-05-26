@@ -6,16 +6,19 @@
 			$theme = static::$theme;
 
 			$current_page = "blog";
-			$current_user = User::find_by_id( $session->user_id );
 
-			$posts = $current_user->get_newsfeed_posts();
+			if ( isset( $session->user_id ) ) {
+				$current_user = User::find_by_id( $session->user_id );
 
-			foreach ( $posts as $post ) {
-				$post->you_like = Likes::you_like( $current_user->id, $post );
-				$post->comments = Comments::get_comments_for_item( $post );
+				$posts = $current_user->get_newsfeed_posts();
 
-				foreach ( $post->comments as $comment ) {
-					$comment->you_like = Likes::you_like( $current_user->id, $comment );
+				foreach ( $posts as $post ) {
+					$post->you_like = Likes::you_like( $current_user->id, $post );
+					$post->comments = Comments::get_comments_for_item( $post );
+
+					foreach ( $post->comments as $comment ) {
+						$comment->you_like = Likes::you_like( $current_user->id, $comment );
+					}
 				}
 			}
 

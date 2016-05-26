@@ -6,7 +6,10 @@
 			$theme = static::$theme;
 
 			$current_page = "calendar";
-			$current_user = User::find_by_id( $session->user_id );
+
+			if ( isset( $session->user_id ) ) {
+				$current_user = User::find_by_id( $session->user_id );
+			}
 
 			include_once( static::load_template() );
 		}
