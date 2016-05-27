@@ -4,6 +4,7 @@
 			global $session, $lang, $page_title, $redirect_destination;
 
 			$theme = static::$theme;
+			$current_page = static::$current_page;
 
 			$current_user = User::find_by_id( $session->user_id );
 
