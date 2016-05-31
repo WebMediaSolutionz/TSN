@@ -5,7 +5,9 @@
 
 			$theme = static::$theme;
 
-			$current_page = "inbox";
+			$current_page = static::$current_page;
+			$current_page_short = static::$current_page_short;
+			
 			$current_user = User::find_by_id( $session->user_id );
 			$conversations = Conversations::get_users_conversations( $current_user->id );
 

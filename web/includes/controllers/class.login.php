@@ -6,7 +6,9 @@
 			$username = "";
 			$password = "";
 			$error_message = "";
+			
 			$current_page = static::$current_page;
+			$current_page_short = static::$current_page_short;
 
 			$theme = static::$theme;
 

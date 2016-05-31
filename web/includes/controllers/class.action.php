@@ -1,6 +1,7 @@
 <?php
 	class ActionCtrl {
 		public static $current_page;
+		public static $current_page_short;
 		public static $action_like_link;
 		public static $action_unlike_link;
 		public static $action_comment_link;
@@ -17,6 +18,7 @@
 			global $session, $lang;
 			
 			static::$current_page = Utils::current_page( $_SERVER[ 'REQUEST_URI' ] );
+			static::$current_page_short = Utils::current_page_short( $_SERVER[ 'REQUEST_URI' ] );
 			static::$action_like_link = Utils::create_action_link( static::$current_page, 'like' );
 			static::$action_unlike_link = Utils::create_action_link( static::$current_page, 'unlike' );
 			static::$action_comment_link = Utils::create_action_link( static::$current_page, 'comment' );

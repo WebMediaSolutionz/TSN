@@ -5,7 +5,9 @@
 
 			$theme = static::$theme;
 
-			$current_page = "friends";
+			$current_page = static::$current_page;
+			$current_page_short = static::$current_page_short;
+			
 			$current_user = User::find_verified_by_id( $session->user_id );
 
 			$friends = $current_user->get_friends();
