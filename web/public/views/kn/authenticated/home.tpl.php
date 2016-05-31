@@ -4,4 +4,4 @@
 	<h1>home</h1>
 </div>
 
-<?php include( 'partials/footer.tpl.php' ); ?>
+<?php include( 'partials/footer.tpl.php' ); ?>z
