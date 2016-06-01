@@ -36,7 +36,7 @@
         <li class="left">
             <a href="#"><span>settings</span></a>
         </li>
-        <li class="left">
+        <li class="left hide">
             <a href="login.php?action=logout"><span>logout</span></a>
         </li>
     </ul>

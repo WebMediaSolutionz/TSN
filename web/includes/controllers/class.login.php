@@ -12,6 +12,10 @@
 
 			$theme = static::$theme;
 
+			if ( isset( $session->user_id ) ) {
+				$current_user = User::find_verified_by_id( $session->user_id );
+			}
+
 			if ( isset( $_POST[ 'submit' ] ) ) {
 				$username = trim( $_POST[ 'username' ] );
 				$password = trim( $_POST[ 'password' ] );
