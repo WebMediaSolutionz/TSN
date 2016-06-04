@@ -36,6 +36,10 @@
 				padding: 0 $site_margin - 10;
 			}
 		}
+
+		.greeting {
+			color: $yellow;
+		}
 	}
 
 	.content,
@@ -68,8 +72,10 @@
 	}
 
 	footer {
-		padding-top: 15px;
-		padding-bottom: 15px;
+		padding-top: 30px;
+		padding-bottom: 30px;
+		margin-top: 30px;
+		border-top: thin solid $gray;
 	}
 }
 
@@ -116,4 +122,11 @@
 
 .hide {
 	display: none;
+}
+
+.pipe {
+	border-left: thin solid $gray;
+	height: 10px;
+	margin: -2px 5px;
+	display: inline-block;
 }

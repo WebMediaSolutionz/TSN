@@ -12,14 +12,16 @@
             <div class="inner-container">
                 <header>
                     <div class="section1">
-                        <div class="left">
+                        <div class="site_title">
                             <div>
-                                <h3><?php echo $page_title; ?></h3>
-                                <span>the official site of <?php echo $page_title; ?></span>
+                                <h1><?php echo $page_title; ?></h1>
                             </div>
                         </div>
-                        <div class="right">
-                            <span>Welcome, <?php echo $current_user->full_name(); ?> | <a href="login.php?action=logout">logout</a></span>
+                        <div class="left">
+                            <span class="italics capitalize">the official site of <?php echo $page_title; ?></span>
+                        </div>
+                        <div class="right capitalize">
+                            <span class="greeting">Welcome, <?php echo $current_user->full_name(); ?></span> <div class="pipe"></div> <span><a href="login.php?action=logout">logout</a></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
