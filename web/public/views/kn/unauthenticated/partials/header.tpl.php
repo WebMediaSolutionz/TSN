@@ -12,11 +12,13 @@
             <div class="inner-container">
                 <header>
                     <div class="section1">
+                        <div class="site_title">
+                            <div>
+                                <h1><a href="home.php"><?php echo $page_title; ?></a></h1>
+                            </div>
+                        </div>
                         <div class="left">
-                            <a href="home.php">
-                                <h1 class="uppercase"><?php echo $page_title; ?></h1>
-                                <span class="uppercase">official website of <?php echo $page_title; ?></span>
-                            </a>
+                            <span class="italics capitalize">the official site of <?php echo $page_title; ?></span>
                         </div>
                         <div class="right">
                             <?php if ( Utils::current_page( 'short' ) !== 'login' ) { ?>

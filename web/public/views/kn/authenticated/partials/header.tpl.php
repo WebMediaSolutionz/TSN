@@ -14,7 +14,7 @@
                     <div class="section1">
                         <div class="site_title">
                             <div>
-                                <h1><?php echo $page_title; ?></h1>
+                                <h1><a href="home.php"><?php echo $page_title; ?></a></h1>
                             </div>
                         </div>
                         <div class="left">
