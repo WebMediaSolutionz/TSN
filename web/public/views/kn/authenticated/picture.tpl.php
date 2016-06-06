@@ -3,20 +3,21 @@
 ?>
 
 <div class="content">
-	<h2>
-		<span class="capitalize"><?php echo $album->name; ?></span><br />
+	<h2 class="capitalize">
+		<span><?php echo $album->name; ?></span><br />
+	</h2>
+
+	<div class="subscript">
 		<div class="left">
-			<span class="subscript">
-				<a href="<?php echo "album.php?album_id={$album->id}"; ?>">Back to Album</a> &middot; <a href="album.php?user_id=<?php echo $picture_owner->id; ?>">back to photo sets</a>
-			</span>
+			<a href="<?php echo "album.php?album_id={$album->id}"; ?>">Back to photo set</a> &middot; <a href="album.php?user_id=<?php echo $picture_owner->id; ?>">back to photo sets</a>
 		</div>
 
 		<div class="right">
-			<span class="subscript">
-				<a href="picture.php?picture_id=<?php echo $prev_pic->id; ?>">Previous</a> &middot; <a href="picture.php?picture_id=<?php echo $next_pic->id; ?>">Next</a>
-			</span>
+			<a href="picture.php?picture_id=<?php echo $prev_pic->id; ?>">Previous</a> &middot; <a href="picture.php?picture_id=<?php echo $next_pic->id; ?>">Next</a>
 		</div>
-	</h2>
+
+		<div class="clearfix"></div>
+	</div>
 
 	<br />
 
