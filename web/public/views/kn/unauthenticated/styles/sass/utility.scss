@@ -1,0 +1,142 @@
+@import "variables";
+@import "mixins";
+
+.outer-container {
+	background-color: $bg_color;
+	border: thin solid $bg_color;
+}
+
+.inner-container {
+	width: $site_width;
+	margin: 0 auto;
+	background-color: $black;
+	border-left: thin solid $gray;
+	border-right: thin solid $gray;
+	border-top: thin solid $black;
+	border-bottom: thin solid $black;
+	color: $white;
+
+	header {
+		.section1 {
+			padding: 15px $site_margin;
+			color: $pink;
+
+			a {
+				&:link,
+				&:visited,
+				&:hover,
+				&:active {
+					color: $pink;
+				}
+			}
+		}
+
+		.section3 {
+			nav.main {
+				padding: 0 $site_margin - 10;
+			}
+		}
+
+		.greeting {
+			color: $yellow;
+		}
+	}
+
+	.content,
+	footer {
+		padding-left: $site_margin;
+		padding-right: $site_margin;
+		color: $light_gray;
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			color: $yellow;
+			text-transform: capitalize;
+		}
+
+		a {
+			&:link,
+			&:visited,
+			&:active {
+				color: $purple;
+			}
+
+			&:hover,
+			&.current {
+				color: $yellow;
+			}
+		}
+	}
+
+	footer {
+		padding-top: 30px;
+		padding-bottom: 30px;
+		margin-top: 30px;
+		border-top: thin solid $gray;
+	}
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clearfix,
+.clear {
+	clear: both;
+}
+
+.center {
+	text-align: center;
+}
+
+.center_align {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+.italics {
+	font-style: italic;
+}
+
+.small {
+	font-size: 90%;
+}
+
+.smaller {
+	font-size: 80%;
+}
+
+.block {
+	display: block;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.hide {
+	display: none;
+}
+
+.pipe {
+	border-left: thin solid $gray;
+	height: 10px;
+	margin: -2px 5px;
+	display: inline-block;
+}

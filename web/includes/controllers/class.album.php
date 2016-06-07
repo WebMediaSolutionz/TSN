@@ -53,8 +53,8 @@
 				$profile_img = "UPS/{$picture_owner->id}/profile.jpg";
 				$current_user_img = "UPS/{$current_user->id}/profile.jpg";
 
-				$profile_img = file_exists( $profile_img ) ? $profile_img : "images/{$theme}/default_profile_pic.jpg";
-				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "images/{$theme}/default_profile_pic.jpg";
+				$profile_img = file_exists( $profile_img ) ? $profile_img : "views/{$theme}/images/default_profile_pic.jpg";
+				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "views/{$theme}/images/default_profile_pic.jpg";
 			} else if ( defined( 'PROFILE_USER' ) ) {
 				$page = "albums";
 				$profile_user = User::find_by_id( PROFILE_USER );

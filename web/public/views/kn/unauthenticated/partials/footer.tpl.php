@@ -16,7 +16,7 @@
 			</div>
     	</div>
 
-    	<script type="text/javascript" src="scripts/<?php echo $theme; ?>/javascript.js"></script>
+    	<script type="text/javascript" src="views/<?php echo $theme; ?>/scripts/javascript.js"></script>
     </body>
 </html>
 <?php

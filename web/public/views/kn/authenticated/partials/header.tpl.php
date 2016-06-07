@@ -26,7 +26,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="section2">
-                        <img src="images/<?php echo $theme; ?>/site_banner.jpg" />
+                        <img src="views/<?php echo $theme; ?>/images/site_banner.jpg" />
                     </div>
                     
                     <div class="section3">

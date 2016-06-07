@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php echo $page_title; ?></title>
         
-        <link rel="stylesheet" type="text/css" href="styles/<?php echo $theme; ?>/css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="views/<?php echo $theme; ?>/styles/css/styles.css" />
     </head>
     
     <body>
