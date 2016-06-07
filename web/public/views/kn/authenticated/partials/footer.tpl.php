@@ -8,7 +8,7 @@
 					</div>
 
 					<div>
-						<a href="privacy_policy.php">Privacy Policy</a> <div class="pipe"></div> <a href="terms_and_conditions.php">Terms and Conditions</a> <div class="pipe"></div> <a href="technical_support.php">Technical Support</a>
+						<a class="<?php echo ( $current_page_short === 'privacy_policy' ) ? 'current' : ''; ?>" href="privacy_policy.php">Privacy Policy</a> <div class="pipe"></div> <a class="<?php echo ( $current_page_short === 'terms_and_conditions' ) ? 'current' : ''; ?>" href="terms_and_conditions.php">Terms and Conditions</a> <div class="pipe"></div> <a class="<?php echo ( $current_page_short === 'technical_support' ) ? 'current' : ''; ?>" href="technical_support.php">Technical Support</a>
 					</div>
 
 					<span class="italics">copyright &copy; <?php echo date( "Y", time() ) . " " . strtoupper( SITE_NAME ) . " " . str_replace( '*company*', PARENT_COMPANY, str_replace( '*company_website*', PARENT_COMPANY_WEBSITE, $lang[ 'powered_by' ] ) ); ?></span>

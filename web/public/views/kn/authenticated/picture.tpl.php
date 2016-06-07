@@ -22,11 +22,12 @@
 	<br />
 
 	<div class="picture">
-		<a href="picture.php?picture_id=<?php echo $next_pic->id; ?>">
-			<div class="img_container">
+		<div class="img_container center">
+			<a class="inline-block" href="picture.php?picture_id=<?php echo $next_pic->id; ?>">
 				<img alt="<?php echo $picture->caption; ?>" src="<?php echo $picture_path; ?>" />
-			</div>
-		</a>
+			</a>
+		</div>
+		
 
 		<?php if ( $picture->user_id === $current_user->id ) { ?>
 			<br />

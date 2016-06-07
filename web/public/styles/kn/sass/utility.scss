@@ -65,7 +65,8 @@
 				color: $purple;
 			}
 
-			&:hover {
+			&:hover,
+			&.current {
 				color: $yellow;
 			}
 		}
@@ -96,6 +97,11 @@
 	text-align: center;
 }
 
+.center_align {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .uppercase {
 	text-transform: uppercase;
 }
@@ -118,6 +124,10 @@
 
 .block {
 	display: block;
+}
+
+.inline-block {
+	display: inline-block;
 }
 
 .hide {

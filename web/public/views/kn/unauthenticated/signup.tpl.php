@@ -1,37 +1,16 @@
-<!-- <h1>SIGNUP PAGE</h1>
-
-<p><?php //echo $message; ?></p>
-
-<form action="signup.php" method="post">
-	First Name: <input type="text" name="name" maxlength="30" value="<?php //echo  htmlentities( $first_name ); ?>" />
-	Last Name: <input type="text" name="lastname" maxlength="30" value="<?php //echo  htmlentities( $last_name ); ?>" />
-	Username: <input type="text" name="username" maxlength="30" value="<?php //echo  htmlentities( $username ); ?>" />
-	Sex: 
-	<select name="sex">
-		<option value="m">Male</option>
-		<option value="f">Female</option>
-	</select>
-	birthdate: <input type="text" name="birthdate" maxlength="30" value="<?php //echo  htmlentities( $birthdate ); ?>" />
-	Password: <input type="password" name="password" maxlength="30" value="<?php //echo  htmlentities( $password ); ?>" />
-	<input type="submit" name="submit" maxlength="30" value="send" />
-</form>
-
-<br />
-
-<a href="login.php">login</a> -->
-
-<!-- ********************************************************* -->
-
 <?php 
 	include_once( 'partials/header.tpl.php' );
 ?>
 
-<div>
+<div class="content">
+    <h1>sign up</h1>
+
 	<?php if ( $error_message !== '' ) { ?>
 		<div class="error_message">
 			<span><?php echo $error_message; ?></span>
 		</div>
 	<?php } ?>
+    
 	<form action="signup.php" method="post">
     	<table>
         	<tr>

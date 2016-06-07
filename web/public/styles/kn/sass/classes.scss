@@ -1,3 +1,6 @@
+@import "variables";
+@import "mixins";
+
 .post_type_3 {
 	.left_part {
 		// width: 668px;
@@ -121,6 +124,8 @@
 }
 
 .img_container {
+	background-color: $gray;
+
 	img {
 		max-width: 910px;
 	}

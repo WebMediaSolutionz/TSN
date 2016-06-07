@@ -5,7 +5,7 @@
 
 	<?php include( 'partials/newsfeed.tpl.php' ); ?>
 
-	<div class="clear"></div>
+	<div class="clearfix"></div>
 </div>
 
 <?php include( 'partials/footer.tpl.php' ); ?>

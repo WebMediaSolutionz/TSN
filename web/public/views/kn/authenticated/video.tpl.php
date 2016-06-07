@@ -6,7 +6,7 @@
 	<h1>VIDEO</h1>
 
 	<div class="picture">
-		<video controls autoplay> 
+		<video controls> 
 			<source src="<?php echo $video_path_mp4; ?>" type="video/mp4">
 			<source src="<?php echo $video_path_3gp; ?>" type="video/3gp">
 			<source src="<?php echo $video_path_ogv; ?>" type="video/ogg"> 
