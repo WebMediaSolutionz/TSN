@@ -1,4 +1,4 @@
-				<footer>
+				<footer class="smaller">
 					<div>
 						 All models appearing on this website are 18 year or older. Click here for 18 U.S.C. 2257 Record Keeping Requirements Compliance Statement.
 					</div>
