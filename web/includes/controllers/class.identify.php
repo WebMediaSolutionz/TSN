@@ -5,6 +5,9 @@
 
 			$theme = static::$theme;
 
+			$current_page = static::$current_page;
+			$current_page_short = static::$current_page_short;
+
 			$error_message = "";
 
 			if ( isset( $_POST[ 'submit' ] ) ) {

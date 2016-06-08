@@ -1,8 +1,10 @@
 <?php 
-	include_once( 'partials/header2.tpl.php' );
+	include_once( 'partials/header.tpl.php' );
 ?>
 
-<div>
+<div class="content">
+    <h1>Forgot Password</h1>
+
 	<?php if ( $error_message !== '' ) { ?>
 		<div class="error_message">
 			<span><?php echo $error_message; ?></span>
