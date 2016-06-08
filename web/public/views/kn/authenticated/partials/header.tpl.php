@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php echo $page_title; ?></title>
         
-        <link rel="stylesheet" type="text/css" href="styles/<?php echo $theme; ?>/css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="views/<?php echo $theme; ?>/authenticated/styles/css/styles.css" />
     </head>
     
     <body>
@@ -26,7 +26,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="section2">
-                        <img src="views/<?php echo $theme; ?>/images/site_banner.jpg" />
+                        <img src="views/<?php echo $theme; ?>/authenticated/images/site_banner.jpg" />
                     </div>
                     
                     <div class="section3">
