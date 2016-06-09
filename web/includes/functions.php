@@ -56,6 +56,8 @@
 			$site_code = 'tsn';
 		} else if ( is_numeric ( strpos( $url, "MA" ) ) ) {
 			$site_code = "ma";
+		} else if ( is_numeric ( strpos( $url, "FP" ) ) || is_numeric ( strpos( $url, "fight_pass" ) ) ) {
+			$site_code = "fp";
 		} else if ( is_numeric ( strpos( $url, "janechoka" ) ) ) {
 			$site_code = "jc";
 		} else if ( is_numeric ( strpos( $url, "meimaza" ) ) ) {
