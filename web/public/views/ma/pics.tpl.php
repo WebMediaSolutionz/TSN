@@ -1,7 +1,7 @@
 <?php 
 	include_once( 'partials/header.tpl.php' );
 ?>
-
+scsc
 <h2 class="capitalize">
 	<span class="capitalize"><?php echo "{$profile_user->full_name()}'s albums"; ?></span>
 </h2>
