@@ -18,7 +18,7 @@
 
 				$videos = Video::get_videos_for_user( $profile_user );
 
-				$video_thumb = str_replace( '*id*', $profile_user->id, USER_PERSONAL_SPACE_VIDEOS );
+				$video_thumb = str_replace( '*id*', $profile_user->id, USER_PERSONAL_SPACE_VIDEOS ) . "/tn";
 			}
 
 			include_once( static::load_template() );
