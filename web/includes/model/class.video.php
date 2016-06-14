@@ -8,6 +8,7 @@
 			'user_id' 		=> 		'int',
 			'file_mp4' 		=> 		'string',
 			'file_3gp' 		=> 		'string',
+			'file_flv'		=>		'string',
 			'file_ogv' 		=> 		'string',
 			'file_webm' 	=> 		'string',
 			'thumbnail'		=>		'string',
@@ -21,6 +22,7 @@
 		public $user_id;
 		public $file_mp4;
 		public $file_3gp;
+		public $file_flv;
 		public $file_ogv;
 		public $file_webm;
 		public $thumbnail;
