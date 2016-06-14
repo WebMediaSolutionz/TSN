@@ -4,7 +4,6 @@
 	defined( 'PROFILE_USER' ) ? null : define( 'PROFILE_USER', 89 );
 	defined( 'AUTHENTICATION_REQUIRED' ) ? null : define( 'AUTHENTICATION_REQUIRED', true );
 
-
 	$page_title = SITE_NAME;
 
 	require_once( "{$environment}_config.php" );

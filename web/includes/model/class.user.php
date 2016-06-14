@@ -165,6 +165,7 @@
 			$session->settings = new Settings;
 
 			$session->settings->user_id = $this->id;
+			$session->settings->theme_id = Themes::get_id_for_theme();
 			$session->settings->language = "en";
 			$session->settings->create();
 

@@ -4,6 +4,6 @@
 	</div>
 	<div>
 		<?php echo $video->title; ?><br />
-		<span class="subscript italics"><?php echo Utils::display_date( $video->upload_date ); ?></span>
+		<span class="subscript">uploaded:</span> <span class="subscript italics"><?php echo Utils::display_date( $video->upload_date ); ?></span>
 	</div>
 </a>
