@@ -3,7 +3,7 @@
 ?>
 
 <div class="content">
-	<h1>photo sets</h1>
+	<h1>PHOTO SETS</h1>
 
 	<div class="album_gallery">
 		<?php

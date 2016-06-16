@@ -1,7 +1,7 @@
 <?php include( 'partials/header.tpl.php' ); ?>
 
 <div class="content">
-	<h1>about me</h1>
+	<h1>ABOUT ME</h1>
 
 	<p>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus rhoncus faucibus neque, eu lacinia arcu elementum sed. Aliquam velit felis, ullamcorper sit amet posuere eu, congue sed lectus. Quisque tristique mollis vehicula. Etiam posuere, magna non consectetur ultricies, metus nunc semper augue, id hendrerit erat mauris in justo. Aenean volutpat tempus lobortis. Praesent felis odio, malesuada nec nibh vel, luctus pretium ligula. Pellentesque magna ante, dictum nec blandit in, aliquet eu leo. Ut sed bibendum nisi. Etiam rutrum urna id condimentum placerat. Cras finibus tortor quis purus lobortis aliquet. Suspendisse et egestas leo. Aliquam accumsan at risus id consectetur. Fusce a dictum magna. Cras sed ipsum sed dolor mattis vulputate a non erat. Aliquam eu odio odio.

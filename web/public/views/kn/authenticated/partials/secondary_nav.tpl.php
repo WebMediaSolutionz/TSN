@@ -6,7 +6,7 @@
         <a href="#"><span>conversation</span></a>
     </li>
     <li class="left">
-        <a href="#"><span>settings</span></a>
+        <a href="settings.php"><span>settings</span></a>
     </li>
     <li class="left hide">
         <a href="login.php?action=logout"><span>logout</span></a>
