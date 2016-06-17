@@ -1,7 +1,7 @@
 <?php
 	$author = User::find_by_id( $post->user_id );
 	$author_img = "UPS/{$author->id}/profile.jpg";
-	$author_img = file_exists( $author_img ) ? $author_img : "images/{$theme}/default_profile_pic.jpg";
+	$author_img = file_exists( $author_img ) ? $author_img : $current_user_img;
 
 	$recipient = User::find_by_id( $post->wall_id );
 	$same_person = $author->id === $recipient->id;

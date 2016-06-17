@@ -23,7 +23,7 @@
 				$posts = Post::get_last_few_of_user( $profile_user->id, 3 );
 
 				$current_user_img = "UPS/{$profile_user->id}/profile.jpg";
-				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "images/{$theme}/default_profile_pic.jpg";
+				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "views/{$theme}/authenticated/images/default_profile_pic.jpg";
 
 				foreach ( $posts as $post ) {
 					$post->you_like = Likes::you_like( $profile_user->id, $post );
@@ -50,7 +50,7 @@
 				}
 
 				$current_user_img = "UPS/{$current_user->id}/profile.jpg";
-				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "images/{$theme}/default_profile_pic.jpg";
+				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "views/{$theme}/authenticated/images/default_profile_pic.jpg";
 			}
 
 			include_once( static::load_template() );

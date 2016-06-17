@@ -2,7 +2,7 @@
 	$author = User::find_by_id( $comment->user_id );
 	$profile_img = "UPS/{$author->id}/profile.jpg";
 
-	$profile_img = file_exists( $profile_img ) ? $profile_img : "images/{$theme}/default_profile_pic.jpg";
+	$profile_img = file_exists( $profile_img ) ? $profile_img : $current_user_img;
 ?>
 
 <div class="comment">
