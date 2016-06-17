@@ -2,7 +2,11 @@
     include_once( 'partials/header.tpl.php' );
 ?>
 
-<div>
+<div class="content">
+    <h1>RESET YOUR PASSWORD</h1>
+
+    <p>Choose another password</p>
+
     <?php if ( $error_message !== '' ) { ?>
         <div class="error_message">
             <span><?php echo $error_message; ?></span>
