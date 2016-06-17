@@ -21,7 +21,7 @@
 			</tr>
 			<tr>
 				<td>
-					<a class="btn" href="settings.php?action=delete_account">delete account</a>
+					<a class="btn" href="login.php?action=delete_account">delete account</a>
 				</td>
 			</tr>
 		</table>
