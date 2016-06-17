@@ -33,8 +33,8 @@
 
 				$picture_path = "UPS/{$picture_owner->id}/pictures/{$picture->filename}";
 
-				$profile_img = file_exists( $profile_img ) ? $profile_img : "images/{$theme}/default_profile_pic.jpg";
-				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "images/{$theme}/default_profile_pic.jpg";
+				$profile_img = file_exists( $profile_img ) ? $profile_img : "views/{$theme}/authenticated/images/default_profile_pic.jpg";
+				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "views/{$theme}/authenticated/images/default_profile_pic.jpg";
 			} else {
 				Utils::redirect_to( 'login.php' );
 			}

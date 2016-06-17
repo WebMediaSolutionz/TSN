@@ -1,8 +1,8 @@
 <ul class="no_styles right">
-    <li class="left">
+    <li class="left hide">
         <a href="#"><span>favourites</span></a>
     </li>
-    <li class="left">
+    <li class="left hide">
         <a href="#"><span>conversation</span></a>
     </li>
     <li class="left">
