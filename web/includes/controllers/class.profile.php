@@ -7,7 +7,9 @@
 
 			$current_user = User::find_by_id( $session->user_id );
 			$profile_user = $user = null;
-			$current_page = 'profile';
+			
+			$current_page = static::$current_page;
+			$current_page_short = static::$current_page_short;
 				
 			if ( isset( $_GET[ 'profile_id' ] ) && ( $_GET[ 'profile_id' ] == $current_user->id ) || !isset( $_GET[ 'profile_id' ] ) ) {
 				$profile_user = $current_user;
@@ -76,7 +78,7 @@
 
 			$page_title = ucwords( $profile_user->full_name() );
 
-			include_once( "views/" . static::$theme . "/" . static::$template );
+			include_once( static::load_template() );
 		}
 
 		public static function init () {

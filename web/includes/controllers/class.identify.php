@@ -5,6 +5,9 @@
 
 			$theme = static::$theme;
 
+			$current_page = static::$current_page;
+			$current_page_short = static::$current_page_short;
+
 			$error_message = "";
 
 			if ( isset( $_POST[ 'submit' ] ) ) {
@@ -31,15 +34,19 @@
 				$error_message = "";
 			}
 
-			include_once( "views/" . static::$theme . "/" . static::$template );
+			include_once( static::load_template() );
 		}
 
 		public static function check_session () {
 			global $session;
 
 			if ( $session->is_logged_in() ) {
+				static::$authentication = "authenticated";
+
 				redirect_to( 'index.php' );
 			}
+
+			static::$authentication = "unauthenticated";
 		}
 	}
 ?>

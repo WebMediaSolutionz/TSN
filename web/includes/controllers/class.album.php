@@ -4,8 +4,14 @@
 			global $session, $lang, $page_title;
 
 			$theme = static::$theme;
+			
+			$current_page = static::$current_page;
+			$current_page_short = static::$current_page_short;
 
-			$current_user = User::find_by_id( $session->user_id );
+			if ( isset( $session->user_id ) ) {
+				$current_user = User::find_by_id( $session->user_id );
+			}
+
 			$page = "";
 			
 			if ( isset( $_GET[ 'user_id' ] ) ) {
@@ -47,8 +53,8 @@
 				$profile_img = "UPS/{$picture_owner->id}/profile.jpg";
 				$current_user_img = "UPS/{$current_user->id}/profile.jpg";
 
-				$profile_img = file_exists( $profile_img ) ? $profile_img : "images/{$theme}/default_profile_pic.jpg";
-				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "images/{$theme}/default_profile_pic.jpg";
+				$profile_img = file_exists( $profile_img ) ? $profile_img : "views/{$theme}/authenticated/images/default_profile_pic.jpg";
+				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "views/{$theme}/authenticated/images/default_profile_pic.jpg";
 			} else if ( defined( 'PROFILE_USER' ) ) {
 				$page = "albums";
 				$profile_user = User::find_by_id( PROFILE_USER );
@@ -66,7 +72,7 @@
 				Utils::redirect_to( 'login.php' );
 			}
 
-			include_once( "views/" . static::$theme . "/" . static::$template );
+			include_once( static::load_template() );
 		}
 	}
 ?>

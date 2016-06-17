@@ -4,6 +4,9 @@
 			global $session, $lang, $page_title, $redirect_destination;
 
 			$theme = static::$theme;
+			
+			$current_page = static::$current_page;
+			$current_page_short = static::$current_page_short;
 
 			$current_user = User::find_by_id( $session->user_id );
 
@@ -28,13 +31,13 @@
 				$video_path_ogv = "UPS/{$video_owner->id}/videos/{$video->file_ogv}";
 				$video_path_webm = "UPS/{$video_owner->id}/videos/{$video->file_webm}";
 
-				$profile_img = file_exists( $profile_img ) ? $profile_img : "images/{$theme}/default_profile_pic.jpg";
-				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "images/{$theme}/default_profile_pic.jpg";
+				$profile_img = file_exists( $profile_img ) ? $profile_img : "views/{$theme}/images/default_profile_pic.jpg";
+				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "views/{$theme}/images/default_profile_pic.jpg";
 			} else {
 				Utils::redirect_to( 'login.php' );
 			}
 
-			include_once( "views/" . static::$theme . "/" . static::$template );
+			include_once( static::load_template() );
 		}
 
 		public static function delete_video () {

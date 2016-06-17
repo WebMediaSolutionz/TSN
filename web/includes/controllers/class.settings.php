@@ -5,7 +5,9 @@
 
 			$theme = static::$theme;
 
-			$current_page = "settings";
+			$current_page = static::$current_page;
+			$current_page_short = static::$current_page_short;
+			
 			$current_user = User::find_by_id( $session->user_id );
 
 			if ( isset( $_POST[ 'submit' ] ) ) {
@@ -25,14 +27,7 @@
 				);
 			}
 
-			include_once( "views/" . static::$theme . "/" . static::$template );
-		}
-
-		public static function delete_account () {
-			global $session, $DB;
-
-			$current_user = User::find_by_id( $session->user_id );
-			$current_user->delete_account();
+			include_once( static::load_template() );
 		}
 	}
 ?>

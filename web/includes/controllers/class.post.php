@@ -24,7 +24,7 @@
 				Utils::redirect_to( 'login.php' );
 			}
 
-			include_once( "views/" . static::$theme . "/" . static::$template );
+			include_once( static::load_template() );
 		}
 
 		public static function delete_post () {

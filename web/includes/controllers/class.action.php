@@ -1,6 +1,7 @@
 <?php
 	class ActionCtrl {
 		public static $current_page;
+		public static $current_page_short;
 		public static $action_like_link;
 		public static $action_unlike_link;
 		public static $action_comment_link;
@@ -8,6 +9,7 @@
 		public static $action_delete_post_link;
 		public static $action_share_link;
 		public static $theme;
+		public static $authentication;
 		public static $template;
 
 		public static $num_unread_notifications;
@@ -16,6 +18,7 @@
 			global $session, $lang;
 			
 			static::$current_page = Utils::current_page( $_SERVER[ 'REQUEST_URI' ] );
+			static::$current_page_short = Utils::current_page_short( $_SERVER[ 'REQUEST_URI' ] );
 			static::$action_like_link = Utils::create_action_link( static::$current_page, 'like' );
 			static::$action_unlike_link = Utils::create_action_link( static::$current_page, 'unlike' );
 			static::$action_comment_link = Utils::create_action_link( static::$current_page, 'comment' );
@@ -37,23 +40,19 @@
 
 			$classname = get_called_class();
 
-			if ( $classname !== 'LoginCtrl' ) {
-				static::check_session();
-			}
-			
-			if ( !file_exists( "views/" . static::$theme . "/" . static::$template ) ) {
-			    if ( !file_exists( "views/" . DEFAULT_THEME . "/" . static::$template ) ) {
-			        exit( "error: missing template file" );
-			    } else {
-			        static::$theme = DEFAULT_THEME;
-			    }
-			}
-
-			$classname = get_called_class();
-
 			if ( $classname !== 'LoginCtrl' && $classname !== 'FileNotFoundCtrl' ) {
 				static::check_session();
 			}
+
+			static::check_authentication();
+			
+			// if ( !file_exists( "views/" . static::$theme . "/" . static::$template ) ) {
+			//     if ( !file_exists( "views/" . DEFAULT_THEME . "/" . static::$template ) ) {
+			//         exit( "error: missing template file" );
+			//     } else {
+			//         static::$theme = DEFAULT_THEME;
+			//     }
+			// }
 
 			if ( $session->is_logged_in() && isset( $_GET[ 'action' ] ) ) {
 				if ( method_exists( $classname, $_GET[ 'action' ] ) ) {
@@ -95,8 +94,50 @@
 			global $session;
 
 			if ( !$session->is_logged_in() ) {
-				redirect_to( 'login.php' );
+				if ( AUTHENTICATION_REQUIRED ) {
+					redirect_to( 'login.php' );
+				} 
 			}
+		}
+
+		private static function check_authentication () {
+			global $session;
+
+			if ( !$session->is_logged_in() ) {
+				static::$authentication = "unauthenticated";
+			} else {
+				static::$authentication = "authenticated";
+			}
+		}
+
+		public static function load_template () {
+			$template_path = null;
+			$template_path1 = "views/" . static::$theme . "/" . static::$authentication . "/" . static::$template;
+			$template_path2 = "views/" . static::$theme . "/" . static::$template;
+			$template_path3 = "views/" . DEFAULT_THEME . "/" . static::$authentication . "/" . static::$template;
+			$template_path4 = "views/" . DEFAULT_THEME . "/" . static::$template;
+
+			if ( !file_exists( $template_path1 ) ) {
+				if ( !file_exists( $template_path2 ) ) {
+					if ( !file_exists( $template_path3 ) ) {
+						if ( !file_exists( $template_path4 ) ) {
+							exit( "error: missing template file" );
+						} else {
+							$template_path = $template_path4;
+							static::$theme = DEFAULT_THEME;
+						}
+					} else {
+						$template_path = $template_path3;
+					}
+				} else {
+					$template_path = $template_path2;
+					static::$theme = DEFAULT_THEME;
+				}
+			} else {
+				$template_path = $template_path1;
+			}
+
+			return $template_path;
 		}
 
 		public static function like () {

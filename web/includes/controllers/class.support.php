@@ -5,7 +5,9 @@
 
 			$theme = static::$theme;
 
-			$current_page = "support";
+			$current_page = static::$current_page;
+			$current_page_short = static::$current_page_short;
+			
 			$current_user = User::find_by_id( $session->user_id );
 			$message_sent = false;
 
@@ -17,7 +19,7 @@
 				$message_sent = true;
 			}
 
-			include_once( "views/" . static::$theme . "/" . static::$template );
+			include_once( static::load_template() );
 		}
 	}
 ?>

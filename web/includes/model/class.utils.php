@@ -125,6 +125,16 @@
 			return $page;
 		}
 
+		public static function current_page_short ( $page = null ) {
+			$page = ( $page === null ) ? $_SERVER[ 'PHP_SELF' ] : $page;
+			$page_arr = explode( '/', $page );
+			$page = $page_arr[ count( $page_arr ) - 1 ];
+			$page = explode( '.php', $page );
+			$page = $page[ 0 ];
+
+			return $page;
+		}
+
 		public static function create_action_link ( $link, $action ) {
 			return ( strpos( $link, '?' ) === false ) ? "{$link}?action={$action}" : "{$link}&action={$action}";
 		}
