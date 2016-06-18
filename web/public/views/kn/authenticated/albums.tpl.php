@@ -3,7 +3,7 @@
 ?>
 
 <div class="content">
-	<h1>photo sets</h1>
+	<h1>PHOTO SETS</h1>
 
 	<?php if ( $current_user->id === $profile_user->id ) { ?>
 	<a class="btn right" href="album_creation.php">create new album</a>

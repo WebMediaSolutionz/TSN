@@ -14,7 +14,7 @@
 				$current_user = User::find_by_id( $session->user_id );
 
 				$current_user_img = "UPS/{$current_user->id}/profile.jpg";
-				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "images/{$theme}/default_profile_pic.jpg";
+				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "views/{$theme}/authenticated/images/default_profile_pic.jpg";
 
 				$posts = $current_user->get_newsfeed_posts();
 
@@ -30,7 +30,7 @@
 				$current_user = User::find_by_id( PROFILE_USER );
 
 				$current_user_img = "UPS/{$current_user->id}/profile.jpg";
-				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "images/{$theme}/default_profile_pic.jpg";
+				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "views/{$theme}/authenticated/images/default_profile_pic.jpg";
 
 				$posts = $current_user->get_newsfeed_posts();
 

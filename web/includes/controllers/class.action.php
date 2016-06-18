@@ -162,6 +162,12 @@
 			} else if ( isset( $_GET[ 'album_id' ] ) ) {
 				$like->album_id = $_GET[ 'album_id' ];
 				$item = Album::find_by_id( $like->album_id );
+			} else if ( isset( $_GET[ 'video_id' ] ) ) {
+				$like->video_id = $_GET[ 'video_id' ];
+				$item = Video::find_by_id( $like->video_id );
+			} else if ( isset( $_GET[ 'track_id' ] ) ) {
+				$like->track_id = $_GET[ 'track_id' ];
+				$item = Track::find_by_id( $like->track_id );
 			}
 
 			$like->save();
@@ -181,7 +187,9 @@
 			} else if ( isset( $_GET[ 'album_id' ] ) ) {
 				$item = Album::find_by_id( $_GET[ 'album_id' ] );
 			} else if ( isset( $_GET[ 'video_id' ] ) ) {
-				// get video object
+				$item = Video::find_by_id( $_GET[ 'video_id' ] );
+			} else if ( isset( $_GET[ 'track_id' ] ) ) {
+				$item = Track::find_by_id( $_GET[ 'track_id' ] );
 			}
 
 			Likes::unlike( $session->user_id, $item );
@@ -239,6 +247,12 @@
 			} else if ( isset( $_POST[ 'album_id' ] ) ) {
 				$comment->album_id = $_POST[ 'album_id' ];
 				$item = Album::find_by_id( $comment->album_id );
+			} else if ( isset( $_POST[ 'video_id' ] ) ) {
+				$comment->video_id = $_POST[ 'video_id' ];
+				$item = Video::find_by_id( $comment->video_id );
+			} else if ( isset( $_POST[ 'track_id' ] ) ) {
+				$comment->track_id = $_POST[ 'track_id' ];
+				$item = Track::find_by_id( $comment->track_id );
 			}
 
 			$comment->save();

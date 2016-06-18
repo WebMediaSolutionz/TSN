@@ -1,7 +1,7 @@
 <?php include( 'partials/header.tpl.php' ); ?>
 
 <div class="content">
-	<h1>blog</h1>
+	<h1>BLOG</h1>
 
 	<?php include( 'partials/newsfeed.tpl.php' ); ?>
 

@@ -31,8 +31,8 @@
 				$video_path_ogv = "UPS/{$video_owner->id}/videos/{$video->file_ogv}";
 				$video_path_webm = "UPS/{$video_owner->id}/videos/{$video->file_webm}";
 
-				$profile_img = file_exists( $profile_img ) ? $profile_img : "views/{$theme}/images/default_profile_pic.jpg";
-				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "views/{$theme}/images/default_profile_pic.jpg";
+				$profile_img = file_exists( $profile_img ) ? $profile_img : "views/{$theme}/authenticated/images/default_profile_pic.jpg";
+				$current_user_img = file_exists( $current_user_img ) ? $current_user_img : "views/{$theme}/authenticated/images/default_profile_pic.jpg";
 			} else {
 				Utils::redirect_to( 'login.php' );
 			}
