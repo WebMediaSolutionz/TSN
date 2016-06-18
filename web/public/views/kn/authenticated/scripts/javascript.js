@@ -47,9 +47,22 @@ var TSN2 = {
 				}
 			});
 
-		self.page.find( '.js-input_comment' ).keypress( function ( e ) {
-			// check what key was pressed, if it was the "return" key, send the value of the inlut key to the backend and save the user's comment on the particular item. make sure the value is not an empty string. and then, display the saved comment in the front end, in the comment section
-		});
+		self.page
+			.find( '.js-input_comment' )
+			.keypress( function ( e ) {
+				var input_field = $( this ),
+					keynum;
+
+				e = e || window.event;
+
+				keynum = ( window.event ) ? e.keyCode : e.which;
+
+				if ( keynum === '' ) {
+					self.callbackend( url, param );
+
+					// display newly created comment on page
+				}
+			});
 		
 		return self;
 	}
