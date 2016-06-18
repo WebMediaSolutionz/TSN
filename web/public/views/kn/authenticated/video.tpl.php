@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="post_operations actions">
-			<span><a href="<?php echo $video->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&video_id=<?php echo $video->id; ?>"><?php echo $video->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a> <!-- &middot; <a href="share.php?video_id=<?php echo $video->id; ?>"><?php echo $lang[ 'share' ]; ?></a> --></span> &middot; <span class="automated_post">Uploaded <?php echo Utils::how_long_ago( $video->upload_date ); ?></span>
+			<span><a class="js-action js-like" href="<?php echo $video->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&video_id=<?php echo $video->id; ?>"><?php echo $video->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a> &middot; <a class="js-action js-comment" href="#">Comment</a><!-- &middot; <a href="share.php?video_id=<?php echo $video->id; ?>"><?php echo $lang[ 'share' ]; ?></a> --></span> &middot; <span class="automated_post">Uploaded <?php echo Utils::how_long_ago( $video->upload_date ); ?></span>
 		</div>
 
 		<div class="comments">
@@ -41,7 +41,7 @@
 					<a id="profile_pic_thumbnail" class="left block" href="video.php?video_id=<?php echo $video_owner->id; ?>">
 						<img src="<?php echo $current_user_img; ?>" />
 					</a>
-					<input class="left" type="text" placeholder="Write a comment..." name="value" />
+					<input class="left js-input_comment" type="text" placeholder="Write a comment..." name="value" />
 					<input type="hidden" name="video_id" value="<?php echo $video->id; ?>" />
 					<input class="left" type="submit" name="submit" value="comment" />
 					<div class="clear"></div>

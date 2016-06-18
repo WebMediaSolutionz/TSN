@@ -117,11 +117,14 @@
 			$template_path3 = "views/" . DEFAULT_THEME . "/" . static::$authentication . "/" . static::$template;
 			$template_path4 = "views/" . DEFAULT_THEME . "/" . static::$template;
 
+			$filenotfound_template = "views/" . static::$theme . "/" . static::$authentication . "/filenotfound.tpl.php";
+
 			if ( !file_exists( $template_path1 ) ) {
 				if ( !file_exists( $template_path2 ) ) {
 					if ( !file_exists( $template_path3 ) ) {
 						if ( !file_exists( $template_path4 ) ) {
-							exit( "error: missing template file" );
+							$template_path = $filenotfound_template;
+							// exit( "error: missing template file" );
 						} else {
 							$template_path = $template_path4;
 							static::$theme = DEFAULT_THEME;
