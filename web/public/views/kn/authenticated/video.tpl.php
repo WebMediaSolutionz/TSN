@@ -43,7 +43,9 @@
 					</a>
 					<input class="left js-input_comment" type="text" placeholder="Write a comment..." name="value" />
 					<input type="hidden" name="video_id" value="<?php echo $video->id; ?>" />
-					<input class="left" type="submit" name="submit" value="comment" />
+					<input type="hidden" name="current_user_id" value="<?php echo $current_user->id; ?>" />
+					<input type="hidden" name="current_user_fullname" value="<?php echo $current_user->full_name(); ?>" />
+					<input class="left js-submit_comment" type="submit" name="submit" value="comment" />
 					<div class="clear"></div>
 				</form>
 			</div>

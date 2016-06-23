@@ -18,7 +18,7 @@
 	</div>
 	<?php if ( $comment->user_id === $current_user->id ) { ?>
 		<div class="post_actions right">
-			<a class="delete_post block" href="<?php echo static::$action_delete_comment_link; ?>&comment_id=<?php echo $comment->id; ?>">
+			<a class="delete_post block js-action js-delete_comment" href="<?php echo static::$action_delete_comment_link; ?>&comment_id=<?php echo $comment->id; ?>">
 				<span class="hide">delete</span>
 			</a>
 		</div>

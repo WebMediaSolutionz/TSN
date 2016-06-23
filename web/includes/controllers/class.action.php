@@ -261,6 +261,11 @@
 			$comment->save();
 
 			static::notify( 'commented', $comment->user_id, $item );
+
+			// if ( isset( $_REQUEST[ 'response_type' ] ) && $_REQUEST[ 'response_type' ] === 'json' ) {
+				header( 'Content-type: application/json' );
+				exit( json_encode( (array) $comment ) );
+			// }
 		}
 
 		public static function delete_comment () {

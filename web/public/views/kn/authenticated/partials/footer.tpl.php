@@ -16,7 +16,10 @@
 			</div>
     	</div>
 
+    	<?php include( 'templates.tpl.php' ); ?>
+
     	<script type="text/javascript" src="views/<?php echo $theme; ?>/authenticated/scripts/lib/jquery-3.0.0.min.js"></script>
+    	<script type="text/javascript" src="views/<?php echo $theme; ?>/authenticated/scripts/lib/mustache.min.js"></script>
     	<script type="text/javascript" src="views/<?php echo $theme; ?>/authenticated/scripts/javascript.js"></script>
     </body>
 </html>

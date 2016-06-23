@@ -47,9 +47,11 @@
 				<a id="profile_pic_thumbnail" class="left block" href="picture.php?picture_id=<?php echo $picture_owner->id; ?>">
 					<img src="<?php echo $current_user_img; ?>" />
 				</a>
-				<input class="left" type="text" placeholder="Write a comment..." name="value" />
+				<input class="left js-input_comment" type="text" placeholder="Write a comment..." name="value" />
 				<input type="hidden" name="album_id" value="<?php echo $album->id; ?>" />
-				<input class="left" type="submit" name="submit" value="comment" />
+				<input type="hidden" name="current_user_id" value="<?php echo $current_user->id; ?>" />
+				<input type="hidden" name="current_user_fullname" value="<?php echo $current_user->full_name(); ?>" />
+				<input class="left js-submit_comment" type="submit" name="submit" value="comment" />
 				<div class="clear"></div>
 			</form>
 		</div>
