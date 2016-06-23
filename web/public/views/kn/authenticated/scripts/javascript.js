@@ -18,7 +18,6 @@ var TSN2 = {
 			.delegate( '.js-action, .js-disabled', 'click', function ( e ) {
 				e.preventDefault();
 			})
-			.find( '.comments' )
 			.delegate( '.js-like, .js-delete_comment', 'click', function () {
 				var link = $( this ),
 					url = link.attr( 'href' );
