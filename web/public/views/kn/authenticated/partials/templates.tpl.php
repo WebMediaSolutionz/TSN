@@ -7,7 +7,7 @@
 			<span><a href="profile.php?profile_id={{user_id}}">{{user_fullname}}</a></span>
 			<span> {{value}}</span>
 			<div class="post_operations italics">
-				<span class="automated_post">just a few seconds ago</span> · <span><a class="js-action js-like" href="blog.php?action=like&amp;comment_id={{id}}">Like</a></span>
+				<span class="automated_post">just a few seconds ago</span> · <span><a class="js-action js-like" href="blog.php?action=like&amp;comment_id={{id}}">Like</a></span><span class="js-nb_likes"></span>
 			</div>
 		</div>
 		<div class="post_actions right">

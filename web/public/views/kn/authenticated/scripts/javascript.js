@@ -26,7 +26,21 @@ var TSN2 = {
 					$.ajax({
 						url: url,
 						success: function ( data ) {
-							console.info( data.likes );
+							var nb_likes = link.closest( '.comment, .post_operations' ).find( '.js-nb_likes' ),
+								nb_likes_txt = null;
+
+							switch ( data.likes ) {
+								case 0 : 	nb_likes_txt = '';
+											break;
+
+								case 1 : 	nb_likes_txt = ' &middot; ' + data.likes + ' like';
+											break;
+
+								default: 	nb_likes_txt = ' &middot; ' + data.likes + ' likes';
+											break;
+							}
+
+							nb_likes.html( nb_likes_txt );
 
 							if ( link.text().toLowerCase() === 'like' ) {
 								url = url.replace( 'action=like', 'action=unlike' );
@@ -48,7 +62,21 @@ var TSN2 = {
 						type: 'DELETE',
 						url: url,
 						success: function ( data ) {
-							console.info( data.comments );
+							var nb_comments = link.closest( '.comments' ).parent().find( '.js-nb_comments' ),
+								nb_comments_txt = null;
+
+							switch ( data.comments ) {
+								case 0 : 	nb_comments_txt = '';
+											break;
+
+								case 1 : 	nb_comments_txt = ' &middot; ' + data.comments + ' comment';
+											break;
+
+								default: 	nb_comments_txt = ' &middot; ' + data.comments + ' comments';
+											break;
+							}
+
+							nb_comments.html( nb_comments_txt );
 
 							link
 								.closest( '.comment' )
@@ -62,7 +90,8 @@ var TSN2 = {
 			.find( '.js-input_comment' )
 			.keypress( function ( e ) {
 				var input_field = $( this ),
-					last_comment = input_field.closest( '.comments' ).find( '.comment' ).last(),
+					comments = input_field.closest( '.comments' ),
+					last_comment = comments.find( '.comment' ).last(),
 					comment = input_field.val(),
 					form = input_field.closest( 'form' ),
 					url = form.attr( 'action' ),
@@ -100,8 +129,22 @@ var TSN2 = {
 						url: url,
 						data: data,
 						success: function ( newComment ) {
-							console.info( newComment.comments );
-							
+							var nb_comments = comments.parent().find( '.js-nb_comments' ),
+								nb_comments_txt = null;
+
+							switch ( newComment.comments ) {
+								case 0 : 	nb_comments_txt = '';
+											break;
+
+								case 1 : 	nb_comments_txt = ' &middot; ' + newComment.comments + ' comment';
+											break;
+
+								default: 	nb_comments_txt = ' &middot; ' + newComment.comments + ' comments';
+											break;
+							}
+
+							nb_comments.html( nb_comments_txt );
+
 							new_comment = $( '#comment' ).html();
 
 							newComment.user_fullname = user_fullname;
