@@ -94,7 +94,7 @@ var TSN2 = {
 					last_comment = comments.find( '.comment' ).last(),
 					comment = input_field.val(),
 					form = input_field.closest( 'form' ),
-					url = form.attr( 'action' ) + '&response_type=json';,
+					url = form.attr( 'action' ) + '&response_type=json',
 					post_id = form.find( 'input[name=post_id]' ).val(),
 					video_id = form.find( 'input[name=video_id]' ).val(),
 					album_id = form.find( 'input[name=album_id]' ).val(),
