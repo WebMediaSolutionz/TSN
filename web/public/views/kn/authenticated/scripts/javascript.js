@@ -25,7 +25,9 @@ var TSN2 = {
 				if ( link.hasClass( 'js-like' ) ) {
 					$.ajax({
 						url: url,
-						success: function () {
+						success: function ( data ) {
+							console.info( data.likes );
+
 							if ( link.text().toLowerCase() === 'like' ) {
 								url = url.replace( 'action=like', 'action=unlike' );
 
@@ -45,7 +47,9 @@ var TSN2 = {
 					$.ajax({
 						type: 'DELETE',
 						url: url,
-						success: function () {
+						success: function ( data ) {
+							console.info( data.comments );
+
 							link
 								.closest( '.comment' )
 								.remove();
@@ -96,6 +100,8 @@ var TSN2 = {
 						url: url,
 						data: data,
 						success: function ( newComment ) {
+							console.info( newComment.comments );
+							
 							new_comment = $( '#comment' ).html();
 
 							newComment.user_fullname = user_fullname;
@@ -115,7 +121,7 @@ var TSN2 = {
 			.find( '.js-comment' )
 			.click( function () {
 				$( this )
-					.closest( '.picture, .item' )
+					.closest( '.content' )
 					.find( '.js-input_comment' )
 					.focus();
 			});
