@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="post_operations actions">
-			<span><a class="js-action js-like" href="<?php echo $video->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&video_id=<?php echo $video->id; ?>"><?php echo $video->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a> &middot; <a class="js-action js-comment" href="#">Comment</a><!-- &middot; <a href="share.php?video_id=<?php echo $video->id; ?>"><?php echo $lang[ 'share' ]; ?></a> --></span> &middot; <span class="automated_post">Uploaded <?php echo Utils::how_long_ago( $video->upload_date ); ?></span>
+			<span><a class="js-action js-like" href="<?php echo $video->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&video_id=<?php echo $video->id; ?>"><?php echo $video->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a> &middot; <a class="js-action js-comment" href="#">Comment</a><!-- &middot; <a href="share.php?video_id=<?php echo $video->id; ?>"><?php echo $lang[ 'share' ]; ?></a> --></span> <span class="js-nb_likes"><?php echo count( $video->get_likers() ) === 1 ? ' &middot; 1 like' : ( count( $video->get_likers() ) !== 0 ? ' &middot; ' . count( $video->get_likers() ) . ' likes': '' );?></span><span class="js-nb_comments"><?php echo count( $video->get_commenters() ) === 1 ? ' &middot; 1 comment' : ( count( $video->get_commenters() ) !== 0 ? ' &middot; ' . count( $video->get_commenters() ) . ' comments': '' );?></span> &middot; <span class="automated_post">Uploaded <?php echo Utils::how_long_ago( $video->upload_date ); ?></span>
 		</div>
 
 		<div class="comments">
