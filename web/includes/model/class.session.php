@@ -2,6 +2,7 @@
 	class Session {
 		private $logged_in = false;
 		public $user_id;
+		public $permission = 'subscriber';
 		public $settings;
 
 		function __construct() {
@@ -12,6 +13,11 @@
 		private function check_login () {
 			if ( isset( $_SESSION[ 'user_id' ] ) ) {
 				$this->user_id = $_SESSION[ 'user_id' ];
+
+				if ( defined( 'PROFILE_USER' ) ) {
+					$this->permission = ( $this->user_id == PROFILE_USER ) ? 'performer' : 'subscriber';
+				}
+				
 				$this->logged_in = true;
 				$this->settings = Settings::get_settings_for( $this->user_id );
 			} else {
