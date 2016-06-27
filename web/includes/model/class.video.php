@@ -57,6 +57,27 @@
 
 			return $videos;
 		}
+
+		public function upload ( $video ) {
+			global $session;
+
+			$tmp_file = $video[ 'tmp_name' ];
+			// $target_file = $this->filename;
+			$target_file = "test";
+			$upload_dir = str_replace( '*id*', $session->user_id, USER_PERSONAL_SPACE_VIDEOS );
+			$target_file_fullpath = "{$upload_dir}/{$target_file}";
+
+			$current_user = User::find_by_id( $session->user_id );
+			$current_user->make_sure_ups_exists();
+
+			if ( move_uploaded_file( $tmp_file, $target_file_fullpath ) ) {
+				// $this->thumbnail = self::crop( $target_file_fullpath, $this->thumb_size, $this->thumb_size );
+				$this->save();
+
+				// self::resize( "UPS/{$this->user_id}/pictures/{$this->thumbnail}", $this->thumb_size, $this->thumb_size );
+				// self::resize( $target_file_fullpath );
+			}
+		}
 	}
 
 ?>
