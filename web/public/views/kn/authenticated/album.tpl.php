@@ -16,7 +16,7 @@
 	</div>
 
 	<?php if ( $current_user->id === $profile_user->id ) { ?>
-	<a class="btn right" href="add_pictures.php?album_id=<?php echo $album->id; ?>">add pictures</a>
+		<a class="btn right" href="add_pictures.php?album_id=<?php echo $album->id; ?>">add pictures</a>
 	<?php } ?>
 
 	<div class="clear"></div>
