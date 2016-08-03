@@ -38,7 +38,7 @@
 	}
 
 	function set_environment () {
-		global $site_code, $environment;
+		global $site_code, $environment, $baseurl;
 
 		$domain = $_SERVER[ 'HTTP_HOST' ];				
 
@@ -65,5 +65,10 @@
 		} else if ( is_numeric ( strpos( $url, "SAMPLER" ) ) ) {
 			$site_code = "sampler";
 		}
+
+		$baseurl = $domain . $url;
+		$baseurl = explode( '/', $baseurl );
+		array_pop( $baseurl );
+		$baseurl = implode( '/', $baseurl );
 	}
 ?>
