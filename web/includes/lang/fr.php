@@ -3,6 +3,7 @@
 	$lang	=	array(
 			"lbl_email"								=>					"Email",
 			"lbl_password"							=>					"Password",
+			"lbl_confirm_password"					=>					"Confirm Password",
 			"lbl_firstname"							=>					"First name",
 			"lbl_lastname"							=>					"Last name",
 			"lbl_sex"								=>					"Sex",

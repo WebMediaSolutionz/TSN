@@ -51,6 +51,10 @@
                 <td><input type="password" name="password" id="password" /></td>
             </tr>
             <tr>
+                <td><label><?php echo $lang[ 'lbl_confirm_password' ]; ?>:</label></td>
+                <td><input type="password" name="confirm_password" id="confirm_password" /></td>
+            </tr>
+            <tr>
             	<td></td>
                 <td></td>
             </tr>
