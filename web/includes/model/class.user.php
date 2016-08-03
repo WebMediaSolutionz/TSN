@@ -8,7 +8,6 @@
 			'lastname' 			=> 'string', 
 			'middlename' 		=> 'string', 
 			'sex' 				=> 'string', 
-			'birthdate' 		=> 'string', 
 			'username' 			=> 'string', 
 			'password' 			=> 'string', 
 			'ip' 				=> 'string', 
@@ -27,6 +26,7 @@
 			'position' 			=> 'string', 
 			'occupation' 		=> 'string', 
 			'interests' 		=> 'string', 
+			'balance' 			=> 'auto-increment', 
 			'verification_key' 	=> 'string',
 			'verified'			=>	'int'
 			);
@@ -35,7 +35,6 @@
 		public $lastname;
 		public $middlename;
 		public $sex;
-		public $birthdate;
 		public $username;
 		public $password;
 		public $ip;
@@ -53,7 +52,8 @@
 		public $work;
 		public $position;
 		public $occupation;
-		public $interests; 
+		public $interests;
+		public $balance;
 		public $verification_key;
 		public $verified;
 
@@ -165,6 +165,7 @@
 			$session->settings = new Settings;
 
 			$session->settings->user_id = $this->id;
+			$session->settings->theme_id = Themes::get_id_for_theme();
 			$session->settings->language = "en";
 			$session->settings->create();
 
