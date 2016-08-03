@@ -11,8 +11,6 @@
 				$first_name = trim( $_POST[ 'name' ] );;
 				$last_name = trim( $_POST[ 'lastname' ] );
 				$username = trim( $_POST[ 'username' ] );
-				$sex = trim( $_POST[ 'sex' ] );
-				$birthdate = trim( $_POST[ 'birthdate' ] );
 				$password = trim( $_POST[ 'password' ] );
 
 				$user = new User;
@@ -20,8 +18,6 @@
 				$user->name = $first_name;
 				$user->lastname = $last_name;
 				$user->username = $username;
-				$user->sex = $sex;
-				$user->birthdate = $birthdate;
 				$user->password = $password;
 				$user->generate_verification_key();
 
@@ -41,8 +37,6 @@
 				$first_name = "";
 				$last_name = "";
 				$username = "";
-				$sex = "";
-				$birthdate = "";
 				$password = "";
 
 				$error_message = "";
