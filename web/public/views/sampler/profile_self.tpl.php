@@ -13,7 +13,7 @@
 
 			<br />
 
-			<h2 class="capitalize"><?php echo str_replace('*user*', $profile_user->full_name(), $lang[ 'users_profile_page' ] ); ?></h2>
+			<h2 class="capitalize"><?php echo $profile_user->full_name(); ?></h2>
 
 			<div id="profile_image" class="left">
 				<img src="<?php echo $profile_img; ?>" />
@@ -40,12 +40,6 @@
 				<span>Name: <a href="profile.php?id=">mckenzy2</a></span><br />
 				<span>email: the.max.mckenzy@gmail.com</span><br />
 			</div>
-
-			<?php include( 'partials/the_wall.tpl.php' ); ?>
-
-			<?php include( 'partials/friend_widget.tpl.php' );?>
-
-			<?php include( 'partials/picture_widget.tpl.php' );?>
 
 			<div class="clear"></div>
 		</div>			

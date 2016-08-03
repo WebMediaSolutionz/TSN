@@ -8,6 +8,7 @@
 			"lbl_lastname"							=>					"Last name",
 			"lbl_sex"								=>					"Sex",
 			"lbl_birthdate"							=>					"Birthdate",
+			"lbl_balance"							=>					"Balance",
 
 			"choose_gender"							=>					"choose gender",
 			"male"									=>					"male",
