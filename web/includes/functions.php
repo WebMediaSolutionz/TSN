@@ -62,6 +62,8 @@
 			$site_code = "mm";
 		} else if ( is_numeric ( strpos( $url, "karinevandal" ) ) ) {
 			$site_code = "kv";
+		} else if ( is_numeric ( strpos( $url, "SAMPLER" ) ) ) {
+			$site_code = "sampler";
 		}
 	}
 ?>
