@@ -2,7 +2,7 @@
 <div id="status_bar">
 	<div class="inner_container">
 		<div class="left">
-	    	<a href="home.php"><span><?php echo SITE_NAME; ?></span></a><br />
+	    	<a href="profile.php"><span><?php echo SITE_NAME; ?></span></a><br />
 	    </div>
 	    
 	    <div class="right">

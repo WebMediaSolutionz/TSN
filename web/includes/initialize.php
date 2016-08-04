@@ -10,12 +10,6 @@
 	require_once( 'model/class.user.php' );
 	require_once( 'model/class.settings.php' );
 
-	require_once( 'model/class.post.php' );
-	require_once( 'model/class.messages.php' );
-	require_once( 'model/class.conversations.php' );
-	require_once( 'model/class.likes.php' );
-	require_once( 'model/class.notification.php' );
-
 	require_once( 'PHPMailer/class.phpmailer.php' );
 	require_once( 'PHPMailer/class.smtp.php' );
 	require_once( 'PHPMailer/language/phpmailer.lang-fr.php' );

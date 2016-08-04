@@ -20,7 +20,7 @@
         			<label><?php echo $lang[ 'lbl_email' ] ?>: </label>
 				</td>
                 <td>
-        			<input type="text" name="username" maxlength="30" />
+        			<input type="text" name="username" />
         		</td>
 			</tr>
         </table>

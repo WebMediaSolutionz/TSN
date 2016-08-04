@@ -20,11 +20,6 @@
 
 			$posts = $profile_user->get_wall_posts();
 			$friends = Utils::randomize( $profile_user->get_friends() );
-			$albums = Album::get_albums_for_user( $profile_user->id );
-
-			foreach ( $albums as $album ) {
-				$album->load_pictures();
-			}
 
 			foreach ( $posts as $post ) {
 				$post->you_like = Likes::you_like( $current_user->id, $post );

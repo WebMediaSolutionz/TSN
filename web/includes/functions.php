@@ -44,25 +44,11 @@
 
 		if ( is_numeric ( strpos( $domain, "localhost" ) ) ) {
 			$environment = "dev";
-		} elseif ( is_numeric ( strpos( $domain, "staging" ) ) ) {
-			$environment = "staging";
-		} else {
-			$environment = "live";
 		}
 
 		$url = $_SERVER[ 'PHP_SELF' ];
 
-		if ( is_numeric ( strpos( $url, "thesocialnetwork" ) ) || is_numeric ( strpos( $url, "TSN2" ) ) ) {
-			$site_code = 'tsn';
-		} else if ( is_numeric ( strpos( $url, "MA" ) ) ) {
-			$site_code = "ma";
-		} else if ( is_numeric ( strpos( $url, "janechoka" ) ) ) {
-			$site_code = "jc";
-		} else if ( is_numeric ( strpos( $url, "meimaza" ) ) ) {
-			$site_code = "mm";
-		} else if ( is_numeric ( strpos( $url, "karinevandal" ) ) ) {
-			$site_code = "kv";
-		} else if ( is_numeric ( strpos( $url, "SAMPLER" ) ) ) {
+		if ( is_numeric ( strpos( $url, "SAMPLER" ) ) ) {
 			$site_code = "sampler";
 		}
 
