@@ -17,7 +17,7 @@
 
 				if ( $found_user ) {
 					$session->login( $found_user );
-					redirect_to( 'home.php' );
+					redirect_to( 'profile.php' );
 				} else {
 					$error_message = "Username/password combination incorrect.";
 				}
@@ -38,7 +38,7 @@
 			global $session;
 
 			if ( $session->is_logged_in() ) {
-				redirect_to( 'home.php' );
+				redirect_to( 'profile.php' );
 			}
 		}
 

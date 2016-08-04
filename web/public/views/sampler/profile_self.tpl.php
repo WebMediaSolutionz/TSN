@@ -21,9 +21,6 @@
 
 			<div class="right">
 				<table>
-					<tr>
-						<td colspan="2"><a class="button" href="profile.php?mode=edit">Edit Profile</a></td>
-					</tr>
 					<?php foreach ( User::$db_fields as $field => $value ) { ?>
 						<?php if ( $field != 'id' && $field != 'password' && $field != 'ip' && $field != 'verification_key' && $field != 'verified' && $profile_user->$field != '' && $profile_user->$field != '0' ) { ?>
 							<tr>

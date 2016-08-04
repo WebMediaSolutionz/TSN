@@ -201,6 +201,22 @@
 			$comment->delete();
 		}
 
+		public static function transfer () {
+			if ( isset( $_POST[ 'submit' ] ) ) {
+				$sender = User::find_by_id( $_POST[ 'sender_id' ] );
+				$recipient = User::find_by_id( $_POST[ 'recipient_id' ] );
+				$amount = doubleval( $_POST[ 'amount' ] );
+
+				if ( $amount <= doubleval( $sender->balance ) ) {
+					$sender->balance = doubleval( $sender->balance ) - $amount;
+					$recipient->balance = doubleval( $recipient->balance ) + $amount;
+
+					$sender->save();
+					$recipient->save();
+				}
+			}
+		}
+
 		public static function notify ( $type, $action_initiator_user_id, $item ) {
 			global $session;
 

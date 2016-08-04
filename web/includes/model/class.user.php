@@ -26,7 +26,7 @@
 			'position' 			=> 'string', 
 			'occupation' 		=> 'string', 
 			'interests' 		=> 'string', 
-			'balance' 			=> 'auto-increment', 
+			'balance' 			=> 'int', 
 			'verification_key' 	=> 'string',
 			'verified'			=>	'int'
 			);
@@ -91,6 +91,7 @@
 			$user = static::verify_user( $verification_key );
 
 			if ( !is_null( $user ) ) {
+				$user->balance = 100;
 				$user->verified = true;
 				$user->verification_key = '';
 				$user->update();

@@ -21,7 +21,7 @@
 			case 'birthdate'		:		echo Utils::display_date( $profile_user->$field );
 											break;
 
-			case 'balance'			:		echo "{$profile_user->$field}$";
+			case 'balance'			:		echo "<span class='js-balance'>{$profile_user->$field}</span>$";
 											break;
 
 			default 				:		echo $profile_user->$field;

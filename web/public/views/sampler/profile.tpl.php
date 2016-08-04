@@ -14,18 +14,18 @@
 				<br />
 
 				<div class="actions">
-					<a class="btn left" href="conversation.php?action=start_new_conversation&recipient=<?php echo $profile_user->id; ?>"><?php echo $lang[ 'send_message' ]; ?></a>
-					<?php if ( $current_user->is_friend( $profile_user ) ) { ?>
-						<a class="btn left small_gap" href="profile.php?profile_id=<?php echo $user->id; ?>&action=delete_friend&ex_friend=<?php echo $user->id; ?>"><?php echo $lang[ 'delete_friend' ]; ?></a>
-					<?php } else if ( $current_user->is_leader( $profile_user ) ) { ?>
-						<a class="btn left small_gap" href="profile.php?profile_id=<?php echo $user->id; ?>&action=cancel_friend_request&leader=<?php echo $user->id; ?>"><?php echo $lang[ 'cancel_friend_request' ]; ?></a>
-					<?php } else if ( $current_user->is_follower( $profile_user ) ) { ?>
-						<a class="btn left small_gap" href="profile.php?profile_id=<?php echo $user->id; ?>&action=delete_friend&ex_friend=<?php echo $user->id; ?>"><?php echo $lang[ 'deny' ]; ?></a>
-						<a class="btn left margin-left" href="profile.php?profile_id=<?php echo $user->id; ?>&action=accept_friend_request&follower=<?php echo $user->id; ?>"><?php echo $lang[ 'accept' ]; ?></a>
-					<?php } else { ?>
-						<a class="btn left small_gap" href="profile.php?profile_id=<?php echo $user->id; ?>&action=send_friend_request&leader=<?php echo $user->id; ?>"><?php echo $lang[ 'make_friends' ]; ?></a>
-					<?php } ?>
-						<div class="clear"></div>
+					<form action="profile.php?profile_id=<?php echo $profile_user->id; ?>&action=transfer" method="post">
+						<input type="hidden" name="sender_id" value="<?php echo $current_user->id; ?>">
+						<input type="hidden" name="recipient_id" value="<?php echo $profile_user->id; ?>">
+						<input type="hidden" name="max_transfer_amount" value="<?php echo $current_user->balance; ?>">
+
+						<input class="js-amount" type="text" name="amount">
+						<input class="js-submit" type="submit" name="submit" value="send money">
+
+						<br /><br />
+
+						<span class="js-error-message"><?php echo $error_message; ?></span>
+					</form>
 				</div>
 			</div>
 

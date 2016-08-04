@@ -1,7 +1,7 @@
 <?php
 	class ProfileCtrl extends FriendshipCtrl {
 		public static function load () {
-			global $session, $lang, $page_title, $redirect_destination, $current_page;
+			global $session, $lang, $page_title, $redirect_destination, $current_page, $error_message;
 
 			$theme = static::$theme;
 

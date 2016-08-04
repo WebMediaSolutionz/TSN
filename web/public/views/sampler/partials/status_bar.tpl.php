@@ -7,15 +7,15 @@
 	    
 	    <div class="right">
 	    	<ul class="no_list_style no_padding">
-	    		<li class="left medium_gap"><a href="profile.php"><?php echo ucfirst( $current_user->name ); ?></a></li>
-	    		<li class="left medium_gap"><a href="home.php"><?php echo $lang[ 'home' ]; ?></a></li>
+	    		<li class="left medium_gap"><a href="profile.php">Profile</a></li>
+	    		<!-- <li class="left medium_gap"><a href="home.php"><?php // echo $lang[ 'home' ]; ?></a></li> -->
 	    		<!-- <li class="left medium_gap"><a href="messages.php?id={$user_info.id}">messages{$msg_num}</a></li> -->
-                <li class="left medium_gap"><a href="notifications.php"><?php echo $lang[ 'notifications' ]; ?></a></li>
+                <!-- <li class="left medium_gap"><a href="notifications.php"><?php // echo $lang[ 'notifications' ]; ?></a></li> -->
 	    		<!-- <li class="left medium_gap"><a href="friends.php">friends{$friends_num}</a></li> -->
-                <li class="left medium_gap"><a href="friends.php"><?php echo $lang[ 'find_friends' ]; ?></a></li>
+                <li class="left medium_gap"><a href="friends.php">Users</a></li>
 	    		<!-- <li class="left medium_gap"><a href="users.php">all users{$users_num}</a></li> -->
-	    		<li class="left medium_gap"><a href="inbox.php"><?php echo $lang[ 'inbox' ]; ?></a></li>
-	    		<li class="left medium_gap"><a href="settings.php"><?php echo $lang[ 'settings' ]; ?></a></li>
+	    		<!-- <li class="left medium_gap"><a href="inbox.php"><?php // echo $lang[ 'inbox' ]; ?></a></li> -->
+	    		<!-- <li class="left medium_gap"><a href="settings.php"><?php // echo $lang[ 'settings' ]; ?></a></li> -->
 	    		<li class="left medium_gap"><a href="login.php?action=logout"><?php echo $lang[ 'logout' ]; ?></a></li>
 	    	</ul>
 		</div>
