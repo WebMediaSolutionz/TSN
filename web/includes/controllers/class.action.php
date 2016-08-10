@@ -34,6 +34,12 @@
 			static::$template = explode( '/', $_SERVER[ 'SCRIPT_FILENAME' ] );
 			static::$template = static::$template[ count( static::$template ) - 1 ];
 			static::$template = str_replace( '.php', '.tpl.php', static::$template );
+
+			$classname = get_called_class();
+
+			if ( $classname !== 'LoginCtrl' ) {
+				static::check_session();
+			}
 			
 			if ( !file_exists( "views/" . static::$theme . "/" . static::$template ) ) {
 			    if ( !file_exists( "views/" . DEFAULT_THEME . "/" . static::$template ) ) {
@@ -41,12 +47,6 @@
 			    } else {
 			        static::$theme = DEFAULT_THEME;
 			    }
-			}
-
-			$classname = get_called_class();
-
-			if ( $classname !== 'LoginCtrl' ) {
-				static::check_session();
 			}
 
 			if ( $session->is_logged_in() && isset( $_GET[ 'action' ] ) ) {
