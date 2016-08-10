@@ -1,46 +1,8 @@
-a:link,
-a:visited,
-a:hover,
-a:active {
-	text-decoration: none;
-}
-
-a:focus {
-	outline: none;
-}
-
-.active a {
-	cursor: default;
-}
-
-body {
-	min-height: 0;
-	background-color: #dcdee3;
-}
-
 .navbar-default {
 	background-color: #425e9c;
 }
 
-.navbar-brand {
-	font-size: 16px;
-}
-
-.navbar-default .navbar-toggle {
-	border-color: #FFF;
-}
-
-.navbar-default .navbar-toggle:focus,
-.navbar-default .navbar-toggle:hover {
-	background-color: #3b5998;
-}
-
-.navbar-default .navbar-toggle .icon-bar {
-	background-color: #FFF;
-}
-
 .navbar-default .navbar-brand,
-.navbar-default .navbar-brand:focus,
 .navbar-default .navbar-brand:hover {
 	color: #FFF;
 }
@@ -54,79 +16,8 @@ body {
 }
 
 .navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:focus,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-brand:hover {
 	background-color: #3b5998;
-	color: #FFF;
-}
-
-footer {
-	padding: 15px 0;
-}
-
-footer .copyright {
-	margin-top: 20px;
-	font-size: 80%;
-}
-
-.status_textarea,
-.single_post {
-	padding: 10px 20px;
-	background-color: #FFF;
-	border: thin solid #808080;
-}
-
-.single_post {
-	padding: 15px;
-}
-
-.single_post {
-	margin-top: 10px;
-}
-
-.single_post > div:first-child,
-.single_post > div:nth-child(2) {
-	padding: 0;
-}
-
-#profile_pic_thumbnail {
-	display: block;
-	width: 30px;
-	height: 30px;
-}
-
-.status_textarea h2 {
-	text-transform: capitalize;
-}
-
-.status_textarea form textarea {
-	width: 100%;
-	height: 75px;
-}
-
-.status_textarea form input[type=submit] {
-	margin-top: 10px;
-}
-
-.clear {
-	clear: both;
-}
-
-.small_left_gap {
-	margin-left: 5px;
-}
-
-.users_name {
-	text-transform: capitalize;
-	font-size: bold;
-}
-
-.italics {
-	font-style: italic;
-}
-
-.post_operations {
-	font-size: 70%;
 }
