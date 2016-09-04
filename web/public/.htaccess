@@ -22,7 +22,7 @@ IndexIgnore *
 # ------------------------------------------------------
 
 # Redirecting to custom File not found page locally
-ErrorDocument 404 /projects/internal/TSN2/web/public/filenotfound.php
+ErrorDocument 404 /projects/internal/KN/web/public/filenotfound.php
 
 # ------------------------------------------------------
 
@@ -35,7 +35,7 @@ ErrorDocument 404 /projects/internal/TSN2/web/public/filenotfound.php
 # ------------------------------------------------------
 
 # Redirecting to custom File not found page on staging
-# ErrorDocument 404 /projects/internal/thesocialnetwork/public/filenotfound.php
+# ErrorDocument 404 /projects/internal/KN/public/filenotfound.php
 
 # ------------------------------------------------------
 
