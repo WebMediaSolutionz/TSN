@@ -5,44 +5,83 @@ var TSN2 = {
 		var self = this;
 
 		self.attach_events();
+
+		self.page
+			.find( '.js-submit_comment' )
+			.hide();
 	},
 
 	attach_events: function () {
-		var self = this,
-			action_links = self.page.find( '.js-action, .js-disabled' );
+		var self = this;
 
-		action_links
-			.click( function ( e ) {
+		self.page
+			.delegate( '.js-action, .js-disabled', 'click', function ( e ) {
 				e.preventDefault();
-			}).each( function () {
-				var link = $( this );
+			})
+			.delegate( '.js-like, .js-delete_comment', 'click', function () {
+				var link = $( this ),
+					url = link.attr( 'href' ) + '&response_type=json';
 
 				if ( link.hasClass( 'js-like' ) ) {
-					link.click( function () {
-						var url = $( this ).attr( 'href' );
+					$.ajax({
+						url: url,
+						success: function ( data ) {
+							var nb_likes = link.closest( '.comment, .post_operations' ).find( '.js-nb_likes' ),
+								nb_likes_txt = null;
 
-						$.ajax({
-							url: url,
-							success: function () {
-								if ( link.text().toLowerCase() === 'like' ) {
-									url = url.replace( 'action=like', 'action=unlike' );
+							switch ( data.likes ) {
+								case 0 : 	nb_likes_txt = '';
+											break;
 
-									link
-										.text( 'Unlike' )
-										.attr( 'href', url );
-								} else {
-									url = url.replace( 'action=unlike', 'action=like' );
+								case 1 : 	nb_likes_txt = ' &middot; ' + data.likes + ' like';
+											break;
 
-									link
-										.text( 'Like' )
-										.attr( 'href', url );
-								}
+								default: 	nb_likes_txt = ' &middot; ' + data.likes + ' likes';
+											break;
 							}
-						});
+
+							nb_likes.html( nb_likes_txt );
+
+							if ( link.text().toLowerCase() === 'like' ) {
+								url = url.replace( 'action=like', 'action=unlike' );
+
+								link
+									.text( 'Unlike' )
+									.attr( 'href', url );
+							} else {
+								url = url.replace( 'action=unlike', 'action=like' );
+
+								link
+									.text( 'Like' )
+									.attr( 'href', url );
+							}
+						}
 					});
-				} else if ( link.hasClass( 'js-comment' ) ) {
-					link.click( function () {
-						link.closest( '.picture, .item' ).find( '.js-input_comment' ).focus();
+				} else if ( link.hasClass( 'js-delete_comment' ) ) {
+					$.ajax({
+						type: 'DELETE',
+						url: url,
+						success: function ( data ) {
+							var nb_comments = link.closest( '.comments' ).parent().find( '.js-nb_comments' ),
+								nb_comments_txt = null;
+
+							switch ( data.comments ) {
+								case 0 : 	nb_comments_txt = '';
+											break;
+
+								case 1 : 	nb_comments_txt = ' &middot; ' + data.comments + ' comment';
+											break;
+
+								default: 	nb_comments_txt = ' &middot; ' + data.comments + ' comments';
+											break;
+							}
+
+							nb_comments.html( nb_comments_txt );
+
+							link
+								.closest( '.comment' )
+								.remove();
+						}
 					});
 				}
 			});
@@ -51,19 +90,85 @@ var TSN2 = {
 			.find( '.js-input_comment' )
 			.keypress( function ( e ) {
 				var input_field = $( this ),
-					keynum;
+					comments = input_field.closest( '.comments' ),
+					last_comment = comments.find( '.comment' ).last(),
+					comment = input_field.val(),
+					form = input_field.closest( 'form' ),
+					url = form.attr( 'action' ) + '&response_type=json',
+					post_id = form.find( 'input[name=post_id]' ).val(),
+					video_id = form.find( 'input[name=video_id]' ).val(),
+					album_id = form.find( 'input[name=album_id]' ).val(),
+					picture_id = form.find( 'input[name=picture_id]' ).val(),
+					user_id = form.find( 'input[name=current_user_id]' ).val(),
+					user_fullname = form.find( 'input[name=current_user_fullname]' ).val(),
+					keynum,
+					new_comment,
+					data = {
+						value: comment
+					};
+
+				if ( post_id !== undefined ) {
+					data.post_id = post_id;
+				} else if ( video_id !== undefined  ) {
+					data.video_id = video_id;
+				} else if ( album_id !== undefined  ) {
+					data.album_id = album_id;
+				} else if ( picture_id !== undefined  ) {
+					data.picture_id = picture_id;
+				}
 
 				e = e || window.event;
 
 				keynum = ( window.event ) ? e.keyCode : e.which;
 
-				if ( keynum === '' ) {
-					self.callbackend( url, param );
+				if ( keynum === 13 ) {
+					e.preventDefault();
 
-					// display newly created comment on page
+					$.ajax({
+						type: 'POST',
+						url: url,
+						data: data,
+						success: function ( newComment ) {
+							var nb_comments = comments.parent().find( '.js-nb_comments' ),
+								nb_comments_txt = null;
+
+							switch ( newComment.comments ) {
+								case 0 : 	nb_comments_txt = '';
+											break;
+
+								case 1 : 	nb_comments_txt = ' &middot; ' + newComment.comments + ' comment';
+											break;
+
+								default: 	nb_comments_txt = ' &middot; ' + newComment.comments + ' comments';
+											break;
+							}
+
+							nb_comments.html( nb_comments_txt );
+
+							new_comment = $( '#comment' ).html();
+
+							newComment.user_fullname = user_fullname;
+
+							input_field.val( '' );
+							last_comment.after( Mustache.render( new_comment, newComment ) );
+						},
+
+						error: function () {
+							alert( 'nah bitch' );
+						}
+					});
 				}
 			});
-		
+
+		self.page
+			.find( '.js-comment' )
+			.click( function () {
+				$( this )
+					.closest( '.content' )
+					.find( '.js-input_comment' )
+					.focus();
+			});
+
 		return self;
 	}
 }
