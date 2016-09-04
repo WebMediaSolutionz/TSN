@@ -175,6 +175,11 @@
 
 			$like->save();
 
+			if ( isset( $_REQUEST[ 'response_type' ] ) && $_REQUEST[ 'response_type' ] === 'json' ) {
+				header( 'Content-type: application/json' );
+				exit( json_encode( array( 'likes' => count( $item->get_likers() ) ) ) );
+			}
+
 			static::notify( 'liked', $like->user_id, $item );
 		}
 
@@ -196,6 +201,11 @@
 			}
 
 			Likes::unlike( $session->user_id, $item );
+
+			if ( isset( $_REQUEST[ 'response_type' ] ) && $_REQUEST[ 'response_type' ] === 'json' ) {
+				header( 'Content-type: application/json' );
+				exit( json_encode( array( 'likes' => count( $item->get_likers() ) ) ) );
+			}
 		}
 
 		public static function share () {
@@ -261,6 +271,15 @@
 			$comment->save();
 
 			static::notify( 'commented', $comment->user_id, $item );
+
+			if ( isset( $_REQUEST[ 'response_type' ] ) && $_REQUEST[ 'response_type' ] === 'json' ) {
+				$comment_arr = (array) $comment;
+
+				$comment_arr[ 'comments' ] = count( $item->get_commenters() );
+
+				header( 'Content-type: application/json' );
+				exit( json_encode( $comment_arr ) );
+			}
 		}
 
 		public static function delete_comment () {
@@ -268,7 +287,14 @@
 
 			$comment = Comments::find_by_id( $_GET[ 'comment_id' ] );
 
+			$item = $comment->get_related_item();
+
 			$comment->delete();
+
+			if ( isset( $_REQUEST[ 'response_type' ] ) && $_REQUEST[ 'response_type' ] === 'json' ) {
+				header( 'Content-type: application/json' );
+				exit( json_encode( array( 'comments' => count( $item->get_commenters() ) ) ) );
+			}
 		}
 
 		public static function notify ( $type, $action_initiator_user_id, $item ) {

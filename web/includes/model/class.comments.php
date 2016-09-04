@@ -89,6 +89,24 @@
 
 			return $users;
 		}
+
+		public function get_related_item () {
+			$item = null;
+
+			if ( $this->post_id !== '0'  ) {
+				$item = Post::find_by_id( $this->post_id );
+			} else if ( $this->picture_id !== '0' ) {
+				$item = Picture::find_by_id( $this->picture_id );
+			} else if ( $this->album_id !== '0' ) {
+				$item = Album::find_by_id( $this->album_id );
+			} else if ( $this->video_id !== '0' ) {
+				$item = Video::find_by_id( $this->video_id );
+			} else if ( $this->track_id !== '0' ) {
+				$item = Track::find_by_id( $this->track_id );
+			}
+
+			return $item;
+		}
 	}
 
 ?>
