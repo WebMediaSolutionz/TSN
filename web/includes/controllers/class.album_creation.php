@@ -3,10 +3,14 @@
 		public static function load () {
 			global $session, $lang, $page_title;
 
-			$theme = static::$theme;
-			$current_user = User::find_by_id( $session->user_id );
-			
-			include_once( static::load_template() );
+			if ( $session->is_logged_in() ) {
+				$theme = static::$theme;
+				$current_user = User::find_by_id( $session->user_id );
+				
+				include_once( static::load_template() );
+			} else {
+				Utils::redirect_to( 'login.php' );
+			}
 		}
 
 		public static function create () {
