@@ -169,10 +169,12 @@ var TSN2 = {
 		self.page
 			.find( '.js-comment' )
 			.click( function () {
-				$( this )
-					.closest( '.content' )
-					.find( '.js-input_comment' )
-					.focus();
+				var comment_link = $( this ),
+					parent_anchor = comment_link.closest( '.single_post' ),
+					parent_anchor = ( parent_anchor.length !== 0 ) ? parent_anchor : comment_link.closest( '.content' ),
+					input = parent_anchor.find( '.js-input_comment' );
+
+				input.focus();
 			});
 
 		return self;
