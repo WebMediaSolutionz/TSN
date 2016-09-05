@@ -3,6 +3,10 @@
 		public static function load () {
 			global $session, $lang, $page_title;
 
+			if ( $session->is_logged_in() ) {
+				redirect_to( 'home.php' );
+			}
+
 			$username = "";
 			$password = "";
 			$error_message = "";
@@ -39,14 +43,6 @@
 			}
 
 			include_once( static::load_template() );
-		}
-
-		public static function check_session () {
-			global $session;
-
-			if ( $session->is_logged_in() ) {
-				redirect_to( 'home.php' );
-			}
 		}
 
 		public static function logout () {

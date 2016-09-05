@@ -3,6 +3,10 @@
 		public static function load () {
 			global $session, $page_title, $lang;
 
+			if ( $session->is_logged_in() ) {
+				redirect_to( 'home.php' );
+			}
+
 			$theme = static::$theme;
 			
 			$current_page = static::$current_page;
