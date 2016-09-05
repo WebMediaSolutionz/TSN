@@ -94,6 +94,7 @@ var TSN2 = {
 					last_comment = comments.find( '.comment' ).last(),
 					comment = input_field.val(),
 					form = input_field.closest( 'form' ),
+					comment_posting_setion = form.closest( '.comment_posting_section' ),
 					url = form.attr( 'action' ) + '&response_type=json',
 					post_id = form.find( 'input[name=post_id]' ).val(),
 					video_id = form.find( 'input[name=video_id]' ).val(),
@@ -150,7 +151,12 @@ var TSN2 = {
 							newComment.user_fullname = user_fullname;
 
 							input_field.val( '' );
-							last_comment.after( Mustache.render( new_comment, newComment ) );
+
+							if ( last_comment.length !== 0 ) {
+								last_comment.after( Mustache.render( new_comment, newComment ) );
+							} else {
+								 comment_posting_setion.prepend( Mustache.render( new_comment, newComment ) );
+							}
 						},
 
 						error: function () {
