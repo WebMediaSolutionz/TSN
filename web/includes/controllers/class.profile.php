@@ -118,6 +118,8 @@
 						static::check_session();
 					}
 
+					static::check_authentication();
+
 					if ( $session->is_logged_in() && isset( $_GET[ 'action' ] ) ) {
 						if ( method_exists( $classname, $_GET[ 'action' ] ) ) {
 							$classname::$_GET[ 'action' ]();
@@ -160,6 +162,16 @@
 			$convo = Conversations::start_new_conversation();
 			$path = $_SERVER[ 'SCRIPT_FILENAME' ];
 			Utils::redirect_to( "{$path}/conversation.php?convo_id={$convo->id}" );
+		}
+
+		private static function check_authentication () {
+			global $session;
+
+			if ( !$session->is_logged_in() ) {
+				static::$authentication = "unauthenticated";
+			} else {
+				static::$authentication = "authenticated";
+			}
 		}
 	}
 ?>
