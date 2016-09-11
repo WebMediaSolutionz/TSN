@@ -6,4 +6,4 @@
 	<p>click <a href="home.php">here</a> to go back to the home page</p>
 </div>
 
-<?php include( 'partials/footer.tpl.php' ); ?>z
+<?php include( 'partials/footer.tpl.php' ); ?>

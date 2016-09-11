@@ -29,4 +29,4 @@
 	<div class="clearfix"></div>
 </div>
 
-<?php include( 'partials/footer.tpl.php' ); ?>z
+<?php include( 'partials/footer.tpl.php' ); ?>

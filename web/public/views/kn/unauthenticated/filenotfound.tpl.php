@@ -6,4 +6,4 @@
 	<p>click <a href="login.php">here</a> to go back to the login page</p>
 </div>
 
-<?php include( 'partials/footer.tpl.php' ); ?>z
+<?php include( 'partials/footer.tpl.php' ); ?>
