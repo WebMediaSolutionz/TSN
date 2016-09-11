@@ -1,8 +1,12 @@
 var TSN2 = {
 	page: $( 'body' ),
+	stripe_pk: $( 'input[name=stripe_pk]' ).val(),
+	subscription_form: $( '.subscription_form' ),
 
 	init: function () {
 		var self = this;
+
+		Stripe.setPublishableKey( self.stripe_pk );
 
 		self.attach_events();
 
@@ -94,7 +98,7 @@ var TSN2 = {
 					last_comment = comments.find( '.comment' ).last(),
 					comment = input_field.val(),
 					form = input_field.closest( 'form' ),
-					comment_posting_setion = form.closest( '.comment_posting_section' ),
+					comment_posting_section = form.closest( '.comment_posting_section' ),
 					url = form.attr( 'action' ) + '&response_type=json',
 					post_id = form.find( 'input[name=post_id]' ).val(),
 					video_id = form.find( 'input[name=video_id]' ).val(),
@@ -155,7 +159,7 @@ var TSN2 = {
 							if ( last_comment.length !== 0 ) {
 								last_comment.after( Mustache.render( new_comment, newComment ) );
 							} else {
-								 comment_posting_setion.prepend( Mustache.render( new_comment, newComment ) );
+								comment_posting_section.prepend( Mustache.render( new_comment, newComment ) );
 							}
 						},
 
@@ -177,7 +181,42 @@ var TSN2 = {
 				input.focus();
 			});
 
+		self.subscription_form.submit( function ( event ) {
+
+			// Disable the submit button to prevent repeated clicks:
+			self.subscription_form
+				.find( '.submit' )
+				.prop( 'disabled', true );
+
+			// Request a token from Stripe:
+			Stripe
+				.card
+				.createToken( self.subscription_form, self.stripeResponseHandler );
+
+			// Prevent the form from being submitted:
+			return false;
+		});
+
 		return self;
+	},
+
+	stripeResponseHandler: function ( status, response ) {
+		var $subscription_form = $( '.subscription_form' );
+
+		if ( response.error ) { // Problem!
+			// Show the errors on the form:
+			$subscription_form.find( '.payment-errors' ).text( response.error.message );
+			$subscription_form.find( '.submit' ).prop( 'disabled', false ); // Re-enable submission
+		} else { // Token was created!
+			// Get the token ID:
+			var token = response.id;
+
+			// Insert the token ID into the form so it gets submitted to the server:
+			$subscription_form.append( $('<input type="hidden" name="stripeToken">').val( token ) );
+
+			// Submit the form:
+			$subscription_form.get( 0 ).submit();
+		}
 	}
 }
 
