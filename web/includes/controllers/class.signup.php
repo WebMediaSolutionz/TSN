@@ -15,7 +15,7 @@
 			$error_message = "";
 
 			if ( isset( $_POST[ 'submit' ] ) ) {
-				$first_name = trim( $_POST[ 'name' ] );;
+				$first_name = trim( $_POST[ 'firstname' ] );
 				$last_name = trim( $_POST[ 'lastname' ] );
 				$username = trim( $_POST[ 'username' ] );
 				$sex = trim( $_POST[ 'sex' ] );

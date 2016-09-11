@@ -11,7 +11,7 @@
 		</div>
 	<?php } ?>
     
-	<form action="signup.php" method="post">
+	<!-- <form action="signup.php" method="post">
     	<table>
         	<tr>
             	<td><label><?php echo $lang[ 'lbl_firstname' ]; ?>: </label></td>
@@ -56,7 +56,87 @@
         <br /><br />
 
 		<a href="login.php"><?php echo $lang[ 'login' ]; ?></a>
+    </form> -->
+
+    <p>get membership</p>
+    <!--
+    <form action="thanks.php" method="POST">
+        <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<?php echo STRIPE_PUBLIC_KEY; ?>"
+            data-name="<?php echo SITE_NAME; ?>"
+            data-description="membership"
+            data-currency="cad"
+            data-amount="2000">
+        </script>
     </form>
+    -->
+
+    <form class="subscription_form" action="thanks.php" method="POST">
+        <span class="payment-errors"></span>
+
+        <table>
+            <tr>
+                <td><label><?php echo $lang[ 'lbl_firstname' ]; ?>: </label></td>
+                <td><input type="text" name="firstname" /></td>
+            </tr>
+            <tr>
+                <td><label><?php echo $lang[ 'lbl_lastname' ]; ?>:</label></td>
+                <td><input type="text" name="lastname" /></td>
+            </tr>
+            <tr>
+                <td><label><?php echo $lang[ 'lbl_email' ]; ?>:</label></td>
+                <td><input type="text" name="username" /></td>
+            </tr>
+            <tr>
+                <td><label><?php echo $lang[ 'lbl_password' ]; ?>:</label></td>
+                <td><input type="password" name="password" /></td>
+            </tr>
+            <tr>
+                <td><label>Card Number:</label></td>
+                <td><input type="text" size="20" data-stripe="number"></td>
+            </tr>
+            <tr>
+                <td><label>Expiration (MM/YY):</label></td>
+                <td><input type="text" size="2" data-stripe="exp_month"> <span> / </span> <input type="text" size="2" data-stripe="exp_year"></td>
+            </tr>
+            <tr>
+                <td><label>CVC:</label></td>
+                <td><input type="text" size="4" data-stripe="cvc"></td>
+            </tr>
+        </table>
+
+        <input type="submit" class="submit" value="<?php echo $lang[ 'submit' ]; ?>">
+
+
+
+        <!-- <div class="form-row">
+            <label>
+                <span>Card Number</span>
+                <input type="text" size="20" data-stripe="number">
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <span>Expiration (MM/YY)</span>
+                <input type="text" size="2" data-stripe="exp_month">
+            </label>
+            <span> / </span>
+            <input type="text" size="2" data-stripe="exp_year">
+        </div>
+
+        <div class="form-row">
+            <label>
+                <span>CVC</span>
+                <input type="text" size="4" data-stripe="cvc">
+            </label>
+        </div>
+
+        <input type="submit" class="submit" value="Submit Payment"> -->
+    </form>
+
+
 </div>
 
 <?php 
