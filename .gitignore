@@ -3,7 +3,9 @@ web/public/styles/kn/css/
 web/public/styles/kn/.sass-cache
 web/public/views/kn/authenticated/styles/.sass-cache
 web/public/views/kn/unauthenticated/styles/.sass-cache
+web/public/views/kn/authenticated/styles/css/*.map
 web/.sass-cache/
 web/public/.sass-cache
 web/public/node_modules/
 web/public/npm-debug.log
+.sass-cache
