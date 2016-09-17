@@ -58,7 +58,6 @@
 		<a href="login.php"><?php echo $lang[ 'login' ]; ?></a>
     </form> -->
 
-    <p>get membership</p>
     <!--
     <form action="thanks.php" method="POST">
         <script
@@ -75,36 +74,61 @@
     <form class="subscription_form" action="thanks.php" method="POST">
         <span class="payment-errors"></span>
 
-        <table>
-            <tr>
-                <td><label><?php echo $lang[ 'lbl_firstname' ]; ?>: </label></td>
-                <td><input type="text" name="firstname" /></td>
-            </tr>
-            <tr>
-                <td><label><?php echo $lang[ 'lbl_lastname' ]; ?>:</label></td>
-                <td><input type="text" name="lastname" /></td>
-            </tr>
-            <tr>
-                <td><label><?php echo $lang[ 'lbl_email' ]; ?>:</label></td>
-                <td><input type="text" name="username" /></td>
-            </tr>
-            <tr>
-                <td><label><?php echo $lang[ 'lbl_password' ]; ?>:</label></td>
-                <td><input type="password" name="password" /></td>
-            </tr>
-            <tr>
-                <td><label>Card Number:</label></td>
-                <td><input type="text" size="20" data-stripe="number"></td>
-            </tr>
-            <tr>
-                <td><label>Expiration (MM/YY):</label></td>
-                <td><input type="text" size="2" data-stripe="exp_month"> <span> / </span> <input type="text" size="2" data-stripe="exp_year"></td>
-            </tr>
-            <tr>
-                <td><label>CVC:</label></td>
-                <td><input type="text" size="4" data-stripe="cvc"></td>
-            </tr>
-        </table>
+        <div class="left">
+            <p>get membership</p>
+        
+            <table>
+                <tr>
+                    <td><label><?php echo $lang[ 'lbl_firstname' ]; ?>: </label></td>
+                    <td><input type="text" name="firstname" /></td>
+                </tr>
+                <tr>
+                    <td><label><?php echo $lang[ 'lbl_lastname' ]; ?>:</label></td>
+                    <td><input type="text" name="lastname" /></td>
+                </tr>
+                <tr>
+                    <td><label><?php echo $lang[ 'lbl_email' ]; ?>:</label></td>
+                    <td><input type="text" name="username" /></td>
+                </tr>
+                <tr>
+                    <td><label><?php echo $lang[ 'lbl_password' ]; ?>:</label></td>
+                    <td><input type="password" name="password" /></td>
+                </tr>
+                <tr>
+                    <td><label>Card Number:</label></td>
+                    <td><input type="text" size="20" data-stripe="number"></td>
+                </tr>
+                <tr>
+                    <td><label>Expiration (MM/YY):</label></td>
+                    <td><input type="text" size="2" data-stripe="exp_month"> <span> / </span> <input type="text" size="2" data-stripe="exp_year"></td>
+                </tr>
+                <tr>
+                    <td><label>CVC:</label></td>
+                    <td><input type="text" size="4" data-stripe="cvc"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="left">
+            <p>choose membership plan</p>
+
+            <table>
+                <tr>
+                    <td><input type="radio" name="plan" value="gold" checked></td>
+                    <td><label>gold plan</label></td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="plan" value="silver"></td>
+                    <td><label>silver plan</label></td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="plan" value="bronze"></td>
+                    <td><label>bronze plan</label></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="clear"></div>
 
         <input type="submit" class="submit" value="<?php echo $lang[ 'submit' ]; ?>">
 

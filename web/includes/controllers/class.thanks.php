@@ -33,11 +33,11 @@
 					// creating the customer
 					$customer = \Stripe\Customer::create( array (
 						"source" 	=> 	$token,
-						"plan" 		=> 	"gold",
+						"plan" 		=> 	$_POST[ 'plan' ],
 						"email" 	=> 	$_POST[ 'username' ] )
 					);
 
-					$first_name = trim( $_POST[ 'firstname' ] );;
+					$first_name = trim( $_POST[ 'firstname' ] );
 					$last_name = trim( $_POST[ 'lastname' ] );
 					$username = trim( $_POST[ 'username' ] );
 					$password = trim( $_POST[ 'password' ] );
