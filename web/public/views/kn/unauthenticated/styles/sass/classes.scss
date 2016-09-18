@@ -131,3 +131,51 @@
 		max-width: 910px;
 	}
 }
+
+.subscription_form {
+	& > .pricepoints {
+		margin-left: 180px;
+
+		table {
+			width: 450px;
+
+			.pricepoint {
+				border: 3px solid $gray;
+				background-color: #eee;
+				color: $black;
+				font-size: 20px;
+				padding: 20px;
+
+				&:hover,
+				&.current {
+					background-color: darken( #eee, 10%);
+					cursor: pointer;
+				}
+
+				input {
+					margin-top: 12px;
+				}
+
+				label {
+					margin-left: 10px;
+					width: 63%;
+					border-right: thin solid $gray;
+
+					.desc {
+						font-size: 10px;
+					}
+				}
+
+				.price {
+					text-align: left;
+					width: 100px;
+
+					sub,
+					sup {
+						font-size: 10px;
+					}
+				}
+			}
+		}
+	}
+}

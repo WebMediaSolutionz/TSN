@@ -10,72 +10,12 @@
 			<span><?php echo $error_message; ?></span>
 		</div>
 	<?php } ?>
-    
-	<!-- <form action="signup.php" method="post">
-    	<table>
-        	<tr>
-            	<td><label><?php echo $lang[ 'lbl_firstname' ]; ?>: </label></td>
-                <td><input type="text" name="name" id="name" /></td>
-            </tr>
-            <tr>
-            	<td><label><?php echo $lang[ 'lbl_lastname' ]; ?>:</label></td>
-                <td><input type="text" name="lastname" /></td>
-            </tr>
-            <tr>
-            	<td><label><?php echo $lang[ 'lbl_email' ]; ?>:</label></td>
-                <td><input type="text" name="username" id="username" /></td>
-            </tr>
-            <tr>
-            	<td><label><?php echo $lang[ 'lbl_sex' ]; ?>:</label></td>
-                <td>
-                	<select class="small" name="sex">
-                    	<option value="neither"><?php echo $lang[ 'choose_gender' ]; ?></option>
-                        <option value="m"><?php echo $lang[ 'male' ]; ?></option>
-                        <option value="f"><?php echo $lang[ 'female' ]; ?></option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-            	<td><label><?php echo $lang[ 'lbl_birthdate' ]; ?>:</label></td>
-                <td><input type="text" name="birthdate" /></td>
-            </tr>
-            <tr>
-            	<td><label><?php echo $lang[ 'lbl_password' ]; ?>:</label></td>
-                <td><input type="password" name="password" id="password" /></td>
-            </tr>
-            <tr>
-            	<td></td>
-                <td></td>
-            </tr>
-        </table>
-        
-        <br />
-        
-        <input type="submit" name="submit" value="<?php echo $lang[ 'submit' ]; ?>" />
-
-        <br /><br />
-
-		<a href="login.php"><?php echo $lang[ 'login' ]; ?></a>
-    </form> -->
-
-    <!--
-    <form action="thanks.php" method="POST">
-        <script
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<?php echo STRIPE_PUBLIC_KEY; ?>"
-            data-name="<?php echo SITE_NAME; ?>"
-            data-description="membership"
-            data-currency="cad"
-            data-amount="2000">
-        </script>
-    </form>
-    -->
 
     <form class="subscription_form" action="thanks.php" method="POST">
         <span class="payment-errors"></span>
 
         <div class="left">
-            <p>get membership</p>
+            <p>account information</p>
         
             <table>
                 <tr>
@@ -94,6 +34,13 @@
                     <td><label><?php echo $lang[ 'lbl_password' ]; ?>:</label></td>
                     <td><input type="password" name="password" /></td>
                 </tr>
+            </table>
+
+            <br /><br />
+
+            <p>payment information</p>
+
+            <table>
                 <tr>
                     <td><label>Card Number:</label></td>
                     <td><input type="text" size="20" data-stripe="number"></td>
@@ -109,21 +56,60 @@
             </table>
         </div>
 
-        <div class="left">
+        <div class="left pricepoints">
             <p>choose membership plan</p>
 
             <table>
                 <tr>
-                    <td><input type="radio" name="plan" value="gold" checked></td>
-                    <td><label>gold plan</label></td>
+                    <td>
+                        <a href="#" class="block pricepoint js-action js-pricepoint">
+                            <input class="left" type="radio" name="plan" value="gold" checked>
+                            <label class="left">
+                                <span class="period">3 Day Trial</span><br />
+                                <span class="desc italics">You will be billed $4.95 for the trial period*</span>
+                            </label>
+
+                            <div class="right price">
+                                <span>$4.</span><sup>95</sup>
+                            </div>
+
+                            <div class="clear"></div>
+                        </a>
+                    </td>
                 </tr>
                 <tr>
-                    <td><input type="radio" name="plan" value="silver"></td>
-                    <td><label>silver plan</label></td>
+                    <td>
+                        <a href="#" class="block pricepoint js-action js-pricepoint">
+                            <input class="left" type="radio" name="plan" value="silver">
+                            <label class="left">
+                                <span class="period">1 Month</span><br />
+                                <span class="desc italics">Billed in one payment of $29.99</span>
+                            </label>
+
+                            <div class="right price">
+                                <span>$29.</span><sup>99</sup><sub>/month</sub>
+                            </div>
+
+                            <div class="clear"></div>
+                        </a>
+                    </td>
                 </tr>
                 <tr>
-                    <td><input type="radio" name="plan" value="bronze"></td>
-                    <td><label>bronze plan</label></td>
+                    <td>
+                        <a href="#" class="block pricepoint js-action js-pricepoint">
+                            <input class="left" type="radio" name="plan" value="bronze">
+                            <label class="left">
+                                <span class="period">12 Months</span><br />
+                                <span class="desc italics">Billed yearly in one installment of $119.99</span>
+                            </label>
+
+                            <div class="right price">
+                                <span>$10.</span><sup>00</sup><sub>/month</sub>
+                            </div>
+
+                            <div class="clear"></div>
+                        </a>
+                    </td>
                 </tr>
             </table>
         </div>

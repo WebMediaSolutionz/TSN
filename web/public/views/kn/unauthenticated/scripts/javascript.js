@@ -22,7 +22,7 @@ var TSN2 = {
 			.delegate( '.js-action, .js-disabled', 'click', function ( e ) {
 				e.preventDefault();
 			})
-			.delegate( '.js-like, .js-delete_comment', 'click', function () {
+			.delegate( '.js-like, .js-delete_comment, .js-pricepoint', 'click', function () {
 				var link = $( this ),
 					url = link.attr( 'href' ) + '&response_type=json';
 
@@ -87,6 +87,15 @@ var TSN2 = {
 								.remove();
 						}
 					});
+				} else if ( link.hasClass( 'js-pricepoint' ) ) {
+					var current_pricepoint = $( this ),
+						parent = current_pricepoint.closest( 'table' ),
+						pricepoints = parent.find( '.pricepoint' ),
+						current_radio = current_pricepoint.find( 'input[type=radio]' );
+
+					pricepoints.removeClass( 'current' );
+					current_pricepoint.addClass( 'current' );
+					current_radio.prop( 'checked', true );
 				}
 			});
 
