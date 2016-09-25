@@ -62,7 +62,7 @@
             <table>
                 <tr>
                     <td>
-                        <a href="#" class="block pricepoint js-action js-pricepoint">
+                        <a href="#" class="block pricepoint js-action js-pricepoint current">
                             <input class="left" type="radio" name="plan" value="gold" checked>
                             <label class="left">
                                 <span class="period">3 Day Trial</span><br />
