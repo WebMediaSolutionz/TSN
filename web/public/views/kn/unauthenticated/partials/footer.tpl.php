@@ -16,7 +16,10 @@
 			</div>
     	</div>
 
-    	<script type="text/javascript" src="views/<?php echo $theme; ?>/scripts/javascript.js"></script>
+		<script type="text/javascript" src="views/<?php echo $theme; ?>/unauthenticated/scripts/lib/jquery-3.0.0.min.js"></script>
+		<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+		<script type="text/javascript" src="views/<?php echo $theme; ?>/unauthenticated/scripts/javascript.js"></script>
     </body>
 </html>
 <?php

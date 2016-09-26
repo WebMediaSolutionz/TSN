@@ -34,7 +34,7 @@
 	<div class="clearfix"></div>
 	<!-- ***** -->
 	<div class="post_operations actions">
-		<span><a class="js-action js-like" href="<?php echo $album->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&album_id=<?php echo $album->id; ?>"><?php echo $album->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a><?php echo count( $album->get_likers() ) === 1 ? ' &middot; 1 like' : ( count( $album->get_likers() ) !== 0 ? ' &middot; ' . count( $album->get_likers() ) . ' likes': '' );?><?php echo count( $album->get_commenters() ) === 1 ? ' &middot; 1 comment' : ( count( $album->get_commenters() ) !== 0 ? ' &middot; ' . count( $album->get_commenters() ) . ' comments': '' );?></span>
+		<span><a class="js-action js-like" href="<?php echo $album->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&album_id=<?php echo $album->id; ?>"><?php echo $album->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a> &middot; <a class="js-action js-comment" href="#">Comment</a><span class="js-nb_likes"><?php echo count( $album->get_likers() ) === 1 ? ' &middot; 1 like' : ( count( $album->get_likers() ) !== 0 ? ' &middot; ' . count( $album->get_likers() ) . ' likes': '' );?></span><span class="js-nb_comments"><?php echo count( $album->get_commenters() ) === 1 ? ' &middot; 1 comment' : ( count( $album->get_commenters() ) !== 0 ? ' &middot; ' . count( $album->get_commenters() ) . ' comments': '' );?></span></span>
 	</div>
 
 	<div class="comments">
@@ -47,9 +47,11 @@
 				<a id="profile_pic_thumbnail" class="left block" href="picture.php?picture_id=<?php echo $picture_owner->id; ?>">
 					<img src="<?php echo $current_user_img; ?>" />
 				</a>
-				<input class="left" type="text" placeholder="Write a comment..." name="value" />
+				<input class="left js-input_comment" type="text" placeholder="Write a comment..." name="value" />
 				<input type="hidden" name="album_id" value="<?php echo $album->id; ?>" />
-				<input class="left" type="submit" name="submit" value="comment" />
+				<input type="hidden" name="current_user_id" value="<?php echo $current_user->id; ?>" />
+				<input type="hidden" name="current_user_fullname" value="<?php echo $current_user->full_name(); ?>" />
+				<input class="left js-submit_comment" type="submit" name="submit" value="comment" />
 				<div class="clear"></div>
 			</form>
 		</div>

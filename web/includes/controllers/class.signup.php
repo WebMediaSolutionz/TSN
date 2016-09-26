@@ -3,6 +3,10 @@
 		public static function load () {
 			global $session, $page_title, $lang;
 
+			if ( $session->is_logged_in() ) {
+				redirect_to( 'home.php' );
+			}
+
 			$theme = static::$theme;
 			
 			$current_page = static::$current_page;
@@ -11,7 +15,7 @@
 			$error_message = "";
 
 			if ( isset( $_POST[ 'submit' ] ) ) {
-				$first_name = trim( $_POST[ 'name' ] );;
+				$first_name = trim( $_POST[ 'firstname' ] );
 				$last_name = trim( $_POST[ 'lastname' ] );
 				$username = trim( $_POST[ 'username' ] );
 				$sex = trim( $_POST[ 'sex' ] );

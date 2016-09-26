@@ -3,11 +3,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php echo $page_title; ?></title>
+
+        <link rel="stylesheet" type="text/css" href="views/<?php echo $theme; ?>/authenticated/styles/css/lib/fontawesome/font-awesome.css" />
         
         <link rel="stylesheet" type="text/css" href="views/<?php echo $theme; ?>/authenticated/styles/css/styles.css" />
     </head>
     
     <body>
+        <input type="hidden" name="stripe_pk" value="<?php echo STRIPE_PUBLIC_KEY; ?>">
+
         <div class="outer-container">
             <div class="inner-container">
                 <header>

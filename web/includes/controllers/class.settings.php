@@ -29,5 +29,13 @@
 
 			include_once( static::load_template() );
 		}
+
+		public static function check_session () {
+			global $session;
+
+			if ( !$session->is_logged_in() ) {
+				redirect_to( 'login.php' );
+			}
+		}
 	}
 ?>

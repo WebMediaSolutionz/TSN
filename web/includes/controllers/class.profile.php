@@ -86,49 +86,55 @@
 
 			static::check_session();
 
-			$profile_user = $current_user = User::find_by_id( $session->user_id );
+			if ( $session->is_logged_in() ) {
+				$profile_user = $current_user = User::find_by_id( $session->user_id );
 
-			if ( isset( $_GET[ 'profile_id' ] ) && ( $_GET[ 'profile_id' ] == $current_user->id ) || !isset( $_GET[ 'profile_id' ] ) ) {
-				global $session;
-			
-				static::$current_page = Utils::current_page( $_SERVER[ 'REQUEST_URI' ] );
-				static::$action_like_link = Utils::create_action_link( static::$current_page, 'like' );
-				static::$action_unlike_link = Utils::create_action_link( static::$current_page, 'unlike' );
-				static::$action_comment_link = Utils::create_action_link( static::$current_page, 'comment' );
-				static::$action_delete_comment_link = Utils::create_action_link( static::$current_page, 'delete_comment' );
-				static::$action_delete_post_link = Utils::create_action_link( static::$current_page, 'delete_post' );
-				static::$action_share_link = Utils::create_action_link( static::$current_page, 'share' );
+				if ( isset( $_GET[ 'profile_id' ] ) && ( $_GET[ 'profile_id' ] == $current_user->id ) || !isset( $_GET[ 'profile_id' ] ) ) {
+					global $session;
+				
+					static::$current_page = Utils::current_page( $_SERVER[ 'REQUEST_URI' ] );
+					static::$action_like_link = Utils::create_action_link( static::$current_page, 'like' );
+					static::$action_unlike_link = Utils::create_action_link( static::$current_page, 'unlike' );
+					static::$action_comment_link = Utils::create_action_link( static::$current_page, 'comment' );
+					static::$action_delete_comment_link = Utils::create_action_link( static::$current_page, 'delete_comment' );
+					static::$action_delete_post_link = Utils::create_action_link( static::$current_page, 'delete_post' );
+					static::$action_share_link = Utils::create_action_link( static::$current_page, 'share' );
 
-				if ( isset( $session->settings ) ) {
-					static::$theme = $session->settings->theme;
-					require_once( '../includes/lang/' . $session->settings->language . '.php' );
-				} else {
-					static::$theme = "facebook";
-					require_once( '../includes/lang/en.php' );
-				}
-
-				$mode = isset( $_GET[ 'mode' ] ) ? $_GET[ 'mode' ] : null;
-				static::$template = ( $mode === 'edit' ) ? 'profile_edit.tpl.php' : 'profile_self.tpl.php';
-				$redirect_destination .= "profile_id={$profile_user->id}";
-
-				$classname = get_called_class();
-
-				if ( $classname !== 'LoginCtrl' ) {
-					static::check_session();
-				}
-
-				if ( $session->is_logged_in() && isset( $_GET[ 'action' ] ) ) {
-					if ( method_exists( $classname, $_GET[ 'action' ] ) ) {
-						$classname::$_GET[ 'action' ]();
+					if ( isset( $session->settings ) ) {
+						static::$theme = $session->settings->theme;
+						require_once( '../includes/lang/' . $session->settings->language . '.php' );
+					} else {
+						static::$theme = "facebook";
+						require_once( '../includes/lang/en.php' );
 					}
 
-					Utils::strip_query_string( $_SERVER[ 'REQUEST_URI' ] );
-					$session->settings = static::get_settings_for( $session->user_id );
-				}
+					$mode = isset( $_GET[ 'mode' ] ) ? $_GET[ 'mode' ] : null;
+					static::$template = ( $mode === 'edit' ) ? 'profile_edit.tpl.php' : 'profile_self.tpl.php';
+					$redirect_destination .= "profile_id={$profile_user->id}";
 
-				static::load();
+					$classname = get_called_class();
+
+					if ( $classname !== 'LoginCtrl' ) {
+						static::check_session();
+					}
+
+					static::check_authentication();
+
+					if ( $session->is_logged_in() && isset( $_GET[ 'action' ] ) ) {
+						if ( method_exists( $classname, $_GET[ 'action' ] ) ) {
+							$classname::$_GET[ 'action' ]();
+						}
+
+						Utils::strip_query_string( $_SERVER[ 'REQUEST_URI' ] );
+						$session->settings = static::get_settings_for( $session->user_id );
+					}
+
+					static::load();
+				} else {
+					parent::init();
+				}
 			} else {
-				parent::init();
+				Utils::redirect_to( 'login.php' );
 			}
 		}
 
@@ -156,6 +162,16 @@
 			$convo = Conversations::start_new_conversation();
 			$path = $_SERVER[ 'SCRIPT_FILENAME' ];
 			Utils::redirect_to( "{$path}/conversation.php?convo_id={$convo->id}" );
+		}
+
+		private static function check_authentication () {
+			global $session;
+
+			if ( !$session->is_logged_in() ) {
+				static::$authentication = "unauthenticated";
+			} else {
+				static::$authentication = "authenticated";
+			}
 		}
 	}
 ?>
