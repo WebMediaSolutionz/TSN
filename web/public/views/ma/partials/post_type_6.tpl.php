@@ -21,7 +21,7 @@
 		<br />
 
 		<div class="post_operations actions">
-			<span><a href="<?php echo $post->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&post_id=<?php echo $post->id; ?>"><?php echo $post->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a> &middot; <a href="share.php?post_id=<?php echo $post->id; ?>"><?php echo $lang[ 'share' ]; ?></a></span>
+			<span><a href="<?php echo $post->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&post_id=<?php echo $post->id; ?>"><?php echo $post->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a></span>
 		</div>
 	</div>
 	<?php if ( $author->id === $current_user->id ) { ?>

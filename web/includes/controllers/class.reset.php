@@ -5,7 +5,11 @@
 
 			$theme = static::$theme;
 
+			$current_page = static::$current_page;
+			$current_page_short = static::$current_page_short;
+
 			$error_message = "";
+			$user = null;
 
 			if ( isset( $_GET[ 'verification_key' ] ) ) {
 				$user = User::verify_user( $_GET[ 'verification_key' ] );
@@ -17,7 +21,11 @@
 				$error_message = "error";
 			}
 
-			include_once( "views/" . static::$theme . "/" . static::$template );
+			if ( $user === null ) {
+				Utils::redirect_to( 'login.php' );
+			}
+
+			include_once( static::load_template() );
 		}
 
 		public static function check_session () {

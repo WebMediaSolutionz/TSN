@@ -1,0 +1,31 @@
+{
+  "name": "Kylee Nash",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.php",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-uglify": "^1.5.3"
+  },
+  "devDependencies": {
+    "gulp-concat": "^2.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:WebMediaSolutionz/TSN2.git"
+  },
+  "author": "Maxime Pierre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebMediaSolutionz/TSN2/issues"
+  },
+  "homepage": "https://github.com/WebMediaSolutionz/TSN2#readme"
+}

@@ -21,10 +21,22 @@
 			if ( !$support ) {
 				$mail->FromName = SITE_NAME;
 				$mail->From = MAIL_USERNAME;
-				$mail->AddAddress( $user->username, $user->full_name() );
+
+				if ( !is_string( $user ) ) {
+					$mail->AddAddress( $user->username, $user->full_name() );
+				} else {
+					$mail->AddAddress( $user, $user );
+				}
+				
 			} else {
-				$mail->FromName = $user->full_name();
-				$mail->From = $user->username;
+				if ( !is_string( $user ) ) {
+					$mail->FromName = $user->full_name();
+					$mail->From = $user->username;
+				} else {
+					$mail->FromName = $user;
+					$mail->From = $user;
+				}
+
 				$mail->AddAddress( SUPPORT_EMAIL, SITE_NAME );
 			}
 
@@ -109,6 +121,16 @@
 			$page = ( $page === null ) ? $_SERVER[ 'PHP_SELF' ] : $page;
 			$page_arr = explode( '/', $page );
 			$page = $page_arr[ count( $page_arr ) - 1 ];
+
+			return $page;
+		}
+
+		public static function current_page_short ( $page = null ) {
+			$page = ( $page === null ) ? $_SERVER[ 'PHP_SELF' ] : $page;
+			$page_arr = explode( '/', $page );
+			$page = $page_arr[ count( $page_arr ) - 1 ];
+			$page = explode( '.php', $page );
+			$page = $page[ 0 ];
 
 			return $page;
 		}

@@ -35,6 +35,18 @@
 
 			$this->pictures = Picture::find_by_sql( $sql );
 		}
+
+		public static function get_last_few_of_user ( $user_id, $number = 5 ) {
+			global $DB;
+
+			$sql = "SELECT * FROM " . static::$table_name . " ";
+			$sql .= "WHERE user_id=" . $DB->escape_value( $user_id ) . " ORDER BY modified_date DESC ";
+			$sql .= "LIMIT " . $DB->escape_value( $number );
+
+			$albums = static::find_by_sql( $sql );
+
+			return $albums;
+		}
 	}
 
 ?>

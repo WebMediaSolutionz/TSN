@@ -3,15 +3,21 @@
 		public static function load () {
 			global $session, $lang, $page_title, $redirect_destination;
 
-			$theme = static::$theme;
+			if ( $session->is_logged_in() ) {
+				$theme = static::$theme;
+				
+				$current_user = User::find_by_id( $session->user_id );
 
-			$current_user = User::find_by_id( $session->user_id );
+				if ( isset( $_GET[ 'convo_id' ] ) ) {
+					$conversation = Conversations::find_by_id( $_GET[ 'convo_id' ] );
+				} else {
+					Utils::redirect_to( 'login.php' );
+				}
 
-			if ( isset( $_GET[ 'convo_id' ] ) ) {
-				$conversation = Conversations::find_by_id( $_GET[ 'convo_id' ] );
+				include_once( static::load_template() );
+			} else {
+				Utils::redirect_to( 'login.php' );
 			}
-
-			include_once( "views/" . static::$theme . "/" . static::$template );
 		}
 
 		public static function send_message () {

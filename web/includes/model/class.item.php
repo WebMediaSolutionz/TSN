@@ -23,7 +23,7 @@
 
 			foreach ( $commenters as $commenter ) {
 				foreach ( $stakeholders as $stakeholder ) {
-					if ( $commenter->user_id === $stakeholder->user_id ) {
+					if ( $commenter->id === $stakeholder->id ) {
 						$found = true;
 					}
 				}
@@ -39,6 +39,18 @@
 			}
 			
 			return $stakeholders;
+		}
+
+		public static function get_last_few_of_user ( $user_id, $number = 5) {
+			global $DB;
+
+			$sql = "SELECT * FROM " . static::$table_name . " ";
+			$sql .= "WHERE user_id=" . $DB->escape_value( $user_id ) . " ";
+			$sql .= "LIMIT " . $DB->escape_value( $number );
+
+			$items = static::find_by_sql( $sql );
+
+			return $items;
 		}
 	}
 

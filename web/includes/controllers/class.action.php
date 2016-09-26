@@ -1,6 +1,7 @@
 <?php
 	class ActionCtrl {
 		public static $current_page;
+		public static $current_page_short;
 		public static $action_like_link;
 		public static $action_unlike_link;
 		public static $action_comment_link;
@@ -8,12 +9,16 @@
 		public static $action_delete_post_link;
 		public static $action_share_link;
 		public static $theme;
+		public static $authentication;
 		public static $template;
 
+		public static $num_unread_notifications;
+
 		public static function init () {
-			global $session;
+			global $session, $lang;
 			
 			static::$current_page = Utils::current_page( $_SERVER[ 'REQUEST_URI' ] );
+			static::$current_page_short = Utils::current_page_short( $_SERVER[ 'REQUEST_URI' ] );
 			static::$action_like_link = Utils::create_action_link( static::$current_page, 'like' );
 			static::$action_unlike_link = Utils::create_action_link( static::$current_page, 'unlike' );
 			static::$action_comment_link = Utils::create_action_link( static::$current_page, 'comment' );
@@ -25,7 +30,7 @@
 				static::$theme = $session->settings->theme;
 				require_once( '../includes/lang/' . $session->settings->language . '.php' );
 			} else {
-				static::$theme = "facebook";
+				static::$theme = defined( 'DEFAULT_THEME' ) ? DEFAULT_THEME : "facebook";
 				require_once( '../includes/lang/en.php' );
 			}
 
@@ -35,17 +40,19 @@
 
 			$classname = get_called_class();
 
-			if ( $classname !== 'LoginCtrl' ) {
+			if ( $classname !== 'LoginCtrl' && $classname !== 'FileNotFoundCtrl' ) {
 				static::check_session();
 			}
+
+			static::check_authentication();
 			
-			if ( !file_exists( "views/" . static::$theme . "/" . static::$template ) ) {
-			    if ( !file_exists( "views/" . DEFAULT_THEME . "/" . static::$template ) ) {
-			        exit( "error: missing template file" );
-			    } else {
-			        static::$theme = DEFAULT_THEME;
-			    }
-			}
+			// if ( !file_exists( "views/" . static::$theme . "/" . static::$template ) ) {
+			//     if ( !file_exists( "views/" . DEFAULT_THEME . "/" . static::$template ) ) {
+			//         exit( "error: missing template file" );
+			//     } else {
+			//         static::$theme = DEFAULT_THEME;
+			//     }
+			// }
 
 			if ( $session->is_logged_in() && isset( $_GET[ 'action' ] ) ) {
 				if ( method_exists( $classname, $_GET[ 'action' ] ) ) {
@@ -54,6 +61,10 @@
 
 				Utils::strip_query_string( $_SERVER[ 'REQUEST_URI' ] );
 				$session->settings = static::get_settings_for( $session->user_id );
+			}
+
+			if ( $session->is_logged_in() ) {
+				static::$num_unread_notifications = count( Notification::get_unread_notifications_for( $session->user_id ) );
 			}
 
 			static::load();
@@ -83,8 +94,53 @@
 			global $session;
 
 			if ( !$session->is_logged_in() ) {
-				redirect_to( 'login.php' );
+				if ( AUTHENTICATION_REQUIRED ) {
+					redirect_to( 'login.php' );
+				} 
 			}
+		}
+
+		private static function check_authentication () {
+			global $session;
+
+			if ( !$session->is_logged_in() ) {
+				static::$authentication = "unauthenticated";
+			} else {
+				static::$authentication = "authenticated";
+			}
+		}
+
+		public static function load_template () {
+			$template_path = null;
+			$template_path1 = "views/" . static::$theme . "/" . static::$authentication . "/" . static::$template;
+			$template_path2 = "views/" . static::$theme . "/" . static::$template;
+			$template_path3 = "views/" . DEFAULT_THEME . "/" . static::$authentication . "/" . static::$template;
+			$template_path4 = "views/" . DEFAULT_THEME . "/" . static::$template;
+
+			$filenotfound_template = "views/" . static::$theme . "/" . static::$authentication . "/filenotfound.tpl.php";
+
+			if ( !file_exists( $template_path1 ) ) {
+				if ( !file_exists( $template_path2 ) ) {
+					if ( !file_exists( $template_path3 ) ) {
+						if ( !file_exists( $template_path4 ) ) {
+							$template_path = $filenotfound_template;
+							// exit( "error: missing template file" );
+						} else {
+							$template_path = $template_path4;
+							static::$theme = DEFAULT_THEME;
+						}
+					} else {
+						$template_path = $template_path3;
+					}
+				} else {
+					$template_path = $template_path2;
+					static::$theme = DEFAULT_THEME;
+				}
+			} else {
+				$template_path = $template_path1;
+			}
+
+			return $template_path;
 		}
 
 		public static function like () {
@@ -109,9 +165,20 @@
 			} else if ( isset( $_GET[ 'album_id' ] ) ) {
 				$like->album_id = $_GET[ 'album_id' ];
 				$item = Album::find_by_id( $like->album_id );
+			} else if ( isset( $_GET[ 'video_id' ] ) ) {
+				$like->video_id = $_GET[ 'video_id' ];
+				$item = Video::find_by_id( $like->video_id );
+			} else if ( isset( $_GET[ 'track_id' ] ) ) {
+				$like->track_id = $_GET[ 'track_id' ];
+				$item = Track::find_by_id( $like->track_id );
 			}
 
 			$like->save();
+
+			if ( isset( $_REQUEST[ 'response_type' ] ) && $_REQUEST[ 'response_type' ] === 'json' ) {
+				header( 'Content-type: application/json' );
+				exit( json_encode( array( 'likes' => count( $item->get_likers() ) ) ) );
+			}
 
 			static::notify( 'liked', $like->user_id, $item );
 		}
@@ -128,10 +195,17 @@
 			} else if ( isset( $_GET[ 'album_id' ] ) ) {
 				$item = Album::find_by_id( $_GET[ 'album_id' ] );
 			} else if ( isset( $_GET[ 'video_id' ] ) ) {
-				// get video object
+				$item = Video::find_by_id( $_GET[ 'video_id' ] );
+			} else if ( isset( $_GET[ 'track_id' ] ) ) {
+				$item = Track::find_by_id( $_GET[ 'track_id' ] );
 			}
 
 			Likes::unlike( $session->user_id, $item );
+
+			if ( isset( $_REQUEST[ 'response_type' ] ) && $_REQUEST[ 'response_type' ] === 'json' ) {
+				header( 'Content-type: application/json' );
+				exit( json_encode( array( 'likes' => count( $item->get_likers() ) ) ) );
+			}
 		}
 
 		public static function share () {
@@ -186,11 +260,26 @@
 			} else if ( isset( $_POST[ 'album_id' ] ) ) {
 				$comment->album_id = $_POST[ 'album_id' ];
 				$item = Album::find_by_id( $comment->album_id );
+			} else if ( isset( $_POST[ 'video_id' ] ) ) {
+				$comment->video_id = $_POST[ 'video_id' ];
+				$item = Video::find_by_id( $comment->video_id );
+			} else if ( isset( $_POST[ 'track_id' ] ) ) {
+				$comment->track_id = $_POST[ 'track_id' ];
+				$item = Track::find_by_id( $comment->track_id );
 			}
 
 			$comment->save();
 
 			static::notify( 'commented', $comment->user_id, $item );
+
+			if ( isset( $_REQUEST[ 'response_type' ] ) && $_REQUEST[ 'response_type' ] === 'json' ) {
+				$comment_arr = (array) $comment;
+
+				$comment_arr[ 'comments' ] = count( $item->get_commenters() );
+
+				header( 'Content-type: application/json' );
+				exit( json_encode( $comment_arr ) );
+			}
 		}
 
 		public static function delete_comment () {
@@ -198,7 +287,14 @@
 
 			$comment = Comments::find_by_id( $_GET[ 'comment_id' ] );
 
+			$item = $comment->get_related_item();
+
 			$comment->delete();
+
+			if ( isset( $_REQUEST[ 'response_type' ] ) && $_REQUEST[ 'response_type' ] === 'json' ) {
+				header( 'Content-type: application/json' );
+				exit( json_encode( array( 'comments' => count( $item->get_commenters() ) ) ) );
+			}
 		}
 
 		public static function notify ( $type, $action_initiator_user_id, $item ) {
@@ -236,6 +332,36 @@
 				}
 
 				$notification->save();
+			}
+		}
+
+		public static function unnotify () {
+			if ( isset( $_GET[ 'notification_id' ] ) ) {
+				$notification = Notification::find_by_id( $_GET[ 'notification_id' ] );
+
+				$notification->delete();
+			}
+		}
+
+		public static function mark_notification_as () {
+			if ( isset( $_GET[ 'notification_id' ] ) ) {
+				$notification = Notification::find_by_id( $_GET[ 'notification_id' ] );
+
+				if ( isset( $_GET[ 'status' ] ) ) {
+					$notification->read = ( $_GET[ 'status' ] === 'read' );
+
+					$notification->save();
+				}
+			}
+		}
+
+		public static function send_invitation () {
+			if ( isset( $_GET[ 'email' ] ) && isset( $_GET[ 'user_id' ] ) ) {
+				$user = User::find_by_id( $_GET[ 'user_id' ] );
+				$subject = "invitation";
+				$message = "you have been invited by " . $user->full_name();
+
+				Utils::sendmail( $_GET[ 'email' ], $subject, $message );
 			}
 		}
 

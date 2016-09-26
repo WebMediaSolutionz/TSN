@@ -3,19 +3,33 @@
 		public static function load () {
 			global $session, $lang, $page_title, $redirect_destination, $current_page;
 
-			$theme = static::$theme;
+			if ( $session->is_logged_in() ) {
+				$theme = static::$theme;
+				$current_page = static::$current_page;
+				$current_page_short = static::$current_page_short;
+				
+				$current_user = User::find_verified_by_id( $session->user_id );
 
-			$current_page = "friends";
-			$current_user = User::find_verified_by_id( $session->user_id );
+				$friends = $current_user->get_friends();
+				$followers = $current_user->get_followers();
+				$leaders = $current_user->get_leaders();
 
-			$friends = $current_user->get_friends();
-			$followers = $current_user->get_followers();
-			$leaders = $current_user->get_leaders();
-			$strangers = $current_user->get_strangers();
+				$users = array( $friends, $followers, $leaders );
 
-			$users = array( $friends, $followers, $leaders, $strangers );
+				$searched = null;
+				$found = null;
 
-			include_once( "views/" . static::$theme . "/" . static::$template );
+				if ( isset( $_POST[ 'submit' ] ) ) {
+					$searched = User::identify( $_POST[ 'username' ] );
+
+					$found = ( $searched !== null );
+					$email = $_POST[ 'username' ];
+				}
+
+				include_once( static::load_template() );
+			} else {
+				Utils::redirect_to( 'login.php' );
+			}
 		}
 	}
 ?>

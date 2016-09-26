@@ -38,13 +38,13 @@
 	}
 
 	function set_environment () {
-		global $site_code, $environment;
+		global $site_code, $environment, $baseurl;
 
 		$domain = $_SERVER[ 'HTTP_HOST' ];				
 
 		if ( is_numeric ( strpos( $domain, "localhost" ) ) ) {
 			$environment = "dev";
-		} elseif ( is_numeric ( strpos( $domain, "staging" ) ) ) {
+		} elseif ( is_numeric ( strpos( $domain, "staging" ) ) || is_numeric( strpos( $domain, "webmediasolutionz.com" ) ) ) {
 			$environment = "staging";
 		} else {
 			$environment = "live";
@@ -56,12 +56,21 @@
 			$site_code = 'tsn';
 		} else if ( is_numeric ( strpos( $url, "MA" ) ) ) {
 			$site_code = "ma";
+		} else if ( is_numeric ( strpos( $url, "FP" ) ) || is_numeric ( strpos( $url, "fight_pass" ) ) ) {
+			$site_code = "fp";
 		} else if ( is_numeric ( strpos( $url, "janechoka" ) ) ) {
 			$site_code = "jc";
 		} else if ( is_numeric ( strpos( $url, "meimaza" ) ) ) {
 			$site_code = "mm";
 		} else if ( is_numeric ( strpos( $url, "karinevandal" ) ) ) {
 			$site_code = "kv";
+		} else if ( is_numeric ( strpos( $url, "kyleenash" ) ) || is_numeric ( strpos( $url, "KN" ) ) ) {
+			$site_code = "kn";
 		}
+
+		$baseurl = $domain . $url;
+		$baseurl = explode( '/', $baseurl );
+		array_pop( $baseurl );
+		$baseurl = implode( '/', $baseurl );
 	}
 ?>

@@ -3,11 +3,17 @@
 		public static function load () {
 			global $session, $lang, $page_title;
 
-			$theme = static::$theme;
+			if ( $session->is_logged_in() ) {
+				$theme = static::$theme;
+				$current_page = static::$current_page;
+				$current_page_short = static::$current_page_short;
 
-			$current_user = User::find_by_id( $session->user_id );
-			
-			include_once( "views/{$theme}/album_creation.tpl.php" );
+				$current_user = User::find_by_id( $session->user_id );
+				
+				include_once( static::load_template() );
+			} else {
+				Utils::redirect_to( 'login.php' );
+			}
 		}
 
 		public static function create () {

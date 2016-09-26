@@ -5,7 +5,9 @@
 
 			$theme = static::$theme;
 
-			$current_page = "settings";
+			$current_page = static::$current_page;
+			$current_page_short = static::$current_page_short;
+			
 			$current_user = User::find_by_id( $session->user_id );
 
 			if ( isset( $_POST[ 'submit' ] ) ) {
@@ -17,20 +19,23 @@
 
 				$session->settings->update();
 
+				require( '../includes/lang/' . $session->settings->language . '.php' );
+
 				$message = array(
 					"status"				=>			"confirmation",
 					"prompt_code"			=>			"profile update success"
 				);
 			}
 
-			include_once( "views/" . static::$theme . "/" . static::$template );
+			include_once( static::load_template() );
 		}
 
-		public static function delete_account () {
-			global $session, $DB;
+		public static function check_session () {
+			global $session;
 
-			$current_user = User::find_by_id( $session->user_id );
-			$current_user->delete_account();
+			if ( !$session->is_logged_in() ) {
+				redirect_to( 'login.php' );
+			}
 		}
 	}
 ?>

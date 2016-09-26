@@ -1,0 +1,51 @@
+# Disallow viewing of .htaccess files
+<Files .htaccess>
+order allow,deny
+deny from allow
+</Files>
+
+# ------------------------------------------------------
+# general configuration
+# ------------------------------------------------------
+
+# Disabling directory listings
+IndexIgnore *
+
+# ------------------------------------------------------
+
+
+
+
+
+# ------------------------------------------------------
+# configuration for local developement
+# ------------------------------------------------------
+
+# Redirecting to custom File not found page locally
+ErrorDocument 404 /projects/internal/KN/web/public/filenotfound.php
+
+# ------------------------------------------------------
+
+
+
+
+
+# ------------------------------------------------------
+#configuration for staging environment
+# ------------------------------------------------------
+
+# Redirecting to custom File not found page on staging
+# ErrorDocument 404 /projects/internal/KN/public/filenotfound.php
+
+# ------------------------------------------------------
+
+
+
+
+# ------------------------------------------------------
+#configuration for live environment
+# ------------------------------------------------------
+
+
+
+# ------------------------------------------------------

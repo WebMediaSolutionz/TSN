@@ -165,10 +165,15 @@
 			$session->settings = new Settings;
 
 			$session->settings->user_id = $this->id;
+			$session->settings->theme_id = Themes::get_id_for_theme();
 			$session->settings->language = "en";
 			$session->settings->create();
 
 			$this->create_friend_list();
+
+			if ( defined( 'PROFILE_USER' ) ) {
+				$this->send_friend_request( PROFILE_USER );
+			}
 		}
 
 		public function make_sure_ups_exists () {

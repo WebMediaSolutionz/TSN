@@ -15,55 +15,40 @@
 
 			case 2 : 	$section_title = $lang[ "your_leaders" ];
 						break;
-
-			case 3 : 	$section_title = $lang[ "other_users" ];
-						break;
 		}
 ?>
 	<h3 class="capitalize"><?php echo $section_title; ?></h3>
 <?php
 		foreach ( $other_users as $user ) {
-?>
-			<div class="listing user">
-				<div class="identidy left">
-					<a class="block thumbnail left" href="profile.php?profile_id=<?php echo $user->id; ?>">
-						<?php $profile_img = "UPS/{$user->id}/profile.jpg"; ?>
-						<img src="<?php echo file_exists( $profile_img ) ? $profile_img : "images/{$theme}/default_profile_pic.jpg"; ?>" />
-					</a>
-					<div class="name capitalize left">
-						<a href="profile.php?profile_id=<?php echo $user->id; ?>"><?php echo $user->full_name(); ?></a><br />
-						<span class="subscript italics"><?php echo $user->location(); ?></span><br /><br />
-						<?php
-							$num = $user->get_number_of_friends();
-							$num_friends = $num !== 1 ? $lang[ 'number_of_friends' ] : $lang[ 'number_of_friend' ];
-						?>
-						<span class="subscript italics"><?php echo str_replace("*#*", $num, $num_friends ) ?></span>
-					</div>
-					<div class="clear"></div>
-				</div>
-				<div class="right">
-					<div class="actions">
-						<a class="btn left" href="conversation.php?action=start_new_conversation&recipient=<?php echo $user->id; ?>"><?php echo $lang[ 'send_message' ]; ?></a>
-						<?php if ( $current_user->is_friend( $user ) ) { ?>
-							<a class="btn left small_gap" href="friends.php?action=delete_friend&ex_friend=<?php echo $user->id; ?>"><?php echo $lang[ 'delete_friend' ]; ?></a>
-						<?php } else if ( $current_user->is_leader( $user ) ) { ?>
-							<a class="btn left small_gap" href="friends.php?action=cancel_friend_request&leader=<?php echo $user->id; ?>"><?php echo $lang[ 'cancel_friend_request' ]; ?></a>
-						<?php } else if ( $current_user->is_follower( $user ) ) { ?>
-							<a class="btn left small_gap" href="friends.php?action=delete_friend&ex_friend=<?php echo $user->id; ?>"><?php echo $lang[ 'deny' ]; ?></a>
-							<a class="btn left margin-left" href="friends.php?action=accept_friend_request&follower=<?php echo $user->id; ?>"><?php echo $lang[ 'accept' ]; ?></a>
-							<div class="clear"></div>
-						<?php } else { ?>
-							<a class="btn left small_gap" href="friends.php?action=send_friend_request&leader=<?php echo $user->id; ?>"><?php echo $lang[ 'make_friends' ]; ?></a>
-							<div class="clear"></div>
-						<?php } ?>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-<?php
+			include( 'partials/user_id.php' );
 		}
 
 		$count++;
+	}
+
+?>
+	<h3 class="capitalize">Search by email</h3>
+
+	<form action="friends.php" method="post">
+		<label>email</label>
+		<input type="text" name="username" maxlength="30" />
+		<input type="submit" name="submit" value="search" />
+	</form>
+
+	<br />
+
+<?php
+	if ( $found ) {
+		$user = $searched;
+
+		include( 'partials/user_id.php' );
+	} else if ( isset( $_POST[ 'submit' ] ) ) {
+?>
+	<span>the email <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a> does not match any of the users currently in this network. do you want to send that person an invitation to join the network?</span>
+
+	<a href="friends.php?action=send_invitation&email=<?php echo $email; ?>&user_id=<?php echo $current_user->id; ?>">yes</a>
+	<a href="friends.php">No</a>
+<?php
 	}
 
 	include_once( 'partials/footer.tpl.php' );

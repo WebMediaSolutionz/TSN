@@ -137,7 +137,7 @@
 			}
 
 			foreach( $att_values_quotes as $key => $value ) {
-				$attribute_pairs[] = "{$key}={$value}";
+				$attribute_pairs[] = "`{$key}`={$value}";
 			}
 
 			$sql = "UPDATE  " . static::$table_name . " SET  ";
