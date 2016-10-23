@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,sBAAuB,CACtB,MAAM,CAAE,eAAe,CACvB,gBAAgB,CAAE,OAAO,CACzB,UAAU,CAAE,GAAG,CAGhB,iDAAmD,CAClD,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,eAAe,CACxB,YAAY,CAAE,IAAI",
-"sources": ["../sass/ids.scss"],
-"names": [],
-"file": "ids.css"
-}

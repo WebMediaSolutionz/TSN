@@ -44,11 +44,20 @@ gulp.task( 'concat', function () {
 
 // Styles Task
 gulp.task( 'styles', function () {
-	gulp.src( 'styles/kn/sass/**/*.scss' )
-		.pipe( sass({outputStyle: 'compressed'}).on('error', sass.logError) )
+	gulp.src( 'views/kn/authenticated/styles/sass/**/*.scss' )
+		.pipe( sass({outputStyle: 'compressed'})
+		.on('error', sass.logError) )
 		.on( 'error', errorLog )
 		.pipe( prefix( 'last 2 versions' ) )
-		.pipe( gulp.dest( 'styles/kn/css/' ) )
+		.pipe( gulp.dest( 'views/kn/authenticated/styles/css/' ) )
+		.pipe( livereload() );
+
+	gulp.src( 'views/kn/unauthenticated/styles/sass/**/*.scss' )
+		.pipe( sass({outputStyle: 'compressed'})
+		.on('error', sass.logError) )
+		.on( 'error', errorLog )
+		.pipe( prefix( 'last 2 versions' ) )
+		.pipe( gulp.dest( 'views/kn/unauthenticated/styles/css/' ) )
 		.pipe( livereload() );
 });
 
@@ -58,7 +67,8 @@ gulp.task( 'watch', function () {
 
 	// gulp.watch( lib_files, [ 'concat' ] );
 	gulp.watch( 'javascript/uncompressed/**/*.js', [ 'scripts' ] );
-	gulp.watch( 'sass/**/*.scss', [ 'styles' ] );
+	gulp.watch( 'views/kn/authenticated/styles/sass/**/*.scss', [ 'styles' ] );
+	gulp.watch( 'views/kn/unauthenticated/styles/sass/**/*.scss', [ 'styles' ] );
 	// gulp.watch( 'img/*', [ 'image' ] );
 });
 
