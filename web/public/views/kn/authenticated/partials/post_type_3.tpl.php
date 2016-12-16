@@ -1,7 +1,7 @@
 <?php
 	$author = User::find_by_id( $post->user_id );
 	$author_img = "UPS/{$author->id}/profile.jpg";
-	$author_img = file_exists( $author_img ) ? $author_img : $current_user_img;
+	$author_img = file_exists( $author_img ) ? $author_img : "views/{$theme}/authenticated/images/default_profile_pic.jpg";
 
 	$recipient = User::find_by_id( $post->wall_id );
 	$same_person = $author->id === $recipient->id;
@@ -16,7 +16,9 @@
 		<br />
 		
 		<div class="post_operations actions">
-			<span><a class="js-action js-like" href="<?php echo $post->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&post_id=<?php echo $post->id; ?>"><?php echo $post->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a> &middot; <a class="js-action js-comment" href="#">Comment</a><!-- &middot; <a href="share.php?post_id=<?php echo $post->id; ?>"><?php echo $lang[ 'share' ]; ?></a> --><span class="js-nb_likes"><?php echo count( $post->get_likers() ) === 1 ? ' &middot; 1 like' : ( count( $post->get_likers() ) !== 0 ? ' &middot; ' . count( $post->get_likers() ) . ' likes': '' );?></span><span class="js-nb_comments"><?php echo count( $post->get_commenters() ) === 1 ? ' &middot; 1 comment' : ( count( $post->get_commenters() ) !== 0 ? ' &middot; ' . count( $post->get_commenters() ) . ' comments': '' );?></span></span>
+			<span>
+				<a class="js-action js-like" href="<?php echo $post->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&post_id=<?php echo $post->id; ?>"><?php echo $post->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a> &middot; <a class="js-action js-comment" href="#">Comment</a><!-- &middot; <a href="share.php?post_id=<?php echo $post->id; ?>"><?php echo $lang[ 'share' ]; ?></a> --><span class="js-nb_likes"><?php echo count( $post->get_likers() ) === 1 ? ' &middot; 1 like' : ( count( $post->get_likers() ) !== 0 ? ' &middot; ' . count( $post->get_likers() ) . ' likes': '' );?></span><?php echo count( $post->get_commenters() ) === 1 ? ' &middot; 1 comment' : ( count( $post->get_commenters() ) !== 0 ? ' &middot; ' . count( $post->get_commenters() ) . ' comments': '' );?>
+			</span>
 		</div>
 	</div>
 	<?php if ( $author->id === $current_user->id ) { ?>
