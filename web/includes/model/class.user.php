@@ -8,7 +8,7 @@
 			'lastname' 			=> 'string', 
 			'middlename' 		=> 'string', 
 			'sex' 				=> 'string', 
-			'birthdate' 		=> 'string', 
+			'birthdate' 		=> 'datetime', 
 			'username' 			=> 'string', 
 			'password' 			=> 'string', 
 			'ip' 				=> 'string', 
