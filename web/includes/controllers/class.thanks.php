@@ -46,6 +46,7 @@
 
 					$user->name = $first_name;
 					$user->lastname = $last_name;
+					$user->birthdate = Utils::mysql_datetime();
 					$user->username = $username;
 					$user->password = $password;
 					$user->verified = 1;
