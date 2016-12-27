@@ -18,9 +18,6 @@
 
 				$posts = $current_user->get_newsfeed_posts();
 
-				// var_dump( $current_user );
-				// exit;
-
 				foreach ( $posts as $post ) {
 					$post->you_like = Likes::you_like( $current_user->id, $post );
 					$post->comments = Comments::get_comments_for_item( $post );
