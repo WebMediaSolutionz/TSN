@@ -12,6 +12,10 @@ web/public/.sass-cache
 web/public/views/kn/authenticated/styles/.sass-cache
 web/public/views/kn/unauthenticated/styles/.sass-cache
 
+# Compressed Javascript files
+web/public/views/kn/authenticated/scripts/compressed/
+web/public/views/kn/unauthenticated/scripts/compressed/
+
 # Node modules folder and npm log files
 web/public/node_modules/
 web/public/npm-debug.log
