@@ -50,6 +50,7 @@
 					$user->username = $username;
 					$user->password = $password;
 					$user->verified = 1;
+					
 
 					if ( $user->save() ) {
 						$email_subject = $lang[ 'sign up email subject' ];

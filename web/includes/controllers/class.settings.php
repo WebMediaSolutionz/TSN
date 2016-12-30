@@ -26,6 +26,7 @@
 					"prompt_code"			=>			"profile update success"
 				);
 			}
+			
 
 			include_once( static::load_template() );
 		}

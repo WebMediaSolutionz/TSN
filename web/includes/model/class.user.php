@@ -56,6 +56,7 @@
 		public $interests; 
 		public $verification_key;
 		public $verified;
+		
 
 		public static function find_verified_by_id ( $id = 0 ) {
 			global $DB;
