@@ -102,6 +102,15 @@
 			return false;
 		}
 
+		public function expedite_activation () {
+			$this->verified = true;
+			$this->verification_key = '';
+			$this->update();
+			$this->prep_account();
+
+			return true;
+		}
+
 		public function deactivate () {
 			$this->verified = false;
 			$this->verification_key = '';
