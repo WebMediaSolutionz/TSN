@@ -46,12 +46,12 @@
 
 					$user->name = $first_name;
 					$user->lastname = $last_name;
-					$user->birthdate = Utils::mysql_datetime();
 					$user->username = $username;
+					$user->birthdate = Utils::mysql_datetime();
 					$user->password = $password;
-					$user->verified = 1;
 
 					if ( $user->save() ) {
+						$user->expedite_activation();
 						$email_subject = $lang[ 'sign up email subject' ];
 						$email_message = str_replace( '{{verification_key}}', $user->verification_key, $lang[ 'sign up email message' ]);
 						$message = $lang[ 'sign up message' ];
