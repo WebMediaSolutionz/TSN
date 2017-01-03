@@ -3,11 +3,12 @@
 	<form action="home.php?action=post_to_wall" method="post">
 		<textarea id="status_updater" name="value"></textarea>
 
+		<input type="hidden" name="current_user_fullname" value="<?php echo $current_user->full_name(); ?>" />
 		<input type="hidden" name="wall_id" value="<?php echo $current_user->id; ?>" />
 
 		<br />
 
-		<input id="post_to_wall" type="submit" name="submit" value="<?php echo $lang[ 'post_to_wall' ]; ?>" />
+		<input class="js-submit_post" id="post_to_wall" type="submit" name="submit" value="<?php echo $lang[ 'post_to_wall' ]; ?>" />
 	</form>
 </div>
 

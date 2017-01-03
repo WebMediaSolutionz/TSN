@@ -21,7 +21,7 @@
 	</div>
 	<?php if ( $author->id === $current_user->id ) { ?>
 		<div class="post_actions right">
-			<a class="delete_post block" href="<?php echo static::$action_delete_post_link; ?>&post_id=<?php echo $post->id; ?>">
+			<a class="js-action js-delete_post delete_post block" href="<?php echo static::$action_delete_post_link; ?>&post_id=<?php echo $post->id; ?>">
 				<span class="hide">delete</span>
 			</a>
 		</div>

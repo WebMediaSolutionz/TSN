@@ -11,7 +11,7 @@ var TSN2 = {
 		self.attach_events();
 
 		self.page
-			.find( '.js-submit_comment' )
+			.find( '.js-submit_comment, .js-submit_post' )
 			.hide();
 	},
 
@@ -22,7 +22,7 @@ var TSN2 = {
 			.delegate( '.js-action, .js-disabled', 'click', function ( e ) {
 				e.preventDefault();
 			})
-			.delegate( '.js-like, .js-delete_comment', 'click', function () {
+			.delegate( '.js-like, .js-delete_comment, .js-pricepoint', 'click', function () {
 				var link = $( this ),
 					url = link.attr( 'href' ) + '&response_type=json';
 
@@ -87,12 +87,20 @@ var TSN2 = {
 								.remove();
 						}
 					});
+				} else if ( link.hasClass( 'js-pricepoint' ) ) {
+					var current_pricepoint = $( this ),
+						parent = current_pricepoint.closest( 'table' ),
+						pricepoints = parent.find( '.pricepoint' ),
+						current_radio = current_pricepoint.find( 'input[type=radio]' );
+
+					pricepoints.removeClass( 'current' );
+					current_pricepoint.addClass( 'current' );
+					current_radio.prop( 'checked', true );
 				}
 			});
 
 		self.page
-			.find( '.js-input_comment' )
-			.keypress( function ( e ) {
+			.delegate( '.js-input_comment', 'keypress', function ( e ) {
 				var input_field = $( this ),
 					comments = input_field.closest( '.comments' ),
 					last_comment = comments.find( '.comment' ).last(),
@@ -171,8 +179,51 @@ var TSN2 = {
 			});
 
 		self.page
-			.find( '.js-comment' )
-			.click( function () {
+			.delegate( '#status_updater', 'keypress', function ( e ) {
+				var status_updater = $( this ),
+					wall = status_updater.closest( '.content' ).find( '#wall' ),
+					status = status_updater.val(),
+					form = status_updater.closest( 'form' ),
+					wall_id = form.find( 'input[name=wall_id]' ).val(),
+					url = form.attr( 'action' ) + '&response_type=json',
+					user_fullname = form.find( 'input[name=current_user_fullname]' ).val(),
+					keynum,
+					new_post,
+					data = {
+						value: status,
+						wall_id: wall_id
+					};
+
+				e = e || window.event;
+
+				keynum = ( window.event ) ? e.keyCode : e.which;
+
+				if ( keynum === 13 ) {
+					e.preventDefault();
+
+					$.ajax({
+						type: 'POST',
+						url: url,
+						data: data,
+						success: function ( newPost ) {
+							new_post = $( '#post' ).html();
+
+							newPost.user_fullname = user_fullname;
+
+							wall.prepend( Mustache.render( new_post, newPost ) );
+
+							status_updater.val( '' );
+						},
+
+						error: function () {
+							alert( 'nah bitch' );
+						}
+					});
+				}
+			});
+
+		self.page
+			.delegate( '.js-comment', 'click', function ( e ) {
 				var comment_link = $( this ),
 					parent_anchor = comment_link.closest( '.single_post' ),
 					parent_anchor = ( parent_anchor.length !== 0 ) ? parent_anchor : comment_link.closest( '.content' ),
@@ -196,6 +247,22 @@ var TSN2 = {
 			// Prevent the form from being submitted:
 			return false;
 		});
+
+		self.page
+			.delegate( '.js-delete_post', 'click', function ( e ) {
+				var link = $( this ),
+					url = link.attr( 'href' ) + '&response_type=json';
+
+				$.ajax({
+					type: 'DELETE',
+					url: url,
+					success: function ( data ) {
+						link
+							.closest( '.single_post' )
+							.remove();
+					}
+				});
+			});
 
 		return self;
 	},
