@@ -46,7 +46,6 @@
 				$picture->upload( $_FILES[ 'pictures' ] );
 			}
 
-			// Utils::redirect_to( "album.php?user_id={$session->user_id}" );
 			Utils::redirect_to( "album.php?album_id={$album_id}" );
 		}
 	}
