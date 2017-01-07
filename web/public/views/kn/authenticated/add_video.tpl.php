@@ -9,10 +9,26 @@
 		<table>
 			<tr>
 				<td>
+					<label class="capitalize">title</label>
+				</td>
+				<td>
+					<input type="text" name="title">
+				</td>
+			</tr>
+			<tr>
+				<td>
 					<label class="capitalize">video</label>
 				</td>
 				<td>
 					<input type="file" name="video">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label class="capitalize">thumbnail</label>
+				</td>
+				<td>
+					<input type="file" name="thumbnail">
 				</td>
 			</tr>
 			<tr>
