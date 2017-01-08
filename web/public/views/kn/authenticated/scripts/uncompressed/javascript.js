@@ -104,7 +104,7 @@ var TSN2 = {
 				var input_field = $( this ),
 					comments = input_field.closest( '.comments' ),
 					last_comment = comments.find( '.comment' ).last(),
-					comment = input_field.val(),
+					comment = input_field.val().trim(),
 					form = input_field.closest( 'form' ),
 					comment_posting_section = form.closest( '.comment_posting_section' ),
 					url = form.attr( 'action' ) + '&response_type=json',
@@ -137,44 +137,46 @@ var TSN2 = {
 				if ( keynum === 13 ) {
 					e.preventDefault();
 
-					$.ajax({
-						type: 'POST',
-						url: url,
-						data: data,
-						success: function ( newComment ) {
-							var nb_comments = comments.parent().find( '.js-nb_comments' ),
-								nb_comments_txt = null;
+					if ( comment !== '' ) {
+						$.ajax({
+							type: 'POST',
+							url: url,
+							data: data,
+							success: function ( newComment ) {
+								var nb_comments = comments.parent().find( '.js-nb_comments' ),
+									nb_comments_txt = null;
 
-							switch ( newComment.comments ) {
-								case 0 : 	nb_comments_txt = '';
-											break;
+								switch ( newComment.comments ) {
+									case 0 : 	nb_comments_txt = '';
+												break;
 
-								case 1 : 	nb_comments_txt = ' &middot; ' + newComment.comments + ' comment';
-											break;
+									case 1 : 	nb_comments_txt = ' &middot; ' + newComment.comments + ' comment';
+												break;
 
-								default: 	nb_comments_txt = ' &middot; ' + newComment.comments + ' comments';
-											break;
+									default: 	nb_comments_txt = ' &middot; ' + newComment.comments + ' comments';
+												break;
+								}
+
+								nb_comments.html( nb_comments_txt );
+
+								new_comment = $( '#comment' ).html();
+
+								newComment.user_fullname = user_fullname;
+
+								input_field.val( '' );
+
+								if ( last_comment.length !== 0 ) {
+									last_comment.after( Mustache.render( new_comment, newComment ) );
+								} else {
+									comment_posting_section.prepend( Mustache.render( new_comment, newComment ) );
+								}
+							},
+
+							error: function () {
+								alert( 'nah bitch' );
 							}
-
-							nb_comments.html( nb_comments_txt );
-
-							new_comment = $( '#comment' ).html();
-
-							newComment.user_fullname = user_fullname;
-
-							input_field.val( '' );
-
-							if ( last_comment.length !== 0 ) {
-								last_comment.after( Mustache.render( new_comment, newComment ) );
-							} else {
-								comment_posting_section.prepend( Mustache.render( new_comment, newComment ) );
-							}
-						},
-
-						error: function () {
-							alert( 'nah bitch' );
-						}
-					});
+						});
+					}
 				}
 			});
 
@@ -182,7 +184,7 @@ var TSN2 = {
 			.delegate( '#status_updater', 'keypress', function ( e ) {
 				var status_updater = $( this ),
 					wall = status_updater.closest( '.content' ).find( '#wall' ),
-					status = status_updater.val(),
+					status = status_updater.val().trim(),
 					form = status_updater.closest( 'form' ),
 					wall_id = form.find( 'input[name=wall_id]' ).val(),
 					url = form.attr( 'action' ) + '&response_type=json',
@@ -198,7 +200,7 @@ var TSN2 = {
 
 				keynum = ( window.event ) ? e.keyCode : e.which;
 
-				if ( keynum === 13 ) {
+				if ( keynum === 13 && status !== '' ) {
 					e.preventDefault();
 
 					$.ajax({
