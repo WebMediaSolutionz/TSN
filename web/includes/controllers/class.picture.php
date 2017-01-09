@@ -15,6 +15,10 @@
 
 					$picture = Picture::find_by_id( $_GET[ 'picture_id' ] );
 
+					if ( !$picture ) {
+						Utils::redirect_to( 'album.php' );
+					}
+
 					$next_pic = $picture->get_next_picture();
 					$prev_pic = $picture->get_previous_picture();
 
