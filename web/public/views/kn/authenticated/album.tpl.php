@@ -38,6 +38,17 @@
 	</div>
 
 	<div class="clearfix"></div>
+
+	<?php if ( $album->user_id === $current_user->id ) { ?>
+		<br />
+
+		<div>
+			<a href="album.php?action=delete_album&album_id=<?php echo $album->id; ?>">delete</a>
+		</div>
+	<?php } ?>
+
+	<br /><br />
+
 	<!-- ***** -->
 	<div class="post_operations actions">
 		<span><a class="js-action js-like" href="<?php echo $album->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&album_id=<?php echo $album->id; ?>"><?php echo $album->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a> &middot; <a class="js-action js-comment" href="#">Comment</a><span class="js-nb_likes"><?php echo count( $album->get_likers() ) === 1 ? ' &middot; 1 like' : ( count( $album->get_likers() ) !== 0 ? ' &middot; ' . count( $album->get_likers() ) . ' likes': '' );?></span><span class="js-nb_comments"><?php echo count( $album->get_commenters() ) === 1 ? ' &middot; 1 comment' : ( count( $album->get_commenters() ) !== 0 ? ' &middot; ' . count( $album->get_commenters() ) . ' comments': '' );?></span></span>

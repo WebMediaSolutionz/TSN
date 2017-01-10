@@ -6,8 +6,8 @@
 			'id'				=> 		'auto-increment',
 			'user_id' 			=> 		'int',
 			'name' 				=> 		'string',
-			'nbr_of_items'		=>		'int',
-			'empty_album_pic'	=>		'string',
+			'nbr_of_items'		=>		'auto-increment',
+			'empty_album_pic'	=>		'auto-increment',
 			'creation_date' 	=> 		'datetime',
 			'modified_date' 	=> 		'datetime'
 			);
@@ -51,6 +51,18 @@
 			$albums = static::find_by_sql( $sql );
 
 			return $albums;
+		}
+
+		public function delete () {
+			// delete physical video traces
+			$this->load_pictures();
+
+			foreach ( $this->pictures as $picture ) {
+				$picture->delete();
+			}
+
+			// delete record about picture
+			return parent::delete();
 		}
 	}
 
