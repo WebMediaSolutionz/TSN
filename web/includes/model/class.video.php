@@ -131,6 +131,18 @@
 				$this->save();
 			}
 		}
+
+		public function delete () {
+			// delete physical video traces
+			$mp4_filepath = str_replace( '*id*', PROFILE_USER, USER_PERSONAL_SPACE_VIDEOS ) . "/" . $this->file_mp4;
+			$video_thumb_path = str_replace( '*id*', PROFILE_USER, USER_PERSONAL_SPACE_VIDEOS ) . "/tn/" . $this->thumbnail;
+
+			( file_exists( $mp4_filepath ) ) ? unlink( $mp4_filepath ) : null;
+			( file_exists ( $video_thumb_path ) ) ? unlink( $video_thumb_path ): null;
+			
+			// delete record about video
+			return parent::delete();
+		}
 	}
 
 ?>

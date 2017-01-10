@@ -46,6 +46,7 @@
 		public static function delete_video () {
 			$video = Video::find_by_id( $_GET[ 'video_id' ] );
 			$video->delete();
+			Utils::redirect_to( "vids.php" );
 		}
 	}
 ?>
