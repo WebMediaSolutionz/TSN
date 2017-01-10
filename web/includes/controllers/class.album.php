@@ -74,5 +74,11 @@
 
 			include_once( static::load_template() );
 		}
+
+		public static function delete_album () {
+			$album = Album::find_by_id( $_GET[ 'album_id' ] );
+			$album->delete();
+			Utils::redirect_to( "album.php" );
+		}
 	}
 ?>

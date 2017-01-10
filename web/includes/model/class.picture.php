@@ -124,13 +124,15 @@
 		}
 
 		public function delete () {
-			if ( unlink( "UPS/{$this->user_id}/pictures/{$this->filename}" ) ) {
-				if ( file_exists( $thumbnail = "UPS/{$this->user_id}/pictures/{$this->thumbnail}" ) ) {
-					unlink( $thumbnail );
-				}
+			// delete physical video traces
+			$picture_path = str_replace( '*id*', PROFILE_USER, USER_PERSONAL_SPACE_PICTURES )  . "/" . $this->filename;
+			$picture_thumb_path = str_replace( '*id*', PROFILE_USER, USER_PERSONAL_SPACE_PICTURES ) . "/" . $this->thumbnail;
 
-				parent::delete();
-			}			
+			( file_exists( $picture_path ) ) ? unlink( $picture_path ) : null;
+			( file_exists( $picture_thumb_path ) ) ? unlink( $picture_thumb_path ) : null;
+
+			// delete record about picture
+			return parent::delete();
 		}
 
 		public static function name_picture ( $user ) {
