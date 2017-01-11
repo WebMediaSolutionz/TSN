@@ -15,7 +15,8 @@
 	}
 }
 
-.album_thumb {
+.album_thumb,
+.theme_thumb {
 	width: 198px;
 	border: thin solid #ccc;
 	background-color: #FFF;
@@ -52,14 +53,30 @@
 	}
 }
 
+.theme_thumb {
+	width: 200px;
+	height: 280px;
+}
+
 .picture_gallery,
-.album_gallery {
+.album_gallery,
+.theme_gallery {
 	.album_thumb {
 		float: left;
 		margin-left: 10px;
 
 		&:nth-child(1),
 		&:nth-child(5n) {
+			margin-left: 0;
+		}
+	}
+
+	.theme_thumb {
+		float: left;
+		margin-left: 10px;
+
+		&:nth-child(1),
+		&:nth-child(4n) {
 			margin-left: 0;
 		}
 	}

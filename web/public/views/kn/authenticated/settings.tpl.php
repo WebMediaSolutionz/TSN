@@ -10,13 +10,25 @@
 			<tr>
 				<td>language</td>
 				<td>
-					<select name="language">
+					<select class="left" name="language">
 						<option value="en" <?php echo ( $session->settings->language === "en" ) ? "selected" : ""; ?>>english</option>
 						<option value="fr" <?php echo ( $session->settings->language === "fr" ) ? "selected" : ""; ?>>french</option>
 					</select>
+					<input class="left" type="submit" name="submit" value="submit" />
+					<div class="clearfix"></div>
 				</td>
+			</tr>
+			<tr>
+				<td>theme</td>
 				<td>
-					<input type="submit" name="submit" value="submit" />
+					<div class="theme_gallery">
+						<?php
+							foreach ( $themes as $single_theme ) {
+								include( 'partials/theme_thumb.tpl.php' );
+							}
+						?>
+						<div class="clearfix"></div>
+					</div>
 				</td>
 			</tr>
 			<tr>
