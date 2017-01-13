@@ -8,7 +8,8 @@ var TSN2 = {
 
 		Stripe.setPublishableKey( self.stripe_pk );
 
-		self.attach_events();
+		self.attach_events()
+			.setup_tinymce();
 
 		self.page
 			.find( '.js-submit_comment, .js-submit_post' )
@@ -286,6 +287,16 @@ var TSN2 = {
 			// Submit the form:
 			$subscription_form.get( 0 ).submit();
 		}
+	},
+
+	setup_tinymce: function () {
+		var self = this;
+
+		tinymce.init({
+			selector: 	'.tinymce'
+		});
+
+		return self;
 	}
 }
 
