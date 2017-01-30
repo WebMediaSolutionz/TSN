@@ -7,6 +7,10 @@
 
 			$current_page = static::$current_page;
 			$current_page_short = static::$current_page_short;
+
+			if ( defined( 'PROFILE_USER' ) ) {
+				$profile_user = User::find_by_id( PROFILE_USER );
+			}
 			
 			$current_user = User::find_by_id( $session->user_id );
 			$message_sent = false;

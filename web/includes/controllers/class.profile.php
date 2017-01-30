@@ -10,6 +10,10 @@
 			
 			$current_page = static::$current_page;
 			$current_page_short = static::$current_page_short;
+
+			if ( defined( 'PROFILE_USER' ) ) {
+				$profile_user = User::find_by_id( PROFILE_USER );
+			}
 				
 			if ( isset( $_GET[ 'profile_id' ] ) && ( $_GET[ 'profile_id' ] == $current_user->id ) || !isset( $_GET[ 'profile_id' ] ) ) {
 				$profile_user = $current_user;
