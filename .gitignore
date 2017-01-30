@@ -20,6 +20,7 @@ web/public/views/kn/unauthenticated/scripts/compressed/
 web/public/node_modules/
 web/public/npm-debug.log
 npm-debug.log
+node_modules/
 
 # Random work files
 work_files
