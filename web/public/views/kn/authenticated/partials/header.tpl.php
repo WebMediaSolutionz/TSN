@@ -30,7 +30,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="section2">
-                        <img src="views/<?php echo $theme; ?>/authenticated/images/site_banner_sfw.jpg" />
+                        <img src="<?php echo "UPS/{$profile_user->id}/pictures/site_banner.jpg"; ?>" />
                     </div>
                     
                     <div class="section3">

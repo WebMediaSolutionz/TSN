@@ -18,5 +18,35 @@
 
 			include_once( static::load_template() );
 		}
+
+		public static function update_site_info () {
+			global $session;
+
+			if ( isset( $_POST[ 'submit' ] ) && $_POST[ 'submit' ] === 'submit' ) {
+				if ( isset( $_FILES[ 'banner' ] ) ) {
+					$picture = new picture;
+
+					$picture->user_id = $session->user_id;
+					$picture->filename = Picture::name_picture( 'site_banner' );
+					$picture->upload_date = Utils::mysql_datetime();
+
+					$picture->save();
+					$picture->upload( $_FILES[ 'banner' ], false );
+				}
+
+				if ( isset( $_FILES[ 'banner_sfw' ] ) ) {
+					$picture = new picture;
+
+					$picture->user_id = $session->user_id;
+					$picture->filename = Picture::name_picture( 'site_banner_sfw' );
+					$picture->upload_date = Utils::mysql_datetime();
+
+					$picture->save();
+					$picture->upload( $_FILES[ 'banner_sfw' ], false );
+				}
+			}
+
+			Utils::redirect_to( 'dashboard.php' );
+		}
 	}
 ?>
