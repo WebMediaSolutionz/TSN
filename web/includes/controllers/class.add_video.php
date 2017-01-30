@@ -5,6 +5,10 @@
 
 			$theme = static::$theme;
 
+			if ( defined( 'PROFILE_USER' ) ) {
+				$profile_user = User::find_by_id( PROFILE_USER );
+			}
+
 			if ( $session->is_logged_in() ) {
 				$current_user = User::find_by_id( $session->user_id );
 				include_once( static::load_template() );
