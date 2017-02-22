@@ -15,10 +15,10 @@
 		</video>
 
 		<?php if ( $video->user_id === $current_user->id ) { ?>
-			<br />
+			<br /><br />
 
 			<div>
-				<a href="video.php?video_id=<?php echo $video->id; ?>&action=delete_video&video_id=<?php echo $video->id; ?>">delete</a>
+				<a class="btn" href="video.php?video_id=<?php echo $video->id; ?>&action=delete_video&video_id=<?php echo $video->id; ?>">delete</a>
 			</div>
 		<?php } ?>
 

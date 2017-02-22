@@ -69,6 +69,18 @@
 			&.current {
 				color: $yellow;
 			}
+
+			&.btn {
+				padding: 10px;
+				color: $white;
+				background-color: $purple;
+				border-radius: 5px;
+
+				&:hover {
+					color: $purple;
+					background-color: $yellow;
+				}
+			}
 		}
 	}
 
@@ -82,6 +94,10 @@
 
 .left {
 	float: left;
+}
+
+.left_gap {
+	margin-left: 20px;
 }
 
 .right {
@@ -143,4 +159,17 @@
 
 .outline {
 	border: thin solid red !important;
+}
+
+input.btn {
+	padding: 10px;
+	color: $white;
+	background-color: $purple;
+	border-radius: 5px;
+	border: none;
+
+	&:hover {
+		color: $purple;
+		background-color: $yellow;
+	}
 }

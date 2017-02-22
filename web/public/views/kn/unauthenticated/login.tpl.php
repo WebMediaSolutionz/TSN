@@ -41,10 +41,10 @@
         
         <br />
         
-        <input type="submit" name="submit" value="submit" />
+        <input class="btn left capitalize" type="submit" name="submit" value="submit" />
+        <a class="btn capitalize left left_gap" href="signup.php"><?php echo $lang[ 'create an account' ]; ?></a>
+        <div class="clearfix"></div>
     </form>
-    <br />
-    <a href="signup.php"><?php echo $lang[ 'create an account' ]; ?></a>
 </div>
 
 <?php 

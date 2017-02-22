@@ -24,13 +24,13 @@
                         </div>
                         <div class="right">
                             <?php if ( Utils::current_page( 'short' ) !== 'login' ) { ?>
-                                <a class="capitalize" href="login.php">member login</a>
+                                <a class="btn login capitalize" href="login.php">member login</a>
                             <?php } ?>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="section2">
-                        <img src="views/<?php echo $theme; ?>/unauthenticated/images/site_banner_sfw.jpg" />
+                        <img src="views/<?php echo $theme; ?>/unauthenticated/images/site_banner.jpg" />
                     </div>
                     
                     <div class="section3">

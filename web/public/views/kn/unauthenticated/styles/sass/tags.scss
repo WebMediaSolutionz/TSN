@@ -16,6 +16,38 @@ a {
 	&:active {
 		text-decoration: none;
 	}
+
+	&.btn {
+		padding: 10px;
+		color: $white;
+		background-color: $purple;
+		border-radius: 5px;
+
+		&:hover {
+			color: $purple;
+			background-color: $yellow;
+		}
+
+		&.login {
+			padding: 5px 8px;
+			color: $white !important;
+
+			&:hover {
+				color: $purple !important;
+			}
+		}
+
+		&.join {
+			color: $white;
+			background-color: orange;
+			font-weight: bold;
+
+			&:hover {
+				color: $purple;
+				background-color: $yellow;
+			}
+		}
+	}
 }
 
 nav {

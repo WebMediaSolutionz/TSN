@@ -43,7 +43,7 @@
 		<br />
 
 		<div>
-			<a href="album.php?action=delete_album&album_id=<?php echo $album->id; ?>">delete</a>
+			<a class="btn" href="album.php?action=delete_album&album_id=<?php echo $album->id; ?>">delete</a>
 		</div>
 	<?php } ?>
 

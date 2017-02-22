@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="submit" value="submit" name="submit">
+					<input class="btn capitalize" type="submit" value="submit" name="submit">
 				</td>
 			</tr>
 		</table>

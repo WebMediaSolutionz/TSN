@@ -30,10 +30,10 @@
 		
 
 		<?php if ( $picture->user_id === $current_user->id ) { ?>
-			<br />
+			<br /><br />
 
 			<div>
-				<a href="picture.php?picture_id=<?php echo $picture->id; ?>&action=delete_picture&picture_id=<?php echo $picture->id; ?>">delete</a>
+				<a class="btn" href="picture.php?picture_id=<?php echo $picture->id; ?>&action=delete_picture&picture_id=<?php echo $picture->id; ?>">delete</a>
 			</div>
 		<?php } ?>
 

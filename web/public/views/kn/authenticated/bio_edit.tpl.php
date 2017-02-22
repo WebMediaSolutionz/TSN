@@ -11,7 +11,7 @@
 
 			<br />
 
-			<input name="submit" value="save" type="submit">
+			<input class="btn capitalize" name="submit" value="save" type="submit">
 		</form>
 	</div>
 </div>

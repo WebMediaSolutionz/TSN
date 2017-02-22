@@ -24,6 +24,8 @@
 			global $session;
 
 			if ( isset( $_POST[ 'submit' ] ) ) {
+				$album_id = null;
+
 				if ( isset( $_POST[ 'album_name' ] ) ) {
 					$album = new Album;
 
@@ -39,11 +41,11 @@
 					$album_id = $_POST[ 'album_id' ];
 				}
 
-				$picture = new picture;
+				$picture = new Picture;
 
 				$picture->album_id = $album_id;
 				$picture->user_id = $session->user_id;
-				$picture->filename = Picture::name_picture( User::find_by_id( $session->user_id ) );
+				$picture->filename = Picture::name_picture();
 				$picture->upload_date = Utils::mysql_datetime();
 
 				$picture->save();
