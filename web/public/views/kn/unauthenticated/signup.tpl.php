@@ -116,7 +116,7 @@
 
         <div class="clear"></div>
 
-        <input type="submit" class="submit" value="<?php echo $lang[ 'submit' ]; ?>">
+        <input type="submit" class="btn submit capitalize" value="<?php echo $lang[ 'submit' ]; ?>">
 
 
 

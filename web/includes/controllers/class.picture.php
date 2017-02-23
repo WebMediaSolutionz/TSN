@@ -3,6 +3,10 @@
 		public static function load () {
 			global $session, $lang, $page_title, $redirect_destination;
 
+			if ( defined( 'PROFILE_USER' ) ) {
+				$profile_user = User::find_by_id( PROFILE_USER );
+			}
+
 			if ( $session->is_logged_in() ) {
 				$theme = static::$theme;
 				$current_page = static::$current_page;
@@ -14,6 +18,10 @@
 					$_GET[ 'picture_id' ] = ( isset( $_GET[ 'item_id' ]  ) ) ? $_GET[ 'item_id' ] : $_GET[ 'picture_id' ];
 
 					$picture = Picture::find_by_id( $_GET[ 'picture_id' ] );
+
+					if ( !$picture ) {
+						Utils::redirect_to( 'album.php' );
+					}
 
 					$next_pic = $picture->get_next_picture();
 					$prev_pic = $picture->get_previous_picture();

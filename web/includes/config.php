@@ -21,5 +21,5 @@
 
 	defined( 'DEFAULT_THEME' ) ? null : define( 'DEFAULT_THEME', 'facebook' );	
 
-	defined( 'IMG_MAX_UPLOAD_SIZE' ) ? null : define( 'IMG_MAX_UPLOAD_SIZE', 1000000 );	
+	defined( 'IMG_MAX_UPLOAD_SIZE' ) ? null : define( 'IMG_MAX_UPLOAD_SIZE', 10000000000000000000000000000000000000 );
 ?>

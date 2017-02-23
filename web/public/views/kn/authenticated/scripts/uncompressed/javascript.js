@@ -8,10 +8,11 @@ var TSN2 = {
 
 		Stripe.setPublishableKey( self.stripe_pk );
 
-		self.attach_events();
+		self.attach_events()
+			.setup_tinymce();
 
 		self.page
-			.find( '.js-submit_comment' )
+			.find( '.js-submit_comment, .js-submit_post' )
 			.hide();
 	},
 
@@ -22,7 +23,7 @@ var TSN2 = {
 			.delegate( '.js-action, .js-disabled', 'click', function ( e ) {
 				e.preventDefault();
 			})
-			.delegate( '.js-like, .js-delete_comment', 'click', function () {
+			.delegate( '.js-like, .js-delete_comment, .js-pricepoint', 'click', function () {
 				var link = $( this ),
 					url = link.attr( 'href' ) + '&response_type=json';
 
@@ -87,16 +88,24 @@ var TSN2 = {
 								.remove();
 						}
 					});
+				} else if ( link.hasClass( 'js-pricepoint' ) ) {
+					var current_pricepoint = $( this ),
+						parent = current_pricepoint.closest( 'table' ),
+						pricepoints = parent.find( '.pricepoint' ),
+						current_radio = current_pricepoint.find( 'input[type=radio]' );
+
+					pricepoints.removeClass( 'current' );
+					current_pricepoint.addClass( 'current' );
+					current_radio.prop( 'checked', true );
 				}
 			});
 
 		self.page
-			.find( '.js-input_comment' )
-			.keypress( function ( e ) {
+			.delegate( '.js-input_comment', 'keypress', function ( e ) {
 				var input_field = $( this ),
 					comments = input_field.closest( '.comments' ),
 					last_comment = comments.find( '.comment' ).last(),
-					comment = input_field.val(),
+					comment = input_field.val().trim(),
 					form = input_field.closest( 'form' ),
 					comment_posting_section = form.closest( '.comment_posting_section' ),
 					url = form.attr( 'action' ) + '&response_type=json',
@@ -129,38 +138,84 @@ var TSN2 = {
 				if ( keynum === 13 ) {
 					e.preventDefault();
 
+					if ( comment !== '' ) {
+						$.ajax({
+							type: 'POST',
+							url: url,
+							data: data,
+							success: function ( newComment ) {
+								var nb_comments = comments.parent().find( '.js-nb_comments' ),
+									nb_comments_txt = null;
+
+								switch ( newComment.comments ) {
+									case 0 : 	nb_comments_txt = '';
+												break;
+
+									case 1 : 	nb_comments_txt = ' &middot; ' + newComment.comments + ' comment';
+												break;
+
+									default: 	nb_comments_txt = ' &middot; ' + newComment.comments + ' comments';
+												break;
+								}
+
+								nb_comments.html( nb_comments_txt );
+
+								new_comment = $( '#comment' ).html();
+
+								newComment.user_fullname = user_fullname;
+
+								input_field.val( '' );
+
+								if ( last_comment.length !== 0 ) {
+									last_comment.after( Mustache.render( new_comment, newComment ) );
+								} else {
+									comment_posting_section.prepend( Mustache.render( new_comment, newComment ) );
+								}
+							},
+
+							error: function () {
+								alert( 'nah bitch' );
+							}
+						});
+					}
+				}
+			});
+
+		self.page
+			.delegate( '#status_updater', 'keypress', function ( e ) {
+				var status_updater = $( this ),
+					wall = status_updater.closest( '.content' ).find( '#wall' ),
+					status = status_updater.val().trim(),
+					form = status_updater.closest( 'form' ),
+					wall_id = form.find( 'input[name=wall_id]' ).val(),
+					url = form.attr( 'action' ) + '&response_type=json',
+					user_fullname = form.find( 'input[name=current_user_fullname]' ).val(),
+					keynum,
+					new_post,
+					data = {
+						value: status,
+						wall_id: wall_id
+					};
+
+				e = e || window.event;
+
+				keynum = ( window.event ) ? e.keyCode : e.which;
+
+				if ( keynum === 13 && status !== '' ) {
+					e.preventDefault();
+
 					$.ajax({
 						type: 'POST',
 						url: url,
 						data: data,
-						success: function ( newComment ) {
-							var nb_comments = comments.parent().find( '.js-nb_comments' ),
-								nb_comments_txt = null;
+						success: function ( newPost ) {
+							new_post = $( '#post' ).html();
 
-							switch ( newComment.comments ) {
-								case 0 : 	nb_comments_txt = '';
-											break;
+							newPost.user_fullname = user_fullname;
 
-								case 1 : 	nb_comments_txt = ' &middot; ' + newComment.comments + ' comment';
-											break;
+							wall.prepend( Mustache.render( new_post, newPost ) );
 
-								default: 	nb_comments_txt = ' &middot; ' + newComment.comments + ' comments';
-											break;
-							}
-
-							nb_comments.html( nb_comments_txt );
-
-							new_comment = $( '#comment' ).html();
-
-							newComment.user_fullname = user_fullname;
-
-							input_field.val( '' );
-
-							if ( last_comment.length !== 0 ) {
-								last_comment.after( Mustache.render( new_comment, newComment ) );
-							} else {
-								comment_posting_section.prepend( Mustache.render( new_comment, newComment ) );
-							}
+							status_updater.val( '' );
 						},
 
 						error: function () {
@@ -171,8 +226,7 @@ var TSN2 = {
 			});
 
 		self.page
-			.find( '.js-comment' )
-			.click( function () {
+			.delegate( '.js-comment', 'click', function ( e ) {
 				var comment_link = $( this ),
 					parent_anchor = comment_link.closest( '.single_post' ),
 					parent_anchor = ( parent_anchor.length !== 0 ) ? parent_anchor : comment_link.closest( '.content' ),
@@ -197,6 +251,22 @@ var TSN2 = {
 			return false;
 		});
 
+		self.page
+			.delegate( '.js-delete_post', 'click', function ( e ) {
+				var link = $( this ),
+					url = link.attr( 'href' ) + '&response_type=json';
+
+				$.ajax({
+					type: 'DELETE',
+					url: url,
+					success: function ( data ) {
+						link
+							.closest( '.single_post' )
+							.remove();
+					}
+				});
+			});
+
 		return self;
 	},
 
@@ -217,6 +287,16 @@ var TSN2 = {
 			// Submit the form:
 			$subscription_form.get( 0 ).submit();
 		}
+	},
+
+	setup_tinymce: function () {
+		var self = this;
+
+		tinymce.init({
+			selector: 	'.tinymce'
+		});
+
+		return self;
 	}
 }
 

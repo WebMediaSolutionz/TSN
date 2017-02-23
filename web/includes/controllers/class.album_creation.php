@@ -3,6 +3,10 @@
 		public static function load () {
 			global $session, $lang, $page_title;
 
+			if ( defined( 'PROFILE_USER' ) ) {
+				$profile_user = User::find_by_id( PROFILE_USER );
+			}
+
 			if ( $session->is_logged_in() ) {
 				$theme = static::$theme;
 				$current_page = static::$current_page;
@@ -20,6 +24,8 @@
 			global $session;
 
 			if ( isset( $_POST[ 'submit' ] ) ) {
+				$album_id = null;
+
 				if ( isset( $_POST[ 'album_name' ] ) ) {
 					$album = new Album;
 
@@ -35,18 +41,17 @@
 					$album_id = $_POST[ 'album_id' ];
 				}
 
-				$picture = new picture;
+				$picture = new Picture;
 
 				$picture->album_id = $album_id;
 				$picture->user_id = $session->user_id;
-				$picture->filename = Picture::name_picture( User::find_by_id( $session->user_id ) );
+				$picture->filename = Picture::name_picture();
 				$picture->upload_date = Utils::mysql_datetime();
 
 				$picture->save();
 				$picture->upload( $_FILES[ 'pictures' ] );
 			}
 
-			// Utils::redirect_to( "album.php?user_id={$session->user_id}" );
 			Utils::redirect_to( "album.php?album_id={$album_id}" );
 		}
 	}

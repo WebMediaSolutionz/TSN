@@ -17,6 +17,7 @@ web/public/views/kn/authenticated/scripts/compressed/
 web/public/views/kn/unauthenticated/scripts/compressed/
 
 # Node modules folder and npm log files
+node_modules/
 web/public/node_modules/
 web/public/npm-debug.log
 npm-debug.log

@@ -14,6 +14,14 @@
 			Your browser does not support the video tag.
 		</video>
 
+		<?php if ( $video->user_id === $current_user->id ) { ?>
+			<br /><br />
+
+			<div>
+				<a class="btn" href="video.php?video_id=<?php echo $video->id; ?>&action=delete_video&video_id=<?php echo $video->id; ?>">delete</a>
+			</div>
+		<?php } ?>
+
 		<br /><br />
 
 		<a id="profile_pic_thumbnail" class="left block" href="<?php echo $redirect_destination; ?>">

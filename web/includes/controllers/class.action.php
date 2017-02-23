@@ -110,12 +110,18 @@
 			}
 		}
 
-		public static function load_template () {
+		public static function load_template ( $template = null ) {
+			if ( $template === null ) {
+				$template = static::$template;
+			} else {
+				$template .= '.tpl.php';
+			}
+
 			$template_path = null;
-			$template_path1 = "views/" . static::$theme . "/" . static::$authentication . "/" . static::$template;
-			$template_path2 = "views/" . static::$theme . "/" . static::$template;
-			$template_path3 = "views/" . DEFAULT_THEME . "/" . static::$authentication . "/" . static::$template;
-			$template_path4 = "views/" . DEFAULT_THEME . "/" . static::$template;
+			$template_path1 = "views/" . static::$theme . "/" . static::$authentication . "/" . $template;
+			$template_path2 = "views/" . static::$theme . "/" . $template;
+			$template_path3 = "views/" . DEFAULT_THEME . "/" . static::$authentication . "/" . $template;
+			$template_path4 = "views/" . DEFAULT_THEME . "/" . $template;
 
 			$filenotfound_template = "views/" . static::$theme . "/" . static::$authentication . "/filenotfound.tpl.php";
 

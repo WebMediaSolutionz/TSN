@@ -16,6 +16,10 @@
 
 			$theme = static::$theme;
 
+			if ( defined( 'PROFILE_USER' ) ) {
+				$profile_user = User::find_by_id( PROFILE_USER );
+			}
+
 			if ( isset( $session->user_id ) ) {
 				$current_user = User::find_verified_by_id( $session->user_id );
 			}

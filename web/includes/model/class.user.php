@@ -3,31 +3,32 @@
 	class User extends DatabaseObject {
 		protected static $table_name = "users";
 		public static $db_fields = array(
-			'id'				=> 'auto-increment',
-			'name' 				=> 'string', 
-			'lastname' 			=> 'string', 
-			'middlename' 		=> 'string', 
-			'sex' 				=> 'string', 
-			'birthdate' 		=> 'datetime', 
-			'username' 			=> 'string', 
-			'password' 			=> 'string', 
-			'ip' 				=> 'string', 
-			'address' 			=> 'string', 
-			'city' 				=> 'string',
-			'province' 			=> 'string',
-			'state' 			=> 'string', 
-			'country' 			=> 'string', 
-			'zipcode' 			=> 'string', 
-			'relationship' 		=> 'string', 
-			'interested_in' 	=> 'string', 
-			'school' 			=> 'string', 
-			'major' 			=> 'string', 
-			'level' 			=> 'string', 
-			'work' 				=> 'string', 
-			'position' 			=> 'string', 
-			'occupation' 		=> 'string', 
-			'interests' 		=> 'string', 
-			'verification_key' 	=> 'string',
+			'id'				=> 	'auto-increment',
+			'name' 				=> 	'string',
+			'lastname' 			=> 	'string',
+			'middlename' 		=> 	'string',
+			'sex' 				=> 	'string',
+			'birthdate' 		=> 	'datetime',
+			'username' 			=> 	'string',
+			'password' 			=> 	'string',
+			'ip' 				=> 	'string',
+			'address' 			=> 	'string',
+			'city' 				=> 	'string',
+			'province' 			=> 	'string',
+			'state' 			=> 	'string',
+			'country' 			=> 	'string',
+			'zipcode' 			=> 	'string',
+			'relationship' 		=> 	'string',
+			'interested_in' 	=> 	'string',
+			'school' 			=> 	'string',
+			'major' 			=> 	'string',
+			'level' 			=> 	'string',
+			'work' 				=> 	'string',
+			'position' 			=> 	'string',
+			'occupation' 		=> 	'string',
+			'interests' 		=> 	'string',
+			'bio' 				=> 	'string',
+			'verification_key' 	=> 	'string',
 			'verified'			=>	'int'
 			);
 		public $id;
@@ -54,6 +55,7 @@
 		public $position;
 		public $occupation;
 		public $interests; 
+		public $bio;
 		public $verification_key;
 		public $verified;
 

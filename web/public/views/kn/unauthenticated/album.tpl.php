@@ -25,8 +25,14 @@
 
 	<div class="picture_gallery">
 		<?php
-			foreach ( $album->pictures as $picture ) {
-				include( 'partials/picture_thumbnail.tpl.php' );
+			if ( $album->nbr_of_items > 0 ) {
+				foreach ( $album->pictures as $picture ) {
+					include( 'partials/picture_thumbnail.tpl.php' );
+				}
+			} else {
+				?>
+					<h4 class="center">this photo album is empty</h4>
+				<?php
 			}
 		?>
 	</div>

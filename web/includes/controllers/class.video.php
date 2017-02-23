@@ -3,6 +3,10 @@
 		public static function load () {
 			global $session, $lang, $page_title, $redirect_destination;
 
+			if ( defined( 'PROFILE_USER' ) ) {
+				$profile_user = User::find_by_id( PROFILE_USER );
+			}
+
 			if ( $session->is_logged_in() ) {
 				$theme = static::$theme;
 				$current_page = static::$current_page;
@@ -46,6 +50,7 @@
 		public static function delete_video () {
 			$video = Video::find_by_id( $_GET[ 'video_id' ] );
 			$video->delete();
+			Utils::redirect_to( "vids.php" );
 		}
 	}
 ?>

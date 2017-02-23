@@ -8,6 +8,10 @@
 			
 			$theme = static::$theme;
 
+			if ( defined( 'PROFILE_USER' ) ) {
+				$profile_user = User::find_by_id( PROFILE_USER );
+			}
+
 			if ( DEFAULT_THEME === 'kn' && defined( 'PROFILE_USER' ) ) {
 				$profile_user = $current_user = User::find_by_id( PROFILE_USER );
 
