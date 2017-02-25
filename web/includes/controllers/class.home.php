@@ -1,7 +1,7 @@
 <?php
 	class HomeCtrl extends ActionCtrl {
 		public static function load () {
-			global $session, $lang, $page_title, $current_page;
+			global $session, $lang, $page_title, $current_page, $site_code;
 
 			$current_page = static::$current_page;
 			$current_page_short = static::$current_page_short;
@@ -12,7 +12,7 @@
 				$profile_user = User::find_by_id( PROFILE_USER );
 			}
 
-			if ( DEFAULT_THEME === 'kn' && defined( 'PROFILE_USER' ) ) {
+			if ( DEFAULT_THEME === $site_code && defined( 'PROFILE_USER' ) ) {
 				$profile_user = $current_user = User::find_by_id( PROFILE_USER );
 
 				$videos = Video::get_last_few_of_user( $profile_user->id, 3 );
