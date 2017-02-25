@@ -66,6 +66,8 @@
 			$site_code = "kv";
 		} else if ( is_numeric ( strpos( $url, "kyleenash" ) ) || is_numeric ( strpos( $url, "KN" ) ) ) {
 			$site_code = "kn";
+		} else if ( is_numeric ( strpos( $url, "mamasita" ) ) || is_numeric ( strpos( $url, "MS" ) ) ) {
+			$site_code = "ms";
 		}
 
 		$baseurl = $domain . $url;

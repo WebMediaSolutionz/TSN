@@ -1,0 +1,94 @@
+@import "variables";
+@import "mixins";
+
+html,
+body {
+	padding: 0;
+	margin: 0;
+	font-size: 14px;
+	font-family: arial, helvetica, sans-serif;
+}
+
+a {
+	&:link,
+	&:visited,
+	&:hover,
+	&:active {
+		text-decoration: none;
+	}
+
+	&.btn {
+		padding: 10px;
+		color: $white;
+		background-color: $purple;
+		border-radius: 5px;
+
+		&:hover {
+			color: $purple;
+			background-color: $yellow;
+		}
+
+		&.login {
+			padding: 5px 8px;
+			color: $white !important;
+
+			&:hover {
+				color: $purple !important;
+			}
+		}
+
+		&.join {
+			color: $white;
+			background-color: orange;
+			font-weight: bold;
+
+			&:hover {
+				color: $purple;
+				background-color: $yellow;
+			}
+		}
+	}
+}
+
+nav {
+	&.main {
+		background-color: $purple;
+		color: $white;
+
+		ul {
+			li {
+				a {
+					display: block;
+					padding: 10px;
+					color: $white;
+
+					&:hover,
+					&.current {
+						background-color: $yellow;
+						color: $purple;
+					}
+				}
+			}
+
+			&:first-child {
+				text-transform: uppercase;
+			}
+
+			&:nth-child(2) {
+				text-transform: capitalize;
+			}
+		}
+	}
+}
+
+ul {
+	&.no_styles {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+}
+
+footer {
+	text-align: center;
+}
