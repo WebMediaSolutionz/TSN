@@ -18,18 +18,20 @@
 
 	<br />
 
-	<h2>theme</h2>
+	<?php if ( $profile_user->id === $current_user->id ) { ?>
+		<h2>theme</h2>
 
-	<div class="theme_gallery">
-		<?php
-			foreach ( $themes as $single_theme ) {
-				include( 'partials/theme_thumb.tpl.php' );
-			}
-		?>
-		<div class="clearfix"></div>
-	</div>
-
+		<div class="theme_gallery">
+			<?php
+				foreach ( $themes as $single_theme ) {
+					include( 'partials/theme_thumb.tpl.php' );
+				}
+			?>
+			<div class="clearfix"></div>
+		</div>
+	<?php } ?>
 	<br />
+
 
 	<a class="btn" href="login.php?action=delete_account">delete account</a>
 </div>
