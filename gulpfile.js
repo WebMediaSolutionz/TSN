@@ -1,4 +1,6 @@
-var theme = 'ms',
+var fs = require('fs'),
+	themes = fs.readdirSync('web/public/views/'),
+	theme = '*theme*',
 	paths = {
 		stylesheets: {
 			sass: {
@@ -65,60 +67,76 @@ function errorLog ( error ) {
 // Scripts Task
 // Uglifies
 gulp.task( 'scripts', function () {
-	// minifying my javascript
-	gulp.src( paths.scripts.uncompressed.authenticated.script )
-		.pipe( uglify() )
-		.on( 'error', errorLog )
-		.pipe( gulp.dest( paths.scripts.compressed.authenticated.script ) );
+	for ( var i in themes ) {
+		theme = themes[ i ];
 
-	gulp.src( paths.scripts.uncompressed.unauthenticated.script )
-		.pipe( uglify() )
-		.on( 'error', errorLog )
-		.pipe( gulp.dest( paths.scripts.compressed.unauthenticated.script ) );
+		// minifying my javascript
+		gulp.src( paths.scripts.uncompressed.authenticated.script.replace('*theme*', theme) )
+			.pipe( uglify() )
+			.on( 'error', errorLog )
+			.pipe( gulp.dest( paths.scripts.compressed.authenticated.script.replace('*theme*', theme) ) );
+
+		gulp.src( paths.scripts.uncompressed.unauthenticated.script.replace('*theme*', theme) )
+			.pipe( uglify() )
+			.on( 'error', errorLog )
+			.pipe( gulp.dest( paths.scripts.compressed.unauthenticated.script.replace('*theme*', theme) ) );
+	}
 });
 
 gulp.task( 'concat', function () {
-	gulp.src( paths.authenticated.lib_files )
-		.pipe( concat( 'libs.js' ) )
-		.on( 'error', errorLog )
-		.pipe( gulp.dest( paths.scripts.uncompressed.authenticated.libs ) );
+	for ( var i in themes ) {
+		theme = themes[ i ];
 
-	gulp.src( paths.unauthenticated.lib_files )
-		.pipe( concat( 'libs.js' ) )
-		.on( 'error', errorLog )
-		.pipe( gulp.dest( paths.scripts.uncompressed.unauthenticated.libs ) );
+		gulp.src( paths.authenticated.lib_files.replace('*theme*', theme) )
+			.pipe( concat( 'libs.js' ) )
+			.on( 'error', errorLog )
+			.pipe( gulp.dest( paths.scripts.uncompressed.authenticated.libs.replace('*theme*', theme) ) );
+
+		gulp.src( paths.unauthenticated.lib_files.replace('*theme*', theme) )
+			.pipe( concat( 'libs.js' ) )
+			.on( 'error', errorLog )
+			.pipe( gulp.dest( paths.scripts.uncompressed.unauthenticated.libs.replace('*theme*', theme) ) );
+	}
 } );
 
 // Styles Task
 gulp.task( 'styles', function () {
-	gulp.src( paths.stylesheets.sass.authenticated )
-		.pipe( sass({outputStyle: 'compressed'})
-		.on('error', sass.logError) )
-		.on( 'error', errorLog )
-		.pipe( prefix( 'last 2 versions' ) )
-		.pipe( gulp.dest( paths.stylesheets.css.authenticated ) )
-		.pipe( livereload() );
+	for ( var i in themes ) {
+		theme = themes[ i ];
 
-	gulp.src( paths.stylesheets.sass.unauthenticated )
-		.pipe( sass({outputStyle: 'compressed'})
-		.on('error', sass.logError) )
-		.on( 'error', errorLog )
-		.pipe( prefix( 'last 2 versions' ) )
-		.pipe( gulp.dest( paths.stylesheets.css.unauthenticated ) )
-		.pipe( livereload() );
+		gulp.src( paths.stylesheets.sass.authenticated.replace('*theme*', theme) )
+			.pipe( sass({outputStyle: 'compressed'})
+			.on('error', sass.logError) )
+			.on( 'error', errorLog )
+			.pipe( prefix( 'last 2 versions' ) )
+			.pipe( gulp.dest( paths.stylesheets.css.authenticated.replace('*theme*', theme) ) )
+			.pipe( livereload() );
+
+		gulp.src( paths.stylesheets.sass.unauthenticated.replace('*theme*', theme) )
+			.pipe( sass({outputStyle: 'compressed'})
+			.on('error', sass.logError) )
+			.on( 'error', errorLog )
+			.pipe( prefix( 'last 2 versions' ) )
+			.pipe( gulp.dest( paths.stylesheets.css.unauthenticated.replace('*theme*', theme) ) )
+			.pipe( livereload() );
+	}
 });
 
 // Watch Task
 gulp.task( 'watch', function () {
 	var server = livereload();
 
-	// gulp.watch( lib_files, [ 'concat' ] );
-	gulp.watch( paths.scripts.uncompressed.authenticated.script, [ 'scripts' ] );
-	gulp.watch( paths.scripts.uncompressed.unauthenticated.script, [ 'scripts' ] );
-	gulp.watch( paths.stylesheets.sass.authenticated, [ 'styles' ] );
-	gulp.watch( paths.stylesheets.sass.unauthenticated, [ 'styles' ] );
-	// gulp.watch( 'img/*', [ 'image' ] );
+	for ( var i in themes ) {
+		theme = themes[ i ];
+
+		// gulp.watch( lib_files, [ 'concat' ] );
+		gulp.watch( paths.scripts.uncompressed.authenticated.script.replace('*theme*', theme), [ 'scripts' ] );
+		gulp.watch( paths.scripts.uncompressed.unauthenticated.script.replace('*theme*', theme), [ 'scripts' ] );
+		gulp.watch( paths.stylesheets.sass.authenticated.replace('*theme*', theme), [ 'styles' ] );
+		gulp.watch( paths.stylesheets.sass.unauthenticated.replace('*theme*', theme), [ 'styles' ] );
+		// gulp.watch( 'img/*', [ 'image' ] );
+	}
 });
 
 // gulp.task( 'default', [ 'scripts', 'styles', 'image', 'watch' ]);
-gulp.task( 'default', [ 'scripts', 'styles', 'watch' ]);
+gulp.task( 'default', [ 'scripts', 'styles' ]);
