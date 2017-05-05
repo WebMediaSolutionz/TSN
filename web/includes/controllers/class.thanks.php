@@ -26,14 +26,6 @@
 				$token = $_POST[ 'stripeToken' ];
 
 				try {
-					// \Stripe\Plan::create( array (
-					// 	"amount" 	=> 	2000,
-					// 	"interval" 	=> 	"month",
-					// 	"name" 		=> 	"Amazing Gold Plan",
-					// 	"currency" 	=> 	"cad",
-					// 	"id" 		=> 	"gold")
-					// );
-
 					// creating the customer
 					$customer = \Stripe\Customer::create( array (
 						"source" 	=> 	$token,
@@ -51,8 +43,20 @@
 					$user->name = $first_name;
 					$user->lastname = $last_name;
 					$user->username = $username;
-					$user->birthdate = Utils::mysql_datetime();
+					$user->birthdate = Utils::mysql_datetime('-18 year'); // TODO: put in a real way for customers to be able to enter their birth date
 					$user->password = $password;
+					$user->stripe_id = $customer->id;
+
+					switch($_POST[ 'plan' ]) {
+						case 'gold'		: 	$user->membership_end_date = Utils::mysql_datetime('+3 day'); // current membership period ends in 3 days
+											break;
+
+						case 'silver'	: 	$user->membership_end_date = Utils::mysql_datetime('+1 month'); // current membership period ends in 1 month
+											break;
+
+						case 'bronze' 	: 	$user->membership_end_date = Utils::mysql_datetime('+1 year'); // current membership period ends in 12 months
+											break;
+					}
 
 					if ( $user->save() ) {
 						$user->expedite_activation();
@@ -60,7 +64,7 @@
 						$email_message = str_replace( '{{verification_key}}', $user->verification_key, $lang[ 'sign up email message' ]);
 						$message = $lang[ 'sign up message' ];
 
-						// Utils::sendmail( $user, $email_subject, $email_message );
+						Utils::sendmail( $user, $email_subject, $email_message );
 
 						// Utils::redirect_to( 'login.php?status=success' );
 					}
@@ -77,6 +81,7 @@
 					// create new user, everything is good. activate the user
 				} catch ( Stripe_CardError $e ) {
 					// Do something with the error here. redirect to error page, payment didn't go through
+					throw new Exception($customer->error->message());
 				}
 			}
 		}

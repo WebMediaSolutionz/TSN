@@ -30,7 +30,8 @@
 
 				$found_user = User::authenticate( $username, $password );
 
-				if ( $found_user ) {
+				// TODO: tighten this up to display nicer message if membership has expired, check if it's a paying website, should create flag for that
+				if ( $found_user && Utils::within_last_24_hours( $found_user->membership_end_date ) ) {
 					$session->login( $found_user );
 					redirect_to( 'home.php' );
 				} else {
