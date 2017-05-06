@@ -72,6 +72,10 @@
 			return is_null( $date ) ? date( "Y-m-d H:i:s" ) : date( "Y-m-d H:i:s", strtotime( $date ) );
 		}
 
+		public static function within_last_24_hours ( $date ) {
+			return ( ( time() - ( 60 * 60 * 24 ) ) < strtotime( $date ) );
+		}
+
 		public static function upload_img ( $img ) {
 			global $session;
 

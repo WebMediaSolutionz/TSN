@@ -3,33 +3,35 @@
 	class User extends DatabaseObject {
 		protected static $table_name = "users";
 		public static $db_fields = array(
-			'id'				=> 	'auto-increment',
-			'name' 				=> 	'string',
-			'lastname' 			=> 	'string',
-			'middlename' 		=> 	'string',
-			'sex' 				=> 	'string',
-			'birthdate' 		=> 	'datetime',
-			'username' 			=> 	'string',
-			'password' 			=> 	'string',
-			'ip' 				=> 	'string',
-			'address' 			=> 	'string',
-			'city' 				=> 	'string',
-			'province' 			=> 	'string',
-			'state' 			=> 	'string',
-			'country' 			=> 	'string',
-			'zipcode' 			=> 	'string',
-			'relationship' 		=> 	'string',
-			'interested_in' 	=> 	'string',
-			'school' 			=> 	'string',
-			'major' 			=> 	'string',
-			'level' 			=> 	'string',
-			'work' 				=> 	'string',
-			'position' 			=> 	'string',
-			'occupation' 		=> 	'string',
-			'interests' 		=> 	'string',
-			'bio' 				=> 	'string',
-			'verification_key' 	=> 	'string',
-			'verified'			=>	'int'
+			'id'					=> 'auto-increment',
+			'name' 					=> 'string',
+			'lastname' 				=> 'string',
+			'middlename' 			=> 'string',
+			'sex' 					=> 'string',
+			'birthdate' 			=> 'datetime',
+			'username' 				=> 'string',
+			'password' 				=> 'string',
+			'ip' 					=> 'string',
+			'address' 				=> 'string',
+			'city' 					=> 'string',
+			'province' 				=> 'string',
+			'state' 				=> 'string',
+			'country' 				=> 'string',
+			'zipcode' 				=> 'string',
+			'relationship' 			=> 'string',
+			'interested_in' 		=> 'string',
+			'school' 				=> 'string',
+			'major' 				=> 'string',
+			'level' 				=> 'string',
+			'work' 					=> 'string',
+			'position' 				=> 'string',
+			'occupation' 			=> 'string',
+			'interests' 			=> 'string',
+			'bio'					=> 'string',
+			'verification_key' 		=> 'string',
+			'verified' 				=> 'int',
+			'stripe_id'				=> 'string',
+			'membership_end_date' 	=> 'string'
 			);
 		public $id;
 		public $name;
@@ -54,10 +56,19 @@
 		public $work;
 		public $position;
 		public $occupation;
-		public $interests; 
+		public $interests;
 		public $bio;
 		public $verification_key;
 		public $verified;
+		public $stripe_id;
+		public $membership_end_date;
+
+		public static function find_by_stripe_id ( $stripe_id = 0 ) {
+			global $DB;
+
+			$result_array = static::find_by_sql( "SELECT * FROM " . static::$table_name . " WHERE stripe_id = '{$stripe_id}' LIMIT 1" );
+			return !empty( $result_array ) ? array_shift( $result_array ): false;
+		}
 
 		public static function find_verified_by_id ( $id = 0 ) {
 			global $DB;
@@ -115,6 +126,14 @@
 
 		public function deactivate () {
 			$this->verified = false;
+			$this->verification_key = '';
+			$this->update();
+
+			return true;
+		}
+
+		public function reactivate () {
+			$this->verified = true;
 			$this->verification_key = '';
 			$this->update();
 
@@ -204,6 +223,8 @@
 		public function delete_account ( $delete_level = 1 ) {
 			global $session, $DB;
 
+			$this->end_subscription();
+
 			if ( $delete_level === 2 ) {
 				$ups = str_replace( '*id*', $this->id, USER_PERSONAL_SPACE );
 
@@ -217,6 +238,17 @@
 			}
 
 			$session->logout();
+		}
+
+		public function end_subscription () {
+			\Stripe\Stripe::setApiKey( STRIPE_SECRET_KEY );
+
+			$cu = \Stripe\Customer::retrieve( $this->stripe_id );
+
+			$subscription = \Stripe\Subscription::retrieve( $cu->subscriptions->data[0]->id );
+			$subscription->cancel();
+
+			$cu->delete();
 		}
 
 		public static function verify_user ( $verification_key = "" ) {

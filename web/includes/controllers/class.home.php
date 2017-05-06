@@ -42,6 +42,10 @@
 			if ( isset( $session->user_id ) ) {
 				$current_user = User::find_by_id( $session->user_id );
 
+				if ($current_user === false) {
+					$session->logout();
+				}
+
 				$posts = $current_user->get_newsfeed_posts();
 
 				foreach ( $posts as $post ) {
