@@ -62,8 +62,8 @@
             <table>
                 <tr>
                     <td>
-                        <a href="#" class="block pricepoint js-action js-pricepoint current">
-                            <input class="left" type="radio" name="plan" value="gold" checked>
+                        <a href="#" class="block pricepoint js-action js-pricepoint">
+                            <input class="left" type="radio" name="plan" value="bronze">
                             <label class="left">
                                 <span class="period">3 Day Trial</span><br />
                                 <span class="desc italics">You will be billed $4.95 for the trial period*</span>
@@ -96,8 +96,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <a href="#" class="block pricepoint js-action js-pricepoint">
-                            <input class="left" type="radio" name="plan" value="bronze">
+                        <a href="#" class="block pricepoint js-action js-pricepoint current">
+                            <input class="left" type="radio" name="plan" value="gold" checked>
                             <label class="left">
                                 <span class="period">12 Months</span><br />
                                 <span class="desc italics">Billed yearly in one installment of $119.99</span>

@@ -48,13 +48,13 @@
 					$user->stripe_id = $customer->id;
 
 					switch($_POST[ 'plan' ]) {
-						case 'gold'		: 	$user->membership_end_date = Utils::mysql_datetime('+3 day'); // current membership period ends in 3 days
+						case 'gold'		: 	$user->membership_end_date = Utils::mysql_datetime('+1 year'); // current membership period ends in 3 days
 											break;
 
 						case 'silver'	: 	$user->membership_end_date = Utils::mysql_datetime('+1 month'); // current membership period ends in 1 month
 											break;
 
-						case 'bronze' 	: 	$user->membership_end_date = Utils::mysql_datetime('+1 year'); // current membership period ends in 12 months
+						case 'bronze' 	: 	$user->membership_end_date = Utils::mysql_datetime('+3 day'); // current membership period ends in 12 months
 											break;
 					}
 

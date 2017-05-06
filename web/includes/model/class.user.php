@@ -223,18 +223,13 @@
 		public function delete_account ( $delete_level = 1 ) {
 			global $session, $DB;
 
+			$this->end_subscription();
+
 			if ( $delete_level === 2 ) {
 				$ups = str_replace( '*id*', $this->id, USER_PERSONAL_SPACE );
 
 				if (is_dir( $ups )) {
 				    rmdir( $ups );
-				}
-
-				if ( defined( STRIPE_SECRET_KEY ) ) {
-					\Stripe\Stripe::setApiKey( STRIPE_SECRET_KEY );
-
-					$cu = \Stripe\Customer::retrieve( $this->stripe_id );
-					$cu->delete();
 				}
 
 				$this->delete();
@@ -243,6 +238,17 @@
 			}
 
 			$session->logout();
+		}
+
+		public function end_subscription () {
+			\Stripe\Stripe::setApiKey( STRIPE_SECRET_KEY );
+
+			$cu = \Stripe\Customer::retrieve( $this->stripe_id );
+
+			$subscription = \Stripe\Subscription::retrieve( $cu->subscriptions->data[0]->id );
+			$subscription->cancel();
+
+			$cu->delete();
 		}
 
 		public static function verify_user ( $verification_key = "" ) {

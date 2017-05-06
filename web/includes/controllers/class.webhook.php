@@ -19,11 +19,11 @@
                 case 'invoice.payment_succeeded'    :   $plan = $event->data->object->lines->data[0]->plan->id;
                 
                                                         if ( $plan === 'gold' ) {
-                                                            $user->membership_end_date = Utils::mysql_datetime('+3 day');
+                                                            $user->membership_end_date = Utils::mysql_datetime('+1 year');
                                                         } else if ( $plan === 'silver' ) {
                                                             $user->membership_end_date = Utils::mysql_datetime('+1 month');
                                                         } else if ( $plan === 'bronze' ) {
-                                                            $user->membership_end_date = Utils::mysql_datetime('+1 year');
+                                                            $user->membership_end_date = Utils::mysql_datetime('+3 day');
                                                         }
 
                                                         $user->reactivate();
