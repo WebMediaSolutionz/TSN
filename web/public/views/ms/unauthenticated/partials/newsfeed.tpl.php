@@ -1,4 +1,4 @@
-<?php if ( $current_user->id === $profile_user->id ) { ?>
+<?php if ( $session->is_logged_in() && $current_user->id === $profile_user->id ) { ?>
 	<div class="status_textarea">
 		<form action="blog.php?action=post_to_wall" method="post">
 			<textarea id="status_updater" name="value"></textarea>
