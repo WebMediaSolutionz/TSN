@@ -50,6 +50,23 @@
 		text-decoration: none;
 		color: #000 !important;
 	}
+
+	& {
+		.overlay {
+			width: 200px;
+			height: 200px;
+			padding: 0;
+			position: absolute;
+			z-index: 100;
+			background: transparent url("../../../common/images/play-button.png") 0 0 / 199px 199px no-repeat;
+		}
+
+		&:hover {
+			.overlay {
+				background: transparent url("../../../common/images/play-button-hover.png") 0 0 / 199px 199px no-repeat;
+			}
+		}
+	}
 }
 
 .theme_thumb {
