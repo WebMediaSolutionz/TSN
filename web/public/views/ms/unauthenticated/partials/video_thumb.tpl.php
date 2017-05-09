@@ -1,4 +1,6 @@
 <a class="album_thumb block left" href="signup.php">
+	<div class="overlay"></div>
+	
 	<div class="img_container">
 		<img class="" src="<?php echo $video_thumb . '/' . $video->thumbnail; ?>" alt="<?php echo $video->title; ?>" />
 	</div>
