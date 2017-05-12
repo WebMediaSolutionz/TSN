@@ -128,8 +128,7 @@
 		float: left;
 		margin-left: 37px;
 
-		&:nth-child(1),
-		&:nth-child(5n) {
+		&:nth-child(4n + 1) {
 			margin-left: 0;
 		}
 	}
@@ -138,8 +137,7 @@
 		float: left;
 		margin-left: 34px;
 
-		&:nth-child(1),
-		&:nth-child(5n) {
+		&:nth-child(4n + 1) {
 			margin-left: 0;
 		}
 	}
