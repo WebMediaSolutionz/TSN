@@ -16,6 +16,10 @@ a {
 	&:active {
 		text-decoration: none;
 	}
+
+	&:focus {
+		outline: none;
+	}
 }
 
 nav {
