@@ -12,10 +12,13 @@
 	<div class="left left_part">
 		<span><a href="profile.php?profile_id=<?php echo $author->id; ?>"><?php echo $author->full_name(); ?></a></span>
 		<span><?php echo $comment->value; ?></span>
-		<div class="post_operations italics">
-			<span class="automated_post"><?php echo Utils::how_long_ago( $comment->date ); ?></span> 
-			<span><a href="<?php echo $comment->you_like ? static::$action_unlike_link: static::$action_like_link; ?>&comment_id=<?php echo $comment->id; ?>"> &middot; <?php echo $comment->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a><?php echo count( $comment->get_likers() ) == 1 ? ' &middot; 1 like' : ( count( $comment->get_likers() ) !== 0 ? ' &middot; ' . count( $comment->get_likers() ) . ' likes': '' );?></span>
-		</div>
+
+		<?php if ($session->is_logged_in()) { ?>
+			<div class="post_operations italics">
+				<span class="automated_post"><?php echo Utils::how_long_ago( $comment->date ); ?></span> 
+				<span><a href="<?php echo $comment->you_like ? static::$action_unlike_link: static::$action_like_link; ?>&comment_id=<?php echo $comment->id; ?>"> &middot; <?php echo $comment->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a><?php echo count( $comment->get_likers() ) == 1 ? ' &middot; 1 like' : ( count( $comment->get_likers() ) !== 0 ? ' &middot; ' . count( $comment->get_likers() ) . ' likes': '' );?></span>
+			</div>
+		<?php } ?>
 	</div>
 	<?php if ( $comment->user_id === $current_user->id ) { ?>
 		<div class="post_actions right">

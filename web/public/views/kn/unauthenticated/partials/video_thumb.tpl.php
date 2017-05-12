@@ -1,4 +1,4 @@
-<a class="album_thumb block left" href="video.php?item_id=<?php echo $video->id; ?>">
+<a class="album_thumb block left" href="signup.php">
 	<div class="overlay"></div>
 
 	<div class="img_container">
