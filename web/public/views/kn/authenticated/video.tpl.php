@@ -3,7 +3,7 @@
 ?>
 
 <div class="content">
-	<h1>VIDEO</h1>
+	<h1><?php echo $video->title; ?></h1>
 
 	<div class="picture">
 		<video controls> 
