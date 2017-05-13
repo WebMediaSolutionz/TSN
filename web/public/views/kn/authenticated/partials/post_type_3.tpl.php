@@ -15,7 +15,7 @@
 		
 		<?php if ($session->is_logged_in()) { ?>
 			<div class="post_operations actions">
-				<span><a class="js-action js-like" href="<?php echo $post->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&post_id=<?php echo $post->id; ?>"><?php echo $post->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a> &middot; <a class="js-action js-comment" href="#">Comment</a><!-- &middot; <a href="share.php?post_id=<?php echo $post->id; ?>"><?php echo $lang[ 'share' ]; ?></a> --><span class="js-nb_likes"><?php echo count( $post->get_likers() ) === 1 ? ' &middot; 1 like' : ( count( $post->get_likers() ) !== 0 ? ' &middot; ' . count( $post->get_likers() ) . ' likes': '' );?></span><?php echo count( $post->get_commenters() ) === 1 ? ' &middot; 1 comment' : ( count( $post->get_commenters() ) !== 0 ? ' &middot; ' . count( $post->get_commenters() ) . ' comments': '' );?></span>
+				<span><a class="js-action js-like" href="<?php echo $post->you_like ? static::$action_unlike_link : static::$action_like_link; ?>&post_id=<?php echo $post->id; ?>"><?php echo $post->you_like ? $lang[ 'unlike' ] : $lang[ 'like' ]; ?></a> &middot; <a class="js-action js-comment" href="#">Comment</a><!-- &middot; <a href="share.php?post_id=<?php echo $post->id; ?>"><?php echo $lang[ 'share' ]; ?></a> --><span class="js-nb_likes"><?php echo count( $post->get_likers() ) === 1 ? ' &middot; 1 like' : ( count( $post->get_likers() ) !== 0 ? ' &middot; ' . count( $post->get_likers() ) . ' likes': '' );?></span><span class="js-nb_comments"><?php echo count( $post->get_commenters() ) === 1 ? ' &middot; 1 comment' : ( count( $post->get_commenters() ) !== 0 ? ' &middot; ' . count( $post->get_commenters() ) . ' comments': '' );?></span>
 			</div>
 		<?php } ?>
 	</div>
