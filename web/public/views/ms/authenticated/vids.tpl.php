@@ -11,7 +11,7 @@
 
 	<br />
 
-	<div>
+	<div class="album_gallery">
 		<?php foreach ( $videos as $video ) { ?>
 			<?php include( 'partials/video_thumb.tpl.php' ); ?>
 		<?php } ?>

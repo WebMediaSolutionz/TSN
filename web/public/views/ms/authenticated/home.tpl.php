@@ -3,7 +3,7 @@
 <div class="content">
 	<h1>LATEST VIDEOS</h1>
 
-	<div>
+	<div class="album_gallery">
 		<?php foreach ( $videos as $video ) { ?>
 			<?php include( 'partials/video_thumb.tpl.php' ); ?>
 		<?php } ?>

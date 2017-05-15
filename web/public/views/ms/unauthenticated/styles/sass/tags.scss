@@ -17,6 +17,10 @@ a {
 		text-decoration: none;
 	}
 
+	&:focus {
+		outline: none;
+	}
+
 	&.btn {
 		padding: 10px;
 		color: $white;

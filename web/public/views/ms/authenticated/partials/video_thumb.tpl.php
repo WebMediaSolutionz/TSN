@@ -1,3 +1,4 @@
+<!--<a class="btn" href="vids.php?action=delete_video&video_id=<?php echo $video->id; ?>">delete</a>-->
 <a class="album_thumb block left" href="video.php?item_id=<?php echo $video->id; ?>">
 	<div class="overlay"></div>
 

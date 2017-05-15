@@ -19,11 +19,11 @@
 	width: 198px;
 	border: thin solid #ccc;
 	background-color: #FFF;
-	margin-bottom: 10px;
+	margin: 0 0 37px 37px;
 
 	img {
 		width: 198px;
-		padding: 1px;
+		padding: 0;
 	}
 
 	div {
@@ -31,9 +31,9 @@
 
 		&.img_container {
 			padding: 0;
-			margin: 1px;
-			width: 196px;
-			height: 196px;
+			margin: 0;
+			width: 198px;
+			height: 198px;
 			text-align: center;
 			background-color: #000;
 
@@ -58,12 +58,12 @@
 			padding: 0;
 			position: absolute;
 			z-index: 100;
-			background: transparent url("../../../common/images/play-button.png") 0 0 / 199px 199px no-repeat;
+			background: transparent url("../../../common/images/play-button.png") 50px 50px / 100px 100px no-repeat;
 		}
 
 		&:hover {
 			.overlay {
-				background: transparent url("../../../common/images/play-button-hover.png") 0 0 / 199px 199px no-repeat;
+				background: transparent url("../../../common/images/play-button-hover.png") 50px 50px / 100px 100px no-repeat;
 			}
 		}
 	}
@@ -76,7 +76,7 @@
 	overflow: hidden;
 	border: thin solid #000;
 	background-color: #FFF;
-	margin-bottom: 10px;
+	margin-bottom: 34px;
 
 	h4 {
 		position: absolute;
@@ -126,40 +126,44 @@
 .theme_gallery {
 	.album_thumb {
 		float: left;
-		margin-left: 10px;
+		margin-left: 37px;
 
-		&:nth-child(1),
-		&:nth-child(5n) {
+		&:nth-child(4n + 1) {
 			margin-left: 0;
 		}
 	}
 
 	.theme_thumb {
 		float: left;
-		margin-left: 10px;
+		margin-left: 34px;
 
-		&:nth-child(1),
-		&:nth-child(5n) {
+		&:nth-child(4n + 1) {
 			margin-left: 0;
 		}
 	}
 }
 
 .comments {
-	padding: 30px 0 10px 40px;
-	margin: 5px -10px 0 -10px;
+	padding: 10px 0 5px 43px;
 	/*background-color: #cdcecf;*/
 }
 
 .comment {
-	padding-bottom: 15px;
+	margin-bottom: 15px;
+	background-color: gray;
+	padding: 5px;
 
 	.post_operations {
 		margin-top: 5px;
+		font-size: 60%;
+
+		.automated_post {
+			font-size: 100%;
+		}
 	}
 
-	.post_actions {
-		margin-right: 5px;
+	.left_part {
+		width: 90%;
 	}
 }
 
@@ -177,7 +181,7 @@
 	margin-top: 5px;
 
 	input[type=text] {
-		width: 500px;
+		width: 93%;
 		height: 25px;
 	}
 }
@@ -213,9 +217,37 @@
 }
 
 .status_textarea textarea {
-	width: 580px;
+	width: 98%;
+	height: 65px;
+	padding: 10px 1%;
+	margin-bottom: 10px;
 }
 
 .fa-tachometer {
 	font-size: 17px;
+}
+
+.single_post,
+.item_comment_section {
+	background-color: #4d4d4d ;
+	margin-bottom: 10px;
+	padding: 5px;
+
+	.automatically_generated_text a {
+		font-weight: bold;
+	}
+
+	.automated_post {
+		font-size: 60%;
+		color: #000;
+	}
+
+	.post_content {
+		padding: 10px 0;
+		width: 835px;
+	}
+
+	.js-input_comment {
+		padding: 3px 8px;
+	}
 }
