@@ -1,8 +1,8 @@
 <?php
 	defined( 'DB_DOMAIN' ) 		? null : define( 'DB_DOMAIN', 	'localhost' );
-	defined( 'DB_USERNAME' ) 	? null : define( 'DB_USERNAME', 'webmedj6_tsn' ); 
-	defined( 'DB_PASSWORD' ) 	? null : define( 'DB_PASSWORD', 'zWkwMIutlO;$' ); 
-	defined( 'DB_DATABASE' ) 	? null : define( 'DB_DATABASE', 'webmedj6_social_network' ); 
+	defined( 'DB_USERNAME' ) 	? null : define( 'DB_USERNAME', 'webmedj6_ms' );
+	defined( 'DB_PASSWORD' ) 	? null : define( 'DB_PASSWORD', '.9IBL6U=BU*h' );
+	defined( 'DB_DATABASE' ) 	? null : define( 'DB_DATABASE', 'webmedj6_ms' );
 
 	defined( 'SITE_EMAIL' ) 	? null : define( 'SITE_EMAIL', 'info@webmediasolutionz.com' ); 
 	defined( 'SUPPORT_EMAIL' ) 	? null : define( 'SUPPORT_EMAIL', 'support@webmediasolutionz.com' ); 
@@ -14,6 +14,9 @@
 
 	defined( 'DOMAIN' ) 		? null : define( 'DOMAIN', $baseurl );
 
-	defined( 'STRIPE_SECRET_KEY' ) 	? null : define( 'STRIPE_SECRET_KEY', 'sk_test_mZ2l8KNk19ZdmsAgOUphYtSa' );
-	defined( 'STRIPE_PUBLIC_KEY' ) 	? null : define( 'STRIPE_PUBLIC_KEY', 'pk_test_TG0gp4lQqTmiW1knsK07AA1t' );
+	// defined( 'STRIPE_SECRET_KEY' ) 	? null : define( 'STRIPE_SECRET_KEY', 'sk_test_mZ2l8KNk19ZdmsAgOUphYtSa' );
+	// defined( 'STRIPE_PUBLIC_KEY' ) 	? null : define( 'STRIPE_PUBLIC_KEY', 'pk_test_TG0gp4lQqTmiW1knsK07AA1t' );
+
+	defined( 'STRIPE_SECRET_KEY' ) 	? null : define( 'STRIPE_SECRET_KEY', 'sk_live_mM3q1zc3RH3Q8URRHgbJNnpu' );
+	defined( 'STRIPE_PUBLIC_KEY' ) 	? null : define( 'STRIPE_PUBLIC_KEY', 'pk_live_PSCrdbBumJwsQZD73iQfTB8q' );
 ?>

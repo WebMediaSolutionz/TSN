@@ -1,8 +1,8 @@
 <?php
 	defined( 'DB_DOMAIN' ) 		? null : define( 'DB_DOMAIN', 	'localhost' );
-	defined( 'DB_USERNAME' ) 	? null : define( 'DB_USERNAME', 'webmedj6_social' ); 
-	defined( 'DB_PASSWORD' ) 	? null : define( 'DB_PASSWORD', 'M~&)4@2GE19-' ); 
-	defined( 'DB_DATABASE' ) 	? null : define( 'DB_DATABASE', 'webmedj6_social_network' ); 
+	defined( 'DB_USERNAME' ) 	? null : define( 'DB_USERNAME', 'webmedj6_ms' );
+	defined( 'DB_PASSWORD' ) 	? null : define( 'DB_PASSWORD', '.9IBL6U=BU*h' );
+	defined( 'DB_DATABASE' ) 	? null : define( 'DB_DATABASE', 'webmedj6_ms' );
 
 	defined( 'SITE_EMAIL' ) 	? null : define( 'SITE_EMAIL', 'info@webmediasolutionz.com' ); 
 	defined( 'SUPPORT_EMAIL' ) 	? null : define( 'SUPPORT_EMAIL', 'support@webmediasolutionz.com' ); 

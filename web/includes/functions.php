@@ -50,7 +50,7 @@
 			$environment = "live";
 		}
 
-		$url = $_SERVER[ 'PHP_SELF' ];
+		$url = $domain . $_SERVER[ 'PHP_SELF' ];
 
 		if ( is_numeric ( strpos( $url, "thesocialnetwork" ) ) || is_numeric ( strpos( $url, "TSN2" ) ) ) {
 			$site_code = 'tsn';
