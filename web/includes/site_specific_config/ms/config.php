@@ -1,6 +1,6 @@
 <?php
 	defined( 'SITE_NAME' ) ? null : define( 'SITE_NAME', 'Mama Sita' );
-	defined( 'DEFAULT_THEME' ) ? null : define( 'DEFAULT_THEME', 'ms' );
+	defined( 'DEFAULT_THEME' ) ? null : define( 'DEFAULT_THEME', 'kn' );
 	defined( 'PROFILE_USER' ) ? null : define( 'PROFILE_USER', 108 );
 	defined( 'AUTHENTICATION_REQUIRED' ) ? null : define( 'AUTHENTICATION_REQUIRED', false );
 

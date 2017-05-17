@@ -10,10 +10,6 @@
 
 			if ( defined( 'PROFILE_USER' ) ) {
 				$profile_user = User::find_by_id( PROFILE_USER );
-			}
-
-			if ( DEFAULT_THEME === $site_code && defined( 'PROFILE_USER' ) ) {
-				$profile_user = $current_user = User::find_by_id( PROFILE_USER );
 
 				$videos = Video::get_last_few_of_user( $profile_user->id, 4 );
 				$video_thumb = str_replace( '*id*', $profile_user->id, USER_PERSONAL_SPACE_VIDEOS ) . "/tn";
