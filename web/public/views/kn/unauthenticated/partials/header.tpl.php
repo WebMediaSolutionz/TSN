@@ -8,6 +8,7 @@
     </head>
     
     <body>
+        <?php include_once("analyticstracking.tpl.php"); ?>
         <input type="hidden" name="stripe_pk" value="<?php echo STRIPE_PUBLIC_KEY; ?>">
 
         <div class="outer-container">
