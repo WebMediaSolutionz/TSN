@@ -1,5 +1,7 @@
-@import url("variables.css");
-@import url("tags.css");
-@import url("utility.css");
-@import url("classes.css");
-@import url("ids.css");
+@import "variables";
+@import "mixins";
+@import "tags";
+@import "utility";
+@import "classes";
+@import "ids";
+@import "lib/privacy_policy";
