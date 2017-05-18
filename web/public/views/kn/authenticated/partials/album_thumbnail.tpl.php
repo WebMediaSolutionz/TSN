@@ -6,7 +6,7 @@
 		<img src="<?php echo $album_thumb; ?>" alt="<?php echo $album->name; ?>" />
 	</div>
 	<div>
-		<?php echo $album->name; ?><br />
+		<span class="capitalize"><?php echo $album->name; ?></span><br />
 		<span class="subscript"><?php echo count( $album->pictures ) . " photos";?></span>
 	</div>
 </a>
