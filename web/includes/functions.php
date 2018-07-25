@@ -68,6 +68,8 @@
 			$site_code = "kn";
 		} else if ( is_numeric ( strpos( $url, "mamasita" ) ) || is_numeric ( strpos( $url, "MS" ) ) ) {
 			$site_code = "ms";
+		} else {
+			$site_code = 'tsn';
 		}
 
 		$baseurl = $domain . $url;
