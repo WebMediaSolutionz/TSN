@@ -18,10 +18,11 @@ services:
   apache:
     depends_on:
       - db
-    image: httpd:2.4
+    build: .
+    image: php:5
     restart: always
     volumes:
-      - ./web:/usr/local/apache2/htdocs/
+      - ./web:/usr/src/myapp
     ports:
       - 80:80
     networks:
